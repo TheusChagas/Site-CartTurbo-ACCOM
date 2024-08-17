@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        amareloEscuro: '#CFA633',
+                        amareloEscuro2: '#DCB23A',
+                        amareloClaro: '#fABD14',
+                        azul: '#3336FF',
+                        cinza: '#575757',
+                        cinzaEscuro: '#33312D',
+                        cinzaClaro: '#DBDBDB',
+                        PretoClarin: '#33312D',
+                        Branquin: '#FFFFFF',
+                        Marromdiff: '#7A6D47',
+                        Amarelin: '#A58B44',
+                        cinza: '#C6C6C6',
+                    }
+                }
+            }
+        }
+    </script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+        .wrapper {
+            max-width: 1100px;
+            width: 95%;
+            position: relative;
+        }
+
+        .wrapper i {
+            top: 50%;
+            height: 50px;
+            width: 50px;
+            cursor: pointer;
+            font-size: 1.25rem;
+            position: absolute;
+            text-align: center;
+            line-height: 50px;
+            background: #fff;
+            border-radius: 50%;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.23);
+            transform: translateY(-50%);
+            transition: transform 0.1s linear;
+        }
+
+        .wrapper i:active {
+            transform: translateY(-50%) scale(0.85);
+        }
+
+        .wrapper i:first-child {
+            left: -45px;
+        }
+
+        .wrapper i:last-child {
+            right: -45px;
+        }
+
+        .wrapper .carousel {
+            display: grid;
+            grid-auto-flow: column;
+            grid-auto-columns: calc((100% / 3) - 12px);
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            gap: 16px;
+            border-radius: 8px;
+            scroll-behavior: smooth;
+            scrollbar-width: none;
+        }
+
+        .carousel::-webkit-scrollbar {
+            display: none;
+        }
+
+        .carousel.no-transition {
+            scroll-behavior: auto;
+        }
+
+        .carousel.dragging {
+            scroll-snap-type: none;
+            scroll-behavior: auto;
+        }
+
+        .carousel.dragging .card {
+            cursor: grab;
+            user-select: none;
+        }
+
+        .carousel :where(.card, .img) {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .carousel .card {
+            scroll-snap-align: start;
+            height: 275px;
+            list-style: none;
+            background: #EEEEEE;
+            cursor: pointer;
+            padding-bottom: 15px;
+            flex-direction: column;
+            border-radius: 8px;
+        }
+
+        .carousel .card .img {
+            background: #8B53FF;
+            height: 148px;
+            width: 148px;
+            border-radius: 50%;
+        }
+
+        .card .img img {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #fff;
+        }
+
+        .carousel .card h2 {
+            font-weight: 300;
+            font-size: 1rem;
+            margin: 15px 0 0px;
+        }
+
+        .carousel .card span {
+            color: #6A6D78;
+            font-size: 0.8rem;
+        }
+
+        @media screen and (max-width: 900px) {
+            .wrapper .carousel {
+                grid-auto-columns: calc((100% / 2) - 9px);
+            }
+        }
+
+        @media screen and (max-width: 600px) {
+            .wrapper .carousel {
+                grid-auto-columns: 100%;
+            }
+        }
+
+        @keyframes sl {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(calc(100vw + 100%)); }
+        }
+        
+        .sl {
+            animation: sl 5s linear infinite;
+        }
+
+        .sl-delay-1 {
+            animation-delay: 1s;
+        }
+
+        .sl-delay-2 {
+            animation-delay: 2s;
+        }
+
+        .sl-delay-3 {
+            animation-delay: 3s;
+        }
+
+        
+    </style>
+
+</head>
+
+<body>
+    <!--Header Mobile-->
+    <nav class="lg:hidden w-full fixed top-0 z-50">
+        <div class="flex items-center py-5 px-3 bg-amareloEscuro shadow lg:flex lg:items-center lg:justify-between">
+            <span class="text-2xl font-[Poppins] cursor-pointer">
+                <img class="h-10 inline" src="Imagens/carrologo2.png">
+            </span>
+            <div class="flex justify-end w-full">
+                <span class="mb-2 ml-">
+                    <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M21 6H3C1.9 6 1 6.9 1 8V16C1 17.1 1.9 18 3 18H7V21.23C7 21.84 7.61 22.22 8.17 21.95L13 19H21C22.1 19 23 18.1 23 17V8C23 6.9 22.1 6 21 6Z"
+                            fill="black" />
+                    </svg>
+                </span>
+                <span class="mb-2 ml-4">
+                    <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="12" cy="12" r="12" fill="#000000" />
+                        <path
+                            d="M12 4C10.34 4 9 5.34 9 7C9 8.66 10.34 10 12 10C13.66 10 15 8.66 15 7C15 5.34 13.66 4 12 4ZM12 12C10.33 12 6 13.34 6 15V16C6 16.55 6.45 17 7 17H17C17.55 17 18 16.55 18 16V15C18 13.34 13.67 12 12 12Z"
+                            fill="#CFA633" />
+                    </svg>
+                </span>
+                <span class="text-4xl ml-4 cursor-pointer lg:hidden block">
+                    <ion-icon name="menu" onclick="Menu(this)"></ion-icon>
+                </span>
+            </div>
+        </div>
+        <ul
+            class="absolute bg-white lg:bg-amareloEscuro lg:text-center w-full lg:w-auto lg:py-0 py-4 lg:pl-0 pl-7 lg:opacity-100 opacity-0 top-[-1000px] z-30">
+            <li class="mr-[30px] my-6 lg:my-0 border-b border-black hover:border-amareloClaro duration-500">
+                <a href="HomePage.html" class="text-xl hover:text-amareloClaro duration-500">Home</a>
+            </li>
+            <li class="mr-[30px] my-6 lg:my-0 border-b border-black hover:border-amareloClaro duration-500">
+                <a href="AnunciosCompras.html" class="text-xl hover:text-amareloClaro duration-500">Compras</a>
+            </li>
+            <li class="mr-[30px] my-6 lg:my-0 border-b border-black hover:border-amareloClaro duration-500">
+                <a href="Vendas.html" class="text-xl hover:text-amareloClaro duration-500">Vender</a>
+            </li>
+            <li class="mr-[30px] my-6 lg:my-0 border-b border-black hover:border-amareloClaro duration-500">
+                <a href="AnuncioLocação.html" class="text-xl hover:text-amareloClaro duration-500">Alugar</a>
+            </li>
+            <li class="mr-[30px] my-6 lg:my-0 border-b border-black hover:border-amareloClaro duration-500">
+                <a href="ajuda.html" class="text-xl hover:text-amareloClaro duration-500">Ajudar</a>
+            </li>
+            <button
+                class="md:hidden bg-amareloEscuro text-white font-[Poppins] duration-500 px-6 py-2 hover:bg-amareloEscuro2 rounded ">
+                Entrar
+            </button>
+        </ul>
+    </nav>
+
+    <!--Header Desktop-->
+    <nav class="hidden lg:block bg-amareloEscuro w-full fixed top-0 z-[200]">
+        <div class="w-full h-fit flex justify-around pr-[45px]">
+            <span class="flex w-fit h-fit">
+                <img class="scale-50" src="Imagens/whats.png" alt="">
+                <div class="flex-col">
+                    <p class="underline flex-col font-light mt-8">email@gmail.com</p>
+                    <p class="font-bold text-md">(xx)xxxxx-xxxx</p>
+                </div>
+            </span>
+            <span class="cursor-pointer">
+                <img class="h-24 inline" src="imagens/carrologo2.png">
+            </span>
+            <div class="flex space-x-6 mt-8">
+                <span><!--SAC-->
+                    <a href="ajuda.html" class="flex">
+                        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M21 6H3C1.9 6 1 6.9 1 8V16C1 17.1 1.9 18 3 18H7V21.23C7 21.84 7.61 22.22 8.17 21.95L13 19H21C22.1 19 23 18.1 23 17V8C23 6.9 22.1 6 21 6Z"
+                                fill="black" />
+                        </svg>
+                        <p class="mt-1 ml-1 mr-1">SAC</p>
+                    </a>
+                </span>
+                <span id="logar" class=""><!--Login-->
+                    <a href="Login.html" class="flex">
+                        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="12" cy="12" r="12" fill="#000000" />
+                            <path
+                                d="M12 4C10.34 4 9 5.34 9 7C9 8.66 10.34 10 12 10C13.66 10 15 8.66 15 7C15 5.34 13.66 4 12 4ZM12 12C10.33 12 6 13.34 6 15V16C6 16.55 6.45 17 7 17H17C17.55 17 18 16.55 18 16V15C18 13.34 13.67 12 12 12Z"
+                                fill="#CFA633" />
+                        </svg>
+                        <p class="mt-0.5 ml-1">LOGIN</p>
+                    </a>
+                </span>
+                <span class="hidden" id="usuario">
+                    <img src="Imagens/Usuario 1.jpg" class="w-8 rounded-full border-2 border-black">
+                </span>
+            </div>
+        </div>
+        <ul class="flex justify-center bg-cinzaEscuro w-full p-5 text-white space-x-2">
+            <li>
+                <a href="#" class="cursor-default text-lg py-7 text-amareloClaro px-4 duration-500">Home</a>
+            </li>
+            <li>
+                <a href="AnunciosCompras.html"
+                    class="text-lg py-7 px-4 hover:text-amareloClaro duration-500">Comprar</a>
+            </li>
+            <li>
+                <a href='Vendas.html' class="text-lg py-7 px-4 hover:text-amareloClaro duration-500">Vender</a>
+            </li>
+            <li>
+                <a href="AnuncioLocação.html" class="text-lg py-7 px-4 hover:text-amareloClaro duration-500">Alugar</a>
+            </li>
+            <li>
+                <a href="ajuda.html" class="text-lg py-7 px-4 hover:text-amareloClaro duration-500">Ajuda</a>
+            </li>
+            <li>
+                <a href="chamadosClientes.html" id="painel"
+                class="hidden text-lg py-7 px-4 hover:text-amareloClaro duration-500">Funcionários</a>
+            </li>
+            <h2 class=""></h2>
+        </ul>
+        <div class="flex space-x-4">
+
+        </div>
+    </nav>
+
+    <!--Main Body-->
+    <div class="bg-cinzaClaro w-full h-fit flex flex-col justify-center items-center relative top-[80px] lg:top-[190px] pb-[95px] lg:pb-[240px]">
+        <!--Fundo-->
+        <div class="w-full h-fit flex flex-col justify-center items-center bg-fixed" style="background-color: #dbdbdb;">
+
+            <!--Popup-->
+            <div id="overlay"
+                class="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex items-center justify-center z-[210] hidden">
+                <!-- Popup -->
+                <div id="popup"
+                    class="bg-white w-fit h-auto p-6 rounded-lg shadow-lg flex flex-col items-center justify-center z-[100]">
+                    <span id="close" class="text-black font-bold cursor-pointer self-end">&times;</span>
+                    <h2 class="mb-4 text-lg font-bold">Digite seu e-mail e senha</h2>
+
+                    <!-- email -->
+                    <div class="relative h-10 w-[80%] px-2 mb-4">
+                        <input type="email" id="email"
+                            class="peer h-full w-full rounded-[7px] border border-black bg-transparent px-3 py-2.5 text-sm text-black placeholder-transparent focus:outline-none focus:ring-2 focus:ring-amareloClaro focus:border-amareloClaro"
+                            placeholder=" " />
+                        <label for="email"
+                            class="absolute left-4 -top-2 text-xs text-black transition-all peer-placeholder-shown:top-2.5 peer-placeholder-shown:text-sm peer-placeholder-shown:text-black peer-focus:-top-3 peer-focus:text-xs peer-focus:bg-white peer-focus:text-amareloClaro">Email</label>
+                    </div>
+
+                    <!-- senha -->
+                    <div class="relative h-10 w-[80%] px-2 mb-4">
+                        <input type="password" id="senha"
+                            class="peer h-full w-full rounded-[7px] border border-black bg-transparent px-3 py-2.5 text-sm text-black placeholder-transparent focus:outline-none focus:ring-2 focus:ring-amareloClaro focus:border-amareloClaro"
+                            placeholder=" " />
+                        <label for="senha"
+                            class="absolute left-4  -top-2 text-xs text-black transition-all peer-placeholder-shown:top-2.5 peer-placeholder-shown:text-sm peer-placeholder-shown:text-black peer-focus:-top-3 peer-focus:text-xs peer-focus:bg-white peer-focus:text-amareloClaro">Senha</label>
+                    </div>
+
+                    <a href="#" class="mb-2 text-amareloClaro font-semibold underline hover:text-amareloEscuro">Esqueci minha senha</a>
+                    <button id="loginButton"
+                        class="px-[75px] py-2 bg-amareloClaro rounded text-white font-semibold hover:bg-amareloEscuro">Entrar</button>
+
+                    <div class="flex flex-col items-center space-y-3 justify-center p-6">
+                        <hr class="bg-black px-32 py-px">
+                        <h2 class="mb-4 text-xl font-bold">Entrar com uma conta</h2>
+                        <button class="flex space-xl mb-1 px-5 py-2 bg-amareloClaro text-white rounded hover:bg-amareloEscuro">
+                            <img src="Imagens/google ícon.png" class="h-6 mr-5" alt="">
+                            Entrar com Google
+                        </button>
+                        <button class="flex space-xl mb-2 px-4 py-2 bg-amareloClaro text-white rounded hover:bg-amareloEscuro">
+                            <img src="Imagens/facebook ícon.png" class="h-6 mr-2" alt="">
+                            Entrar com Facebook
+                        </button>
+                        <hr class="bg-black px-32 py-px">
+                        <p class="font-semibold">
+                            Não possuí conta ainda? <a href="#" class="text-amareloClaro font-semibold underline hover:text-amareloEscuro">Criar
+                                conta</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!--Carrosel-->
+            <div class="relative w-full h-[200px] xl:h-[225px] mx-auto z-0 bg-fixed">
+                <div class="relative w-full">
+                    <div class="overflow-hidden relative h-[275px] xl:h-[300px]">
+                        <div id="carousel" class="flex transition-transform duration-300 ease-in-out">
+                            <div class="w-full flex-shrink-0">
+                                <img src="imagens/carro2.png" alt="Slide 1" class="w-full h-[300px] object-cover">
+                            </div>
+                            <div class="w-full flex-shrink-0">
+                                <img src="imagens/carro3.png" alt="Slide 2" class="w-full h-[300px] object-cover">
+                            </div>
+                            <div class="w-full flex-shrink-0">
+                                <img src="imagens/carro4.png" alt="Slide 3" class="w-full h-[300px] object-cover">
+                            </div>
+                        </div>
+                    </div>
+                    <button id="prev"
+                        class="absolute top-1/2 left-0 transform -translate-y-1/2 p-2 bg-gray-800 text-white rounded-full">
+                        &#10094;
+                    </button>
+                    <button id="next"
+                        class="absolute top-1/2 right-0 transform -translate-y-1/2 p-2 bg-gray-800 text-white rounded-full">
+                        &#10095;
+                    </button>
+                </div>
+            </div>
+
+            <!--Ford-->
+            <div id="imageContainer" class="space-x-5 hidden z-[500]">
+                <img src="Imagens/ford cinza.png" alt="Imagem 1" class="absolute -left-[620px] sl sl-delay-1">
+                <img src="Imagens/ford laranja.png" alt="Imagem 2" class="absolute -left-[620px] sl sl-delay-2">
+                <img src="Imagens/ford azul.png" alt="Imagem 3" class="absolute -left-[620px] sl sl-delay-3">
+            </div>
+
+            <!--Pesquisa-->
+            <div class="bg-white w-5/6 xl:w-2/3 h-fit flex-col rounded-3xl mt-3 z-10">
+                <div
+                    class="flex mx-3 md:mx-12 justify-around md:justify-start md:space-x-12 font-semibold text-xl text-black">
+                    <a class="decoration-amareloClaro mt-3 active:underline underline-offset-4 decoration-[3px]"
+                        href="">Comprar</a>
+                    <a class="decoration-amareloClaro mt-3 active:underline underline-offset-4 decoration-[3px]"
+                        href="">Vender</a>
+                    <a class="decoration-amareloClaro mt-3 active:underline underline-offset-4 decoration-[3px]"
+                        href="">Alugar</a>
+                </div>
+                <div
+                    class="flex justify-center md:justify-start md:mx-12 mt-8 xl:space-x-4 md:space-x-0 w-full h-fit rounded-md">
+                    <a class="px-4 mx-2 md:px-6 py-2 bg-cinzaClaro active:bg-amareloClaro rounded-lg" href="">Todos</a>
+                    <a class="px-4 mx-2 md:px-6 py-2 bg-cinzaClaro active:bg-amareloClaro rounded-lg" href="">Novos</a>
+                    <a class="px-4 mx-2 md:px-6 py-2 bg-cinzaClaro active:bg-amareloClaro rounded-lg" href="">Usados</a>
+                </div>
+                <div class="w-full h-fit py-4 px-12">
+                    <label for="default-search"
+                        class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 start-2 flex items-center ps-3 pointer-events-none">
+                            <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+                            </svg>
+                        </div>
+                        <input type="search" id="inputField" class="block w-full md:w-3/5 lg:w-4/6 2xl:w-4/5 py-4 ps-10 text-sm text-gray-900 border border-gray-600 rounded-xl focus:border-amareloEscuro2"
+                            placeholder="Digite a marca ou modelo do carro" required />
+                        <button type="submit"
+                            class="hidden md:block text-black hover:text-white focus:text-white absolute end-4 bottom-1 rounded-xl px-9 py-3 bg-amareloClaro">
+                            Ver ofertas (777)</button>
+                    </div>
+                </div>
+            </div>
+
+            <!--Sobre Empresa-->
+            <div class=" bg-white w-5/6 xl:w-2/3 h-fit flex justify-center lg:justify-start xl:justify-between rounded-3xl mt-4 p-10">
+                <img class="md:max-w-[50%] max-w-[50%] hidden md:block" src="imagens/suv.png" alt="">
+                <div
+                    class="text-pretty text-right">
+                    <p class="text-black font-bold text-3xl 2xl:text-6xl mx-4 xl:mx-8 2xl:ml-9 mt-4 leading-6">Conheça a nossa</p>
+                    <p class="text-amareloClaro font-bold text-3xl 2xl:text-6xl mx-4 xl:mx-8 2xl:mx-9 leading-none">Empresa!</p>
+                    <p class="text-black text-lg 2xl:text-2xl w-5/6 mx-4 xl:mx-8 2xl:mx-9 mt-4 font-thin leading-6">Bem-vindo à
+                        CarTurbo seu destino para comprar vender e alugar carros. Oferecemos uma ampla seleção de veículos
+                        inspecionados com qualidade e um atendimento dedicado. Conte conosco para todas as suas necessidades automotivas!
+                    </p>
+                </div>
+            </div>
+
+            <!--Como encontrar-->
+            <div class=" bg-white w-5/6 xl:w-2/3 h-fit pb-4 flex-col rounded-3xl mt-4 p-10">
+                <p class="font-[500] text-3xl md:text-4xl lg:text-center leading-10">Como encontrar</p>
+                <p class="font-[750] text-3xl md:text-4xl text-amareloClaro md:ml-20 mb-5 lg:text-center tracking-tight md:leading-8">o seu carro ideal!
+                </p>
+                <div class="justify-center space-x-2 flex mb-5">
+                    <div class=" "><!--Lupa-->
+                        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="10 -8 1 37"
+                            fill="currentColor" class="mx-2 md:mx-4 mt-4 scale-x-[-1]">
+                            <circle cx="8" cy="8" r="16" fill="#CFA633" />
+                            <path
+                                d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"
+                                fill="white" />
+                        </svg>
+
+                        <p class="font-bold text-xs word-break text-center max-w-20 tracking-tight pl-2 sm:pl-0">Escolha um modelo</p>
+                    </div>
+                    <svg xmlns="http://www.w3.org/2000/svg" class=" mt-4" width="50" height="50" fill="#FABD14"
+                        viewBox="-1 -4 16 25">
+                        <path fill-rule="evenodd"
+                            d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8" />
+                    </svg>
+
+                    <div class=""><!--calendario-->
+                        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="10 -8 1 37" fill="white"
+                            class="mx-2 md:mx-4 mt-4">
+                            <circle cx="8" cy="8" r="16" fill="#CFA633" />
+                            <path
+                                d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm-3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm-5 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5z" />
+                            <path
+                                d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4z" />
+                        </svg>
+                        <p class="font-bold text-xs word-break text-center max-w-20">Reserve seu carro</p>
+                    </div>
+                    <svg xmlns="http://www.w3.org/2000/svg" class=" mt-4" width="50" height="50" fill="#FABD14"
+                        viewBox="-1 -4 16 25">
+                        <path fill-rule="evenodd"
+                            d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8" />
+                    </svg>
+
+                    <div class=""><!--Localização-->
+                        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="10 -8 1 37" fill="white"
+                            class="mx-2 md:mx-4 mt-4">
+                            <circle cx="8" cy="8" r="16" fill="#CFA633" />
+                            <path
+                                d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A32 32 0 0 1 8 14.58a32 32 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10" />
+                            <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4m0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6" />
+                        </svg>
+                        <p class="font-bold text-xs word-break text-center max-w-20">Escolha um local</p>
+                    </div>
+                    <svg xmlns="http://www.w3.org/2000/svg" class=" mt-4" width="50" height="50" fill="#FABD14"
+                        viewBox="-1 -4 16 25">
+                        <path fill-rule="evenodd"
+                            d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8" />
+                    </svg>
+
+                    <div class=""><!--Divirta-->
+                        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="10 -8 1 37" fill="white"
+                            class="mx-2 md:mx-4 mt-4">
+                            <circle cx="8" cy="8" r="16" fill="#CFA633" />
+                            <path
+                                d="M2.52 3.515A2.5 2.5 0 0 1 4.82 2h6.362c1 0 1.904.596 2.298 1.515l.792 1.848c.075.175.21.319.38.404.5.25.855.715.965 1.262l.335 1.679q.05.242.049.49v.413c0 .814-.39 1.543-1 1.997V13.5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-1.338c-1.292.048-2.745.088-4 .088s-2.708-.04-4-.088V13.5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-1.892c-.61-.454-1-1.183-1-1.997v-.413a2.5 2.5 0 0 1 .049-.49l.335-1.68c.11-.546.465-1.012.964-1.261a.8.8 0 0 0 .381-.404l.792-1.848ZM3 10a1 1 0 1 0 0-2 1 1 0 0 0 0 2m10 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2M6 8a1 1 0 0 0 0 2h4a1 1 0 1 0 0-2zM2.906 5.189a.51.51 0 0 0 .497.731c.91-.073 3.35-.17 4.597-.17s3.688.097 4.597.17a.51.51 0 0 0 .497-.731l-.956-1.913A.5.5 0 0 0 11.691 3H4.309a.5.5 0 0 0-.447.276L2.906 5.19Z" />
+                        </svg>
+
+                        <p class="font-bold text-xs word-break text-center max-w-20 pr-2 sm:pr-0">Divirta-se com seu carro</p>
+                    </div>
+                </div>
+            </div>
+
+            <!--Financiamento-->
+            <div
+                class="bg-white w-5/6 xl:w-2/3 h-fit flex flex-col lg:flex-row justify-center lg:justify-around items-center rounded-3xl mt-4">
+                <div class="flex flex-col justify-center items-center w-[270px] md:w-3/5 lg:w-[270px]">
+                    <p class="font-medium text-[24px] text-end leading-6 mt-2">Saiba como
+                        <span class="text-amareloClaro font-bold">funciona</span> o nosso
+                        <span class="text-amareloClaro font-bold md:text-[32px] lg:text-[24px]">financiamento!</span>
+                    </p>
+                    <p
+                        class="mt-6 leading-3 text-center text-[13px] md:text-[16px] lg:text-[13px] w-[210px] md:w-[380px] lg:w-[210px] font-[200]">
+                        Aproveite milhares de ofertas com parcelas que cabem no seu bolso</p>
+                    <a class="bg-amareloClaro font-[14px] font-[900] px-[32px] py-[10px] mt-3 rounded-2xl hover:text-white hover:bg-amareloEscuro"
+                        href="https://api.whatsapp.com/send?phone=5511945533107&text=Ol%C3%A1,%20gostaria%20de%20saber%20sobre%20o%20financiamento%20de%20ve%C3%ADculos">Clique
+                        aqui</a>
+                </div>
+
+                <img class="my-6 scale-[0.8] md:scale-[1] mb-10" src="imagens/civic.png" alt="">
+            </div>
+
+            <!--Opinião-->
+            <div class=" bg-white w-5/6 xl:w-2/3 h-fit flex flex-col justify-center items-center rounded-3xl mt-4 pb-4">
+                <div class="w-5/6 h-fit flex flex-col justify-center items-center leading-[20px] my-8">
+                    <p class="text-3xl mr-12 leading-6">Veja a opinião de quem já</p>
+                    <p class="text-amareloClaro text-4xl font-bold leading-8 md:ml-20 mt-3 md:mt-0">comprou conosco!</p>
+                </div>
+                <!--Carrossel 2-->
+                <div class="wrapper">
+                    <i id="left" class="fa-solid fa-angle-left">&larr;</i>
+                    <ul class="carousel">
+                        <li class="card">
+                            <p class="font-medium p-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab
+                                nobis sequi error deleniti eaque voluptatem ex dolore cum nem</p>
+                            <h2>Blanche Pearson</h2>
+                            <span>Sales Manager</span>
+                        </li>
+                        <li class="card">
+                            <p class="font-medium p-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab
+                                nobis sequi error deleniti eaque voluptatem ex dolore cum nem</p>
+                            <h2>Joenas Brauers</h2>
+                            <span>Web Developer</span>
+                        </li>
+                        <li class="card">
+                            <p class="font-medium p-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab
+                                nobis sequi error deleniti eaque voluptatem ex dolore cum nem</p>
+                            <h2>Lariach French</h2>
+                            <span>Online Teacher</span>
+                        </li>
+                        <li class="card">
+                            <p class="font-medium p-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab
+                                nobis sequi error deleniti eaque voluptatem ex dolore cum nem</p>
+                            <h2>James Khosravi</h2>
+                            <span>Freelancer</span>
+                        </li>
+                        <li class="card">
+                            <p class="font-medium p-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab
+                                nobis sequi error deleniti eaque voluptatem ex dolore cum nem</p>
+                            <h2>Kristina Zasiadko</h2>
+                            <span>Bank Manager</span>
+                        </li>
+                        <li class="card">
+                            <p class="font-medium p-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab
+                                nobis sequi error deleniti eaque voluptatem ex dolore cum nem</p>
+                            <h2>Donald Horton</h2>
+                            <span>App Designer</span>
+                        </li>
+                        <li class="card">
+                            <p class="font-medium p-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab
+                                nobis sequi error deleniti eaque voluptatem ex dolore cum nem</p>
+                            <h2>Joenas Brauers</h2>
+                            <span>Web Developer</span>
+                        </li>
+                        <li class="card">
+                            <p class="font-medium p-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab
+                                nobis sequi error deleniti eaque voluptatem ex dolore cum nem</p>
+                            <h2>Lariach French</h2>
+                            <span>Online Teacher</span>
+                        </li>
+                    </ul>
+                    <i id="right" class="fa-solid fa-angle-right">&rarr;</i>
+                </div>
+            </div>
+
+            <!--Chat-->
+            <div class="w-full mb-6 flex justify-end items-end">
+                <!--DIV do botao de abrir o chat-->
+                <div class="mr-[2%] z-[70] fixed bottom-[25px] right-[10px]">
+                    <button id="open-chat"
+                        class="bg-PretoClarin text-white h-[71px] w-[74px] rounded-full hover:bg-PretoClarin 0 transition duration-300 flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="52" height="52" fill="currentColor"
+                            class="bi bi-chat-dots ml-[11px] mb-[1px]" viewBox="0 0 16 16">
+                            <path
+                                d="M5 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0m4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0m3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2" />
+                            <path
+                                d="m2.165 15.803.02-.004c1.83-.363 2.948-.842 3.468-1.105A9 9 0 0 0 8 15c4.418 0 8-3.134 8-7s-3.582-7-8-7-8 3.134-8 7c0 1.76.743 3.37 1.97 4.6a10.4 10.4 0 0 1-.524 2.318l-.003.011a11 11 0 0 1-.244.637c-.079.186.074.394.273.362a22 22 0 0 0 .693-.125m.8-3.108a1 1 0 0 0-.287-.801C1.618 10.83 1 9.468 1 8c0-3.192 3.004-6 7-6s7 2.808 7 6-3.004 6-7 6a8 8 0 0 1-2.088-.272 1 1 0 0 0-.711.074c-.387.196-1.24.57-2.634.893a11 11 0 0 0 .398-2" />
+                        </svg>
+                    </button>
+                </div>
+
+                <!--Div gigantesca-->
+                <div id="chat-container"
+                    class="hidden h-[90%] md:h-[45%] lg:h-[60%] xl:h-[60%] fixed bottom-[25px] right-[120px] z-[70]">
+                    <div class="bg-cinza w-full h-full shadow-md rounded-lg md:max-w-[375px]">
+                        <div class="p-4 border-b bg-PretoClarin text-white rounded-t-lg flex justify-between">
+                            <p class="ml-[45%] text-lg font-semibold">Chat</p>
+                            <!--Fecha o chat-->
+                            <button id="close-chat"
+                                class="text-gray-300 hover:text-gray-400 focus:outline-none focus:text-gray-400">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M6 18L18 6M6 6l12 12">
+                                    </path>
+                                </svg>
+                            </button>
+                        </div>
+                        <div id="chatbox" class="p-4 h-80 h-[81%] md:h-[75%] lg:h-[72%] xl:h-[65%] overflow-y-auto">
+                            <!-- Chat messages will be displayed here -->
+                            <div class="mb-2 text-right">
+                                <p class="bg-PretoClarin text-white rounded-full py-2 px-4 inline-block">Olá</p>
+                            </div>
+                            <div class="mb-2">
+                                <p class="bg-Marromdiff text-white rounded-full py-2 px-4 inline-block">Exemplo de
+                                    conversa prévia</p>
+                            </div>
+                            <div class="mb-2 text-right">
+                                <p class="bg-PretoClarin text-white rounded-full py-2 px-4 inline-block">Em que posso
+                                    ser útil</p>
+                            </div>
+                            <div class="mb-2">
+                                <p class="bg-Marromdiff text-white rounded-lg py-2 px-4 inline-block">Tenho uma dúvida
+                                    sobre o andamento
+                                    do
+                                    processo da venda do fiat Marea</p>
+                            </div>
+                            <div class="mb-2 text-right">
+                                <p class="bg-PretoClarin text-white rounded-full py-2 px-4 inline-block">Ah, sim!</p>
+                            </div>
+                            <div class="mb-2">
+                                <p class="bg-Marromdiff text-white rounded-lg py-2 px-4 inline-block">E aí, achou
+                                    comprador?!</p>
+                            </div>
+                        </div>
+                        <div class="p-4 border-t bg-PretoClarin flex absolute inset-x-0 bottom-0 rounded-b-lg">
+                            <input id="user-input" type="text" placeholder="Digite aqui..."
+                                class="w-full px-3 py-2 border rounded-l-md text-black font-semibold focus:outline-none focus:ring-2 focus:ring-Marromdiff bg-cinzaClaro">
+                            <button id="send-button"
+                                class="bg-Marromdiff text-white font-semibold px-4 py-2 rounded-r-md hover:bg-Amarelin transition duration-300">Enviar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!--Footer Desktop-->
+    <div class="bg-amareloEscuro pt-9 hidden lg:block z-50 bottom-0 relative">
+        <div class="mx-auto w-full max-w-full px-4 xl:px-0">
+            <div class="flex flex-col justify-between sm:px-[18px] md:flex-row md:mx-16">
+                <div class="md:w-[316px]">
+                    <div class="flex scale-75 md:scale-100 w-3/5 md:w-4/6 md:h-1/6">
+                        <img src="imagens/carrologo.png" alt="">
+                        <img src="imagens/carturbo.png" alt="">
+                    </div>
+                    <p class="mt-[18px] text-base font-normal text-white">Empresa especialista em compras, vendas e
+                        alugueis de carros novos e usados.</p>
+                    <br>
+                    <div>
+                        <p class="text-white font-inter text-base font-medium leading-normal">Fale conosco</p>
+                        <p class="text-white">Dúvidas sobre nosso trabalho e atendimento?
+                            entre no nosso SAC</p>
+                    </div>
+                </div>
+                <!--Fale Conosco-->
+                <div class="mt-4 md:mt-14 w-full text-white md:max-w-[600px] space-y-12">
+                    <div class="md:mt-6 md:space-x-12 md:flex md:justify-center md:text-[20px]">
+                        <a class="text-deutziawhite hover:text-deutziawhite/80 font-inter font-normal hover:font-bold"
+                            href="AnunciosCompras.html">Comprar</a>
+                        <a class="text-deutziawhite hover:text-deutziawhite/80 font-inter font-normal hover:font-bold"
+                            href="Vendas.html">Vender</a>
+                        <a class="text-deutziawhite hover:text-deutziawhite/80 font-inter font-normal hover:font-bold"
+                            href="AnuncioLocação.html">Alugar</a>
+                        <a class="text-deutziawhite hover:text-deutziawhite/80 font-inter font-normal hover:font-bold"
+                            href="ajuda.html">Ajuda</a>
+                    </div>
+                    <div class="w-full justify-center flex">
+                        <a href="Login.html"
+                            class="px-4 py-2 rounded-2xl border border-2 border-white hover:font-bold hover:bg-amareloEscuro2 text-xl">Cadastre-se</a>
+                    </div>
+                </div>
+            </div>
+            <!--Parte inferior do footer-->
+            <div class="md:flex space-x-20 mx-20">
+                <div class="flex">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+                        class="mt-3">
+                        <path
+                            d="M20.8472 14.8554L16.4306 12.8764L16.4184 12.8707C16.1892 12.7727 15.939 12.7333 15.6907 12.7562C15.4424 12.7792 15.2037 12.8636 14.9963 13.002C14.9718 13.0181 14.9484 13.0357 14.9259 13.0545L12.6441 14.9998C11.1984 14.2976 9.70595 12.8164 9.00376 11.3895L10.9519 9.07294C10.9706 9.0495 10.9884 9.02606 11.0053 9.00075C11.1407 8.79384 11.2229 8.55667 11.2445 8.31035C11.2661 8.06402 11.2264 7.81618 11.1291 7.58887V7.57762L9.14438 3.15356C9.0157 2.85662 8.79444 2.60926 8.51362 2.44841C8.2328 2.28756 7.9075 2.22184 7.58626 2.26106C6.31592 2.42822 5.14986 3.05209 4.30588 4.01615C3.4619 4.98021 2.99771 6.21852 3.00001 7.49981C3.00001 14.9436 9.05626 20.9998 16.5 20.9998C17.7813 21.0021 19.0196 20.5379 19.9837 19.6939C20.9477 18.85 21.5716 17.6839 21.7388 16.4136C21.7781 16.0924 21.7125 15.7672 21.5518 15.4864C21.3911 15.2056 21.144 14.9843 20.8472 14.8554ZM16.5 19.4998C13.3185 19.4963 10.2682 18.2309 8.01856 15.9813C5.76888 13.7316 4.50348 10.6813 4.50001 7.49981C4.49648 6.58433 4.82631 5.69887 5.42789 5.00879C6.02947 4.3187 6.86167 3.87118 7.76907 3.74981C7.7687 3.75355 7.7687 3.75732 7.76907 3.76106L9.73782 8.16731L7.80001 10.4867C7.78034 10.5093 7.76247 10.5335 7.74657 10.5589C7.60549 10.7754 7.52273 11.0246 7.5063 11.2825C7.48988 11.5404 7.54035 11.7981 7.65282 12.0307C8.5022 13.7679 10.2525 15.5051 12.0084 16.3536C12.2428 16.465 12.502 16.5137 12.7608 16.495C13.0196 16.4762 13.2692 16.3907 13.485 16.2467C13.5091 16.2305 13.5322 16.2129 13.5544 16.1942L15.8334 14.2498L20.2397 16.2232C20.2397 16.2232 20.2472 16.2232 20.25 16.2232C20.1301 17.1319 19.6833 17.9658 18.9931 18.5689C18.3028 19.172 17.4166 19.5029 16.5 19.4998Z"
+                            fill="white"></path>
+                    </svg>
+                    <a href="tel:+911800123444" class="mt-2.5 font-Inter text-[14px] font-medium text-white">(XX)
+                        XXXXX-XXXX</a>
+                </div>
+                <div class="flex">
+                    <svg class="mt-3" width="20" height="15" viewBox="0 0 20 15" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M19 0H1C0.801088 0 0.610322 0.0790178 0.46967 0.21967C0.329018 0.360322 0.25 0.551088 0.25 0.75V13.5C0.25 13.8978 0.408035 14.2794 0.68934 14.5607C0.970644 14.842 1.35218 15 1.75 15H18.25C18.6478 15 19.0294 14.842 19.3107 14.5607C19.592 14.2794 19.75 13.8978 19.75 13.5V0.75C19.75 0.551088 19.671 0.360322 19.5303 0.21967C19.3897 0.0790178 19.1989 0 19 0ZM10 7.98281L2.92844 1.5H17.0716L10 7.98281ZM7.25406 7.5L1.75 12.5447V2.45531L7.25406 7.5ZM8.36406 8.51719L9.48906 9.55312C9.62743 9.68014 9.80842 9.75062 9.99625 9.75062C10.1841 9.75062 10.3651 9.68014 10.5034 9.55312L11.6284 8.51719L17.0659 13.5H2.92844L8.36406 8.51719ZM12.7459 7.5L18.25 2.45438V12.5456L12.7459 7.5Z"
+                            fill="white"></path>
+                    </svg>
+                    <a href="mailto:help@lorem.com"
+                        class="mt-2 ml-1 font-Inter text-[14px] font-medium text-white">carturbo@email.com</a>
+                </div>
+                <div class="flex">
+                    <svg class="mt-3" width="18" height="21" viewBox="0 0 18 21" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M9 4.5C8.25832 4.5 7.5333 4.71993 6.91661 5.13199C6.29993 5.54404 5.81928 6.12971 5.53545 6.81494C5.25162 7.50016 5.17736 8.25416 5.32205 8.98159C5.46675 9.70902 5.8239 10.3772 6.34835 10.9017C6.8728 11.4261 7.54098 11.7833 8.26841 11.9279C8.99584 12.0726 9.74984 11.9984 10.4351 11.7145C11.1203 11.4307 11.706 10.9501 12.118 10.3334C12.5301 9.7167 12.75 8.99168 12.75 8.25C12.75 7.25544 12.3549 6.30161 11.6517 5.59835C10.9484 4.89509 9.99456 4.5 9 4.5ZM9 10.5C8.55499 10.5 8.11998 10.368 7.74997 10.1208C7.37996 9.87357 7.09157 9.52217 6.92127 9.11104C6.75097 8.6999 6.70642 8.2475 6.79323 7.81105C6.88005 7.37459 7.09434 6.97368 7.40901 6.65901C7.72368 6.34434 8.12459 6.13005 8.56105 6.04323C8.9975 5.95642 9.4499 6.00097 9.86104 6.17127C10.2722 6.34157 10.6236 6.62996 10.8708 6.99997C11.118 7.36998 11.25 7.80499 11.25 8.25C11.25 8.84674 11.0129 9.41903 10.591 9.84099C10.169 10.2629 9.59674 10.5 9 10.5ZM9 0C6.81273 0.00248131 4.71575 0.872472 3.16911 2.41911C1.62247 3.96575 0.752481 6.06273 0.75 8.25C0.75 11.1938 2.11031 14.3138 4.6875 17.2734C5.84552 18.6108 7.14886 19.8151 8.57344 20.8641C8.69954 20.9524 8.84978 20.9998 9.00375 20.9998C9.15772 20.9998 9.30796 20.9524 9.43406 20.8641C10.856 19.8147 12.1568 18.6104 13.3125 17.2734C15.8859 14.3138 17.25 11.1938 17.25 8.25C17.2475 6.06273 16.3775 3.96575 14.8309 2.41911C13.2843 0.872472 11.1873 0.00248131 9 0ZM9 19.3125C7.45031 18.0938 2.25 13.6172 2.25 8.25C2.25 6.45979 2.96116 4.7429 4.22703 3.47703C5.4929 2.21116 7.20979 1.5 9 1.5C10.7902 1.5 12.5071 2.21116 13.773 3.47703C15.0388 4.7429 15.75 6.45979 15.75 8.25C15.75 13.6153 10.5497 18.0938 9 19.3125Z"
+                            fill="white"></path>
+                    </svg>
+                    <div class="mt-2 ml-1">
+                        <a href="mailto:help@lorem.com" class="font-Inter text-[14px] font-medium text-[#fff]">Avenida
+                            das paçoquinhas, 1234
+                            bairro, 1234-123
+                            Pato Branco, Paraná - BR</a>
+                    </div>
+                </div>
+            </div>
+            <hr class="mt-[30px] text-white" />
+            <div class="flex items-center justify-center pb-8 pt-[9px] md:py-8">
+                <p class="text-[10px] text-white font-bold md:text-[12px]">
+                    © 2024 - 2024 Car Turbo CNPJ: xx.xxx.xxx/xxxx-xx
+                    Todos os direitos Reservados.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!--Footer Mobile-->
+    <div class="bg-amareloEscuro w-full lg:hidden z-30 bottom-0 relative">
+        <div class="flex justify-center space-x-2">
+            <div class="flex object-cover h-1/5 w-2/5">
+                <img src="imagens/carrologo2.png" alt="">
+            </div>
+            <div class="bg-white my-3 px-[1px] rounded-md">
+                <hr class="" />
+            </div>
+            <div class="flex-col w-2/4 mt-2">
+                <div class="flex space-x-2">
+                    <svg class="mt-1.5 ml-2.5" width="20" height="20" viewBox="0 0 20 20" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M19 0H1C0.801088 0 0.610322 0.0790178 0.46967 0.21967C0.329018 0.360322 0.25 0.551088 0.25 0.75V13.5C0.25 13.8978 0.408035 14.2794 0.68934 14.5607C0.970644 14.842 1.35218 15 1.75 15H18.25C18.6478 15 19.0294 14.842 19.3107 14.5607C19.592 14.2794 19.75 13.8978 19.75 13.5V0.75C19.75 0.551088 19.671 0.360322 19.5303 0.21967C19.3897 0.0790178 19.1989 0 19 0ZM10 7.98281L2.92844 1.5H17.0716L10 7.98281ZM7.25406 7.5L1.75 12.5447V2.45531L7.25406 7.5ZM8.36406 8.51719L9.48906 9.55312C9.62743 9.68014 9.80842 9.75062 9.99625 9.75062C10.1841 9.75062 10.3651 9.68014 10.5034 9.55312L11.6284 8.51719L17.0659 13.5H2.92844L8.36406 8.51719ZM12.7459 7.5L18.25 2.45438V12.5456L12.7459 7.5Z"
+                            fill="white"></path>
+                    </svg>
+                    <a href="mailto:help@lorem.com"
+                        class="font-Inter text-lg font-light underline decoration-2 text-white">carturbo@email.com</a>
+                </div>
+                <p class="mt-2 mb-1.5 ml-2 text-base font-light text-white">Empresa especialista em
+                    compras, vendas e alugueis de carros novos e usados.</p>
+            </div>
+        </div>
+        <div class="flex justify-center text-center text-[10px] text-white font-medium">
+            <p>
+                © 2024 - 2024 Car Turbo CNPJ: xx.xxx.xxx/xxxx-xx
+                Todos os direitos Reservados.
+            </p>
+        </div>
+    </div>
+
+    <!--Ford-->
+    <script>
+        document.getElementById('inputField').addEventListener('input', function() {
+            var inputText = this.value.toLowerCase(); // Obtém o texto digitado em minúsculas
+            var imageContainer = document.getElementById('imageContainer');
+    
+            if (inputText === 'raptor') { // Substitua 'palavra' pela palavra que você quer
+                imageContainer.classList.remove('hidden'); // Mostra as imagens
+            }
+        });
+    </script>
+
+    <!--Script Navbar-->
+    <script>
+        let isLoggedIn = false;
+        const loginButton = document.getElementById('loginButton');
+        const logar = document.getElementById('logar');
+        const usuario = document.getElementById('usuario');
+        const painel = document.getElementById('painel');
+
+        loginButton.addEventListener('click', function () {
+            isLoggedIn = true;
+            overlay.classList.add('hidden');
+            logar.classList.add('hidden');
+            usuario.classList.remove('hidden');
+            painel.classList.remove('hidden');
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const urlParams = new URLSearchParams(window.location.search);
+            isLoggedIn = urlParams.get('isLoggedIn') === 'true';
+
+            if (isLoggedIn) {
+                logar.classList.add('hidden');
+                usuario.classList.remove('hidden');
+                painel.classList.remove('hidden');
+            }
+        });
+
+        function Menu(e) {
+            let list = document.querySelector('ul');
+            e.name === 'menu' ? (e.name = "close", list.classList.add('top-[80px]'), list.classList.add('opacity-100'), list.classList.add('z-50')) : (e.name = "menu", list.classList.remove('top-[80px]'), list.classList.remove('opacity-100'), list.classList.add('z-50'))
+        }
+    </script>
+
+    <!--Script popUP-->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            if (!isLoggedIn) {
+                // Seleciona o overlay e o botão de fechar
+                var overlay = document.getElementById('overlay');
+                var close = document.getElementById('close');
+
+                // Mostra o popup e o overlay após um atraso de 3 segundos
+                setTimeout(function () {
+                    overlay.classList.remove('hidden');
+                }, 3000);
+
+                // Adiciona um evento para fechar o popup e o overlay quando o botão de fechar é clicado
+                close.addEventListener('click', function () {
+                    overlay.classList.add('hidden');
+                });
+
+                // Opcional: Fechar o popup ao clicar fora do conteúdo do popup
+                window.addEventListener('click', function (event) {
+                    if (event.target === overlay) {
+                        overlay.classList.add('hidden');
+                    }
+                });
+            }
+        });
+    </script>
+
+    <!--Script Carrossel Superior-->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const carousel = document.getElementById('carousel');
+            const prevButton = document.getElementById('prev');
+            const nextButton = document.getElementById('next');
+            let index = 0;
+
+            function showSlide(i) {
+                const slides = document.querySelectorAll('#carousel > div');
+                if (i >= slides.length) {
+                    index = 0;
+                } else if (i < 0) {
+                    index = slides.length - 1;
+                } else {
+                    index = i;
+                }
+                carousel.style.transform = `translateX(-${index * 100}%)`;
+            }
+
+            function nextSlide() {
+                showSlide(index + 1);
+            }
+
+            prevButton.addEventListener('click', () => {
+                clearInterval(autoSlide);
+                showSlide(index - 1);
+                autoSlide = setInterval(nextSlide, 3000);
+            });
+
+            nextButton.addEventListener('click', () => {
+                clearInterval(autoSlide);
+                showSlide(index + 1);
+                autoSlide = setInterval(nextSlide, 3000);
+            });
+
+            let autoSlide = setInterval(nextSlide, 3000); // Troca de slide a cada 3 segundos
+
+            showSlide(index);
+        });
+
+    </script>
+
+    <!--script carroossel 2-->
+    <script>
+        const wrapper = document.querySelector(".wrapper");
+        const carousel = document.querySelector(".carousel");
+        const firstCardWidth = carousel.querySelector(".card").offsetWidth;
+        const arrowBtns = document.querySelectorAll(".wrapper i");
+        const carouselChildrens = [...carousel.children];
+
+        let isDragging = false, isAutoPlay = true, startX, startScrollLeft, timeoutId;
+
+        // Get the number of cards that can fit in the carousel at once
+        let cardPerView = Math.round(carousel.offsetWidth / firstCardWidth);
+
+        // Insert copies of the last few cards to beginning of carousel for infinite scrolling
+        carouselChildrens.slice(-cardPerView).reverse().forEach(card => {
+            carousel.insertAdjacentHTML("afterbegin", card.outerHTML);
+        });
+
+        // Insert copies of the first few cards to end of carousel for infinite scrolling
+        carouselChildrens.slice(0, cardPerView).forEach(card => {
+            carousel.insertAdjacentHTML("beforeend", card.outerHTML);
+        });
+
+        // Scroll the carousel at appropriate postition to hide first few duplicate cards on Firefox
+        carousel.classList.add("no-transition");
+        carousel.scrollLeft = carousel.offsetWidth;
+        carousel.classList.remove("no-transition");
+
+        // Add event listeners for the arrow buttons to scroll the carousel left and right
+        arrowBtns.forEach(btn => {
+            btn.addEventListener("click", () => {
+                carousel.scrollLeft += btn.id == "left" ? -firstCardWidth : firstCardWidth;
+            });
+        });
+
+        const dragStart = (e) => {
+            isDragging = true;
+            carousel.classList.add("dragging");
+            // Records the initial cursor and scroll position of the carousel
+            startX = e.pageX;
+            startScrollLeft = carousel.scrollLeft;
+        }
+
+        const dragging = (e) => {
+            if (!isDragging) return; // if isDragging is false return from here
+            // Updates the scroll position of the carousel based on the cursor movement
+            carousel.scrollLeft = startScrollLeft - (e.pageX - startX);
+        }
+
+        const dragStop = () => {
+            isDragging = false;
+            carousel.classList.remove("dragging");
+        }
+
+        const infiniteScroll = () => {
+            // If the carousel is at the beginning, scroll to the end
+            if (carousel.scrollLeft === 0) {
+                carousel.classList.add("no-transition");
+                carousel.scrollLeft = carousel.scrollWidth - (2 * carousel.offsetWidth);
+                carousel.classList.remove("no-transition");
+            }
+            // If the carousel is at the end, scroll to the beginning
+            else if (Math.ceil(carousel.scrollLeft) === carousel.scrollWidth - carousel.offsetWidth) {
+                carousel.classList.add("no-transition");
+                carousel.scrollLeft = carousel.offsetWidth;
+                carousel.classList.remove("no-transition");
+            }
+
+            // Clear existing timeout & start autoplay if mouse is not hovering over carousel
+            clearTimeout(timeoutId);
+            if (!wrapper.matches(":hover")) autoPlay();
+        }
+
+        const autoPlay = () => {
+            if (window.innerWidth < 800 || !isAutoPlay) return; // Return if window is smaller than 800 or isAutoPlay is false
+            // Autoplay the carousel after every 2500 ms
+            timeoutId = setTimeout(() => carousel.scrollLeft += firstCardWidth, 2500);
+        }
+        autoPlay();
+
+        carousel.addEventListener("mousedown", dragStart);
+        carousel.addEventListener("mousemove", dragging);
+        document.addEventListener("mouseup", dragStop);
+        carousel.addEventListener("scroll", infiniteScroll);
+        wrapper.addEventListener("mouseenter", () => clearTimeout(timeoutId));
+        wrapper.addEventListener("mouseleave", autoPlay);
+    </script>
+
+    <!--ScriptChat-->
+    <script>
+        const chatbox = document.getElementById("chatbox");
+        const chatContainer = document.getElementById("chat-container");
+        const userInput = document.getElementById("user-input");
+        const sendButton = document.getElementById("send-button");
+        const openChatButton = document.getElementById("open-chat");
+        const closeChatButton = document.getElementById("close-chat");
+
+        let isChatboxOpen = true; // Set the initial state to open
+
+        // Function to toggle the chatbox visibility
+        function toggleChatbox() {
+            chatContainer.classList.toggle("hidden");
+            isChatboxOpen = !isChatboxOpen; // Toggle the state
+        }
+
+        // Add an event listener to the open chat button
+        openChatButton.addEventListener("click", toggleChatbox);
+
+        // Add an event listener to the close chat button
+        closeChatButton.addEventListener("click", toggleChatbox);
+
+        // Add an event listener to the send button
+        sendButton.addEventListener("click", function () {
+            const userMessage = userInput.value;
+            if (userMessage.trim() !== "") {
+                addUserMessage(userMessage);
+                respondToUser(userMessage);
+                userInput.value = "";
+            }
+        });
+
+        userInput.addEventListener("keyup", function (event) {
+            if (event.key === "Enter") {
+                const userMessage = userInput.value;
+                addUserMessage(userMessage);
+                respondToUser(userMessage);
+                userInput.value = "";
+            }
+        });
+
+        function addUserMessage(message) {
+            const messageElement = document.createElement("div");
+            messageElement.classList.add("mb-2", "text-right");
+            messageElement.innerHTML = `<p class="bg-PretoClarin text-white rounded-lg py-2 px-4 inline-block">${message}</p>`;
+            chatbox.appendChild(messageElement);
+            chatbox.scrollTop = chatbox.scrollHeight;
+        }
+
+        function addBotMessage(message) {
+            const messageElement = document.createElement("div");
+            messageElement.classList.add("mb-2");
+            messageElement.innerHTML = `<p class="bg-Marromdiff text-Branquin rounded-lg py-2 px-4 inline-block">${message}</p>`;
+            chatbox.appendChild(messageElement);
+            chatbox.scrollTop = chatbox.scrollHeight;
+        }
+
+        function respondToUser(userMessage) {
+            // Replace this with your chatbot logic
+            setTimeout(() => {
+                addBotMessage("This is a response from the chatbot.");
+            }, 500);
+        }
+
+    </script>
+
+
+</body>
+
+</html>

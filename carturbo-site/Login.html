@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            cinzaClaro: '#E3E3E3',
+            amareloVivo: '#FABD14',
+            amareloEscuro: '#CFA633',
+            amareloEscuro2: '#DCB23A',
+            azul: '#3336FF',
+            cinza: '#575757',
+            cinzaEscuro: '#33312D',
+            PretoClarin: '#33312D',
+            Branquin: '#FFFFFF',
+            Marromdiff: '#7A6D47',
+            Amarelin: '#A58B44',
+            cinza: '#C6C6C6',
+          }
+        }
+      }
+    }
+  </script>
+  <title>Pagina de login</title>
+</head>
+
+<body class="flex items-center justify-center min-h-screen bg-cinzaClaro">
+  <div
+    class="bg-white w-full max-w-[930px] h-fit md:h-[414px] md:flex md:flex-row flex-col items-center justify-center">
+    <!-- Seção de login -->
+    <div class="md:w-1/2 flex flex-col items-center space-y-4 justify-center p-6">
+      <a href="HomePage.html">
+        <img src="Imagens/logo.png" alt="">
+      </a>
+      <h2 class="mb-2 text-xl font-bold">Bem-vindo de volta!</h2>
+
+      <div class="relative h-10 w-full max-w-[60%]">
+        <input type="email" id="email"
+          class="peer h-full w-full rounded-[7px] border border-black border-t-transparent bg-transparent px-3 py-2.5 font-sans text-[12px] text-black outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-black placeholder-shown:border-t-black focus:border-2 focus:border-amareloVivo focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
+          placeholder=" " />
+        <label
+          class="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-black transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-black before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-black after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-black peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-amareloVivo peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-amareloVivo peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-amareloVivo peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
+          email
+        </label>
+      </div>
+      <div class="relative h-10 w-full max-w-[60%]">
+        <input type="password" id="senha"
+          class="peer h-full w-full rounded-[7px] border border-black border-t-transparent bg-transparent px-3 py-2.5 font-sans text-[12px] text-black outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-black placeholder-shown:border-t-black focus:border-2 focus:border-amareloVivo focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
+          placeholder=" " />
+        <label
+          class="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-black transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-black before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-black after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-black peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-amareloVivo peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-amareloVivo peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-amareloVivo peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
+          senha
+        </label>
+      </div>
+
+      <a href="#" class="mb-2 text-amareloVivo font-semibold underline hover:text-amareloEscuro">Esqueci minha senha</a>
+      <button id="loginButton"
+        class="px-4 py-2 bg-amareloVivo rounded text-white font-semibold hover:bg-amareloEscuro">Entrar</button>
+    </div>
+
+    <!-- Divisória -->
+    <div class="md:w-[2px] md:h-full md:bg-black"></div>
+    <hr class="bg-black">
+
+    <!-- Seção de Login -->
+    <div class="md:w-1/2 flex flex-col flex-row space-y-3 items-center justify-center p-6">
+      <h2 class="mb-4 text-xl font-bold">Entrar com uma conta</h2>
+      <button class="flex space-xl mb-1 px-5 py-2 bg-amareloVivo text-white rounded hover:bg-amareloEscuro">
+        <img src="Imagens/google ícon.png" class="h-6 mr-5" alt="">
+        Entrar com Google
+      </button>
+      <button class="flex space-xl mb-2 px-4 py-2 bg-amareloVivo text-white rounded hover:bg-amareloEscuro">
+        <img src="Imagens/facebook ícon.png" class="h-6 mr-2" alt="">
+        Entrar com Facebook
+      </button>
+      <p class="font-semibold">
+        Não possuí conta ainda? <a href="cadastro.html"
+          class="text-amareloVivo font-semibold underline hover:text-amareloEscuro">Criar conta</a>
+      </p>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('loginButton').addEventListener('click', function (event) {
+      event.preventDefault();
+      const email = document.getElementById("email").value;
+      const senha = document.getElementById("senha").value;
+
+      if (!email || !senha) {
+        alert("Por favor, preencha todos os campos.");
+        return;
+      }
+
+      const emailPadrao = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailPadrao.test(email)) {
+        alert("Por favor, insira em email válido!");
+        return;
+      }
+
+      let isLoggedIn = true;
+      window.location.href = `HomePage.html?isLoggedIn=${isLoggedIn}`;
+
+    });
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js" integrity="sha512-0XDfGxFliYJPFrideYOoxdgNIvrwGTLnmK20xZbCAvPfLGQMzHUsaqZK8ZoH+luXGRxTrS46+Aq400nCnAT0/w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        tailwind.config = {
+          theme: {
+            extend: {
+              colors: {
+                cinzaClaro: '#E3E3E3',
+                amareloVivo: '#FABD14',
+              }
+            }
+          }
+        }
+    </script>
+    <title>Pagina de cadastro</title>
+</head>
+<body class="flex items-center justify-center min-h-screen bg-cinzaClaro">
+  <div id="form" class="flex w-[80%] h-fit bg-white items-center justify-center flex-col">
+      <img src="Imagens/carrologo2.png" class="mt-6 h-[110px]" alt="">
+
+      <h1 class="font-bold text-3xl">Cadastre-se</h1>
+      <h2 class="md:mb-4 text-center">Preencha os dados para completar o cadastro</h2>
+      
+      <div class="w-[80%] h-fit py-[16px] space-y-4 flex flex-col justify-center items-center">
+        <div class="relative h-10 w-9/12">
+          <input type="email" id="email" class="peer h-full w-full border-b-2 border-black border-t-transparent bg-transparent px-3 py-2.5 font-sans text-[12px] text-black outline outline-none ring-none transition-all placeholder-shown:border-b placeholder-shown:border-black focus:border-b focus:border-b-2 focus:border-amareloVivo focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50" placeholder=" " />
+          <label class="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-black transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:border-black before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:border-white after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-black peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-amareloVivo peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
+            Email
+          </label>
+        </div>
+        <div class="relative h-10 w-9/12">
+          <input type="text" id="name" class="peer h-full w-full border-b-2 border-black border-t-transparent bg-transparent px-3 py-2.5 font-sans text-[12px] text-black outline outline-0 transition-all placeholder-shown:border-b placeholder-shown:border-black focus:border-b focus:border-b-2 focus:border-amareloVivo focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50" placeholder=" " />
+          <label class="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-black transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:border-black before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow   after:border-black after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-black peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-amareloVivo peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
+            Nome
+          </label>
+        </div>
+        <div class="relative h-10 w-9/12">
+          <input type="text" id="data" class="peer h-full w-full border-b-2 border-black border-t-transparent bg-transparent px-3 py-2.5 font-sans text-[12px] text-black outline outline-0 transition-all placeholder-shown:border-b placeholder-shown:border-black focus:border-b focus:border-b-2 focus:border-amareloVivo focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50" placeholder=" " />
+          <label class="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-black transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:border-black before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow  after:border-black after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-black peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-amareloVivo peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
+            Data de nascimento
+          </label>
+        </div>
+        <div class="relative h-10 w-9/12">
+          <input type="text" id="cpf" class="peer h-full w-full border-b-2 border-black border-t-transparent bg-transparent px-3 py-2.5 font-sans text-[12px] text-black outline outline-0 transition-all placeholder-shown:border-b placeholder-shown:border-black focus:border-b focus:border-b-2 focus:border-amareloVivo focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50" placeholder=" " />
+          <label class="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-black transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:border-black before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow   after:border-black after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-black peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-amareloVivo peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
+            CPF
+          </label>
+        </div>
+        <div class="relative h-10 w-9/12">
+          <input type="password" id="senha" class="peer h-full w-full border-b-2 border-black border-t-transparent bg-transparent px-3 py-2.5 font-sans text-[12px] text-black outline outline-0 transition-all placeholder-shown:border-b placeholder-shown:border-black focus:border-b focus:border-b-2 focus:border-amareloVivo focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50" placeholder=" " />
+          <label class="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-black transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:border-black before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:border-black after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-black peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-amareloVivo peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
+            Senha
+          </label>
+        </div>
+        <div class="relative h-10 w-9/12">
+          <input type="password" id="senhaConf" class="peer h-full w-full border-b-2 border-black border-t-transparent bg-transparent px-3 py-2.5 font-sans text-[12px] text-black outline outline-0 transition-all placeholder-shown:border-b placeholder-shown:border-black focus:border-b focus:border-b-2 focus:border-amareloVivo focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50" placeholder=" " />
+          <label class="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-black transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:border-black before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow  after:border-black after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-black peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-amareloVivo peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
+            Confirmar Senha
+          </label>
+        </div>
+      </div>
+    
+      <button id="cadastroButton" class="bg-amareloVivo px-4 py-2 rounded font-semibold text-white my-4 mb-6">Cadastrar</button>
+  </div>
+
+  <script>
+      document.getElementById("cadastroButton").addEventListener("click", function(event){
+          const email = document.getElementById("email").value;
+          const nomeCompleto = document.getElementById("name").value;
+          const dataNascimento = document.getElementById("data").value;
+          const CPF = document.getElementById("cpf").value;
+          const senha = document.getElementById("senha").value;
+          const senhaConf = document.getElementById("senhaConf").value;
+
+          if(!email || !nomeCompleto || !dataNascimento || !CPF || !senha || !senhaConf){
+              alert("Por favor, preencha todos os campos!");
+              return;
+          }
+
+          const emailPadrao = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          if(!emailPadrao.test(email)){
+              alert("Por favor, insira um email válido!");
+              return;
+          }
+
+          const nomePadrao = /^[A-Za-zÀ-ÖØ-öø-ÿ]+(?:\s+[A-Za-zÀ-ÖØ-öø-ÿ]+)+$/;
+          if(!nomePadrao.test(nomeCompleto)){
+              alert("Por favor, insira um nome válido!");
+              return;
+          }
+
+          const cpfPadrao = /^\d{3}\.\d{3}\.\d{3}\-\d{2}$/;
+          if(!cpfPadrao.test(CPF)){
+              alert("Por favor, insira um CPF válido!");
+              return;
+          }
+
+          if(senha !== senhaConf){
+              alert("As senhas não coincidem!");
+              return;
+          }
+
+          alert("Cadastro realizado com sucesso!");
+          window.location.href = 'homePage.html';
+      });
+  </script>
+
+  <!-- Máscara -->
+  <script>
+    $('#cpf').mask('000.000.000-00', {reverse: true});
+    $('#data').mask('00/00/0000', {reverse: true});
+  </script>
+</body>
+</html>

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        amareloEscuro: '#CFA633',
+                        amareloEscuro2: '#DCB23A',
+                        amareloClaro: '#fABD14',
+                        azul: '#3336FF',
+                        cinzaClaro: '#E3E3E3',
+                        cinzaEscuro: '575757',
+                    }
+                }
+            }
+        }
+    </script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <title>Locação - pagamento</title>
+</head>
+<body>
+    <div class="bg-cinzaClaro flex flex-col items-center justify-center space-y-4 p-10">
+        <!--Passo a passo-->
+        <div class="flex items-center justify-center space-x-4">
+            <div class="flex flex-col md:flex-row items-center justify-center space-x-2">
+                <p class="bg-gray-600 text-center rounded w-6 h-6 font-bold text-white">1</p>
+                <a href="AnuncioLocação.html" id="escolhaSeuCarro" class="text-gray-600 font-bold text-xs 
+                    md:text-base text-center">Escolha seu carro</a>
+            </div>
+
+            <div class="flex flex-col md:flex-row items-center justify-center space-x-2">
+                <p class="bg-gray-600 text-center rounded w-6 h-6 font-bold text-white">2</p>
+                <a href="TarifasEAdicionaisLocação.html" id="escolhaSeuCarro" class="text-gray-600 font-bold text-xs 
+                    md:text-base text-center">Tarifas e adicionais</a>
+            </div>  
+            
+            <div class="flex flex-col md:flex-row items-center justify-center space-x-2">
+                <p class="bg-amareloEscuro text-center rounded w-6 h-6 font-bold text-white">3</p>
+                <p class="text-amareloEscuro underline font-bold text-xs 
+                    md:text-base text-center">Dados de cadastro</p>
+            </div>
+        </div>
+
+        <!--Menu de pagamento-->
+        <div class="flex flex-col justify-start w-full h-auto max-w-4xl">
+            <label for="formaPagamento" class="text-amareloEscuro font-semibold">Métodos de pagamento</label>
+            <select id="formaPagamento" class="md:w-80 rounded-2xl px-10 py-2">
+                <option value="vazio">-- Selecione --</option>
+                <option value="credito">Cartão de crédito</option>
+                <option value="pix">PIX</option>
+            </select>
+        </div>
+
+        <!--Cartão de crédito-->
+        <div class="flex flex-col rounded-2xl bg-white space-y-10 px-10 py-10 md:w-full max-w-4xl hidden"
+            id="credito">
+
+            <h2 class="text-2xl font-bold">Adicionar cartão de crédito:</h2>
+
+            <!--Info cartão-->
+            <div class="flex flex-col md:flex-row space-y-4 md:space-y-0 space-x-4">
+                <!--Infos-->
+                <div>
+                    <div  class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <input type="text" placeholder="Número do cartão *" class="border-b px-2 py-2">
+                        <input type="text" placeholder="CPF *" class="border-b px-2 py-2">
+                        <input type="text" placeholder="CVV *" class="border-b px-2 py-2">
+                        <input type="text" placeholder="Nome do titular *" class="border-b px-2 py-2">
+                        <input type="text" placeholder="Validade *" class="border-b px-2 py-2">
+                    </div>
+                </div>
+
+                <!--Img cartão-->
+                <div><img src="Imagens/Cartão.png" alt=""></div>
+            </div>
+
+            <!--End do titular-->
+            <h2 class="text-2xl font-bold">Endereço do titular:</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <input type="text" placeholder="País *"  class="border-b px-2 py-2">
+                <input type="text" placeholder="CEP *"  class="border-b px-2 py-2">
+                <input type="text" placeholder="Bairro *"  class="border-b px-2 py-2">
+                <input type="text" placeholder="Endereço *"  class="border-b px-2 py-2">
+                <input type="text" placeholder="Número *"  class="border-b px-2 py-2">
+                <input type="text" placeholder="Complemento *"  class="border-b px-2 py-2">
+                <input type="text" placeholder="Cidade *"  class="border-b px-2 py-2">
+                <input type="text" placeholder="Estado *"  class="border-b px-2 py-2">
+            </div>
+
+            <button class="w-56 py-2 px-4 bg-amareloEscuro justify-center rounded">Salvar o cartão</button>
+        </div>
+
+        <!--PIX-->
+        <div class="flex flex-col md:flex-row justify-center items-center p-10 rounded-2xl bg-white w-full max-w-4xl 
+            space-y-4 md:space-y-0 hidden" id="pix">
+
+            <div class="flex items-center flex-col space-y-4 w-3/4">
+                <img src="Imagens/QRcode.png" alt="">
+                <button class="font-semibold bg-amareloEscuro px-4 py-2 rounded">Copiar código pix</button>
+            </div>
+            <div class="flex flex-col">
+                <h2 class="font-bold text-2xl mb-4">Como pagar:</h2>
+                <ul class="list-disc">
+                    <li>Utilize o aplicativo do seu banco copiando o código pix ou escaneando o QR-Code 
+                        ao lado. </li>
+                    <li>Confirme os dados de pagamento e o valor do seu pedido. </li>
+                    <li>Seu pagamento será processado e debitado do valor disponível em sua conta.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!--Termos e condições-->
+        <div class="bg-white px-10 w-full max-w-4xl py-6 rounded-2xl">
+            <a href="#" class="block mb-2 text-amareloEscuro underline font-semibold" id="termosLink">
+                >>Exibir termos e condições</a>
+            <input type="checkbox" name="" id="termosCheckbox" class="form-checkbox mr-3">
+            <label for="termosCheckbox">Li e concordo com os termos</label>
+        </div>
+
+        <!--valor final-->
+        <div class="w-full max-w-4xl bg-white px-10 py-6 rounded-2xl">
+            <h2 class="font-semibold">Valor total previsto</h2>
+            <p class="text-3xl text-amareloEscuro font-bold" id="valorTotal">R$ 0,00</p>
+        </div>
+
+        <!--Termos e condições-->
+        <div class="flex items-center justify-center hidden fixed backdrop-blur-sm md:w-full md:h-full"
+            id="termos">
+
+            <div class="bg-white w-full max-w-4xl rounded-2xl p-10 space-y-4">
+                <h2 class="text-2xl font-bold">Termos e condições</h2>
+                <p class="text-xs">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ipsum dolor, porta eu finibus 
+                    in, placerat eget orci. Nam sit amet mollis neque, non eleifend ex. Suspendisse placerat est 
+                    diam, ac blandit risus congue vel. Class aptent taciti sociosqu ad litora torquent per conubia 
+                    nostra, per inceptos himenaeos. Vestibulum nec tincidunt dolor, nec feugiat diam. Nam enim 
+                    dolor, pellentesque vitae vulputate ac, ultricies nec metus. Aliquam condimentum lobortis 
+                    imperdiet. Curabitur vulputate nunc sed tempor gravida. Nullam auctor velit elit, in tempor 
+                    massa ullamcorper eu. Aenean laoreet mi elit, ut viverra lacus pharetra quis. Phasellus eget 
+                    faucibus mauris, vel efficitur nulla. Nulla congue velit purus, in mollis elit fermentum non. 
+                    Suspendisse facilisis commodo mi, ut laoreet mauris aliquet viverra. Aliquam vestibulum nulla 
+                    enim, ut maximus purus ullamcorper id. Vestibulum ante ipsum primis in faucibus orci luctus et 
+                    ultrices posuere cubilia curae; Praesent tincidunt non purus ullamcorper laoreet.
+                    Phasellus rutrum suscipit eros semper ornare. </p>
+                <button class="px-4 py-2 text-white font-semibold rounded bg-gray-900"
+                    id="closeTermos">Fechar</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const formaPagamento = document.getElementById("formaPagamento");
+        const credito = document.getElementById("credito");
+        const pix = document.getElementById("pix");
+
+        const checkbox = document.querySelector(".form-checkbox");
+
+        function getQueryParam(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+
+        window.onload = function() {
+            const total = getQueryParam('total');
+            if (total) {
+                document.getElementById('valorTotal').textContent = `R$ ${parseFloat(total).toFixed(2)}`;
+            }
+        }
+
+        document.getElementById('termosLink').addEventListener('click', function(event){
+            document.getElementById('termos').classList.remove('hidden');
+        });
+        document.getElementById('closeTermos').addEventListener('click', function(event){
+            document.getElementById('termos').classList.add('hidden');
+        });
+
+        formaPagamento.addEventListener('change', () => {
+            if(formaPagamento.value === 'credito'){
+                credito.classList.remove('hidden');
+                pix.classList.add('hidden');
+            } else if(formaPagamento.value === 'pix'){
+                pix.classList.remove('hidden');
+                credito.classList.add('hidden');
+            } else if(formaPagamento.value === 'vazio'){
+                pix.classList.add('hidden');
+                credito.classList.add('hidden');
+            }
+        });
+    </script>
+</body>
+</html>

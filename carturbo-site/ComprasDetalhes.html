@@ -1,0 +1,434 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes do carro</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        amareloEscuro: '#CFA633',
+                        amareloEscuro2: '#DCB23A',
+                        amareloClaro: '#fABD14',
+                        azul: '#3336FF',
+                        cinza: '#575757',
+                        cinzaEscuro: '#33312D',
+                        cinzaClaro: '#DBDBDB',
+                        cinzaBG: '#d9d9d9'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Estilo padrão para telas maiores */
+        #prev{
+            background: linear-gradient(to right, white 10%, transparent 90%);
+        }
+                /* Estilo padrão para telas maiores */
+        #next {
+            background: linear-gradient(to left, white 10%, transparent 90%);
+        }
+    
+        /* Estilo para telas menores */
+        @media (max-width: 640px) {
+            #prev, #next {
+                background: transparent;
+            }
+        }
+
+        #carousel {
+            display: flex;
+            align-items: center; /* Garante que os itens estejam alinhados verticalmente no centro */
+        }
+        #carousel > div {
+            display: flex;
+            justify-content: center; /* Centraliza o conteúdo dentro de cada slide */
+        }
+
+        #carousel > div img {
+            transition: transform 0.3s ease-in-out; /* Suaviza a transformação */
+        }
+        .scale-110 {
+            transform: scale(1.1); /* Aumenta a escala da imagem em 10% */
+        }
+    </style>
+
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</head>
+
+<body class="bg-cinzaBG">
+    <!--Header-->
+    <nav class="w-full shadow flex justify-center">
+        <div class="p-4 pb-10 w-full z-30 bg-amareloEscuro">
+            <span class="text-2xl font-[Poppins] cursor-pointer absolute start-10">
+                <a href="HomePage.html"><img class="h-10 inline" src="imagens/carrologo2.png"></a>
+            </span>
+            <span class="text-3xl cursor-pointer mx-2 absolute end-10 lg:hidden">
+                <ion-icon name="menu" onclick="Menu(this)"></ion-icon>
+            </span>
+        </div>
+
+        <ul
+            class="z-20 lg:z-40 absolute lg:top-4 lg:left-1/5 lg:flex bg-white lg:bg-amareloEscuro w-full lg:w-auto lg:py-0 py-4 lg:pl-0 pl-7 lg:opacity-100 opacity-0 top-[-1000px] transition-all ease-in duration-500">
+            <li class="mx-4 my-6 md:my-0 border-b border-black lg:border-0">
+                <a href="HomePage.html" class="text-xl hover:text-amareloClaro duration-500">Home</a>
+            </li>
+            <li class="mx-4 my-6 md:my-0 border-b border-black lg:border-0">
+                <a href="AnunciosCompras.html" class="text-xl hover:text-amareloClaro duration-500">Compras</a>
+            </li>
+            <li class="mx-4 my-6 md:my-0 border-b border-black lg:border-0">
+                <a href="Vendas.html" class="text-xl hover:text-amareloClaro duration-500">Vender</a>
+            </li>
+            <li class="mx-4 my-6 md:my-0 border-b border-black lg:border-0">
+                <a href="AnuncioLocação.html" class="text-xl hover:text-amareloClaro duration-500">Alugar</a>
+            </li>
+            <li class="mx-4 my-6 md:my-0 border-b border-black lg:border-0">
+                <a href="ajuda.html" class="text-xl hover:text-amareloClaro duration-500">Ajuda</a>
+            </li>
+            <button
+                class="bg-amareloEscuro lg:hidden mt-4 text-white font-[Poppins] duration-500 px-6 py-2 mx-4 hover:bg-amareloEscuro2 rounded ">
+                Entrar
+            </button>
+            <h2 class=""></h2>
+        </ul>
+
+        <div class="hidden lg:block">
+            <div class="flex space-x-6 absolute lg:z-40 end-10 top-4">
+                <span><!--SAC-->
+                    <a href="ajuda.html" class="flex">
+                        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M21 6H3C1.9 6 1 6.9 1 8V16C1 17.1 1.9 18 3 18H7V21.23C7 21.84 7.61 22.22 8.17 21.95L13 19H21C22.1 19 23 18.1 23 17V8C23 6.9 22.1 6 21 6Z"
+                                fill="black" />
+                        </svg>
+                        <p class="mt-1 ml-1 mr-1">SAC</p>
+                    </a>
+                </span>
+                <span><!--Login-->
+                    <a href="Login.html" class="flex">
+                        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="12" cy="12" r="12" fill="#000000" />
+                            <path
+                                d="M12 4C10.34 4 9 5.34 9 7C9 8.66 10.34 10 12 10C13.66 10 15 8.66 15 7C15 5.34 13.66 4 12 4ZM12 12C10.33 12 6 13.34 6 15V16C6 16.55 6.45 17 7 17H17C17.55 17 18 16.55 18 16V15C18 13.34 13.67 12 12 12Z"
+                                fill="#CFA633" />
+                        </svg>
+                        <p class="mt-0.5 ml-1">LOGIN</p>
+                    </a>
+                </span>
+            </div>
+
+        </div>
+    </nav>
+
+    <!--Código da página vem aqui-->
+    <!-- Slider -->
+    <div class="relative w-full h-full mx-auto z-0 bg-fixed">
+        <div class="relative w-full">
+            <div class="overflow-hidden relative h-full">
+                <div id="carousel" class="flex transition-transform duration-300 ease-in-out">
+                    <!-- Slide 1 -->
+                    <div class="w-full sm:w-1/3 flex-shrink-0 px-2">
+                        <img src="imagens/suv.png" alt="Slide 1" class="w-full h-[300px] object-cover">
+                    </div>
+                    <!-- Slide 2 -->
+                    <div class="w-full sm:w-1/3 flex-shrink-0 px-2">
+                        <img src="imagens/carro1.png" alt="Slide 2" class="w-full h-[300px] object-cover">
+                    </div>
+                    <!-- Slide 3 -->
+                    <div class="w-full sm:w-1/3 flex-shrink-0 px-2">
+                        <img src="imagens/carro2.png" alt="Slide 3" class="w-full h-[300px] object-cover">
+                    </div>
+                    <!-- Slide 4 -->
+                    <div class="w-full sm:w-1/3 flex-shrink-0 px-2">
+                        <img src="imagens/carro3.png" alt="Slide 4" class="w-full h-[300px] object-cover">
+                    </div>
+                    <!-- Slide 5 -->
+                    <div class="w-full sm:w-1/3 flex-shrink-0 px-2">
+                        <img src="imagens/carro4.png" alt="Slide 5" class="w-full h-[300px] object-cover">
+                    </div>
+                    <!-- Slide 6 -->
+                    <div class="w-full sm:w-1/3 flex-shrink-0 px-2">
+                        <img src="imagens/carro5.png" alt="Slide 6" class="w-full h-[300px] object-cover">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Efeito de Neblina Anterior (Desktop) -->
+        <div id="prev-nebula"
+            class="hidden md:block absolute top-1/2 left-0 transform -translate-y-1/2 w-[400px] h-[300px]
+                bg-[linear-gradient(to_right,_white_10%,_transparent_90%)] opacity-100
+                transition-all duration-600 border-none z-10">
+        </div>
+
+        <!-- Botão Anterior -->
+        <div class="absolute top-1/2 left-4 sm:left-8 transform -translate-y-1/2 p-2 flex items-center justify-center z-20">
+            <div class="w-[40px] h-[40px] sm:w-[50px] sm:h-[50px] rounded-full flex items-center justify-center">
+                <button id="prev"
+                    class="w-full h-full text-[16px] sm:text-[20px] rounded-full  opacity-100
+                        transition-all duration-600 cursor-pointer border-none flex items-center justify-center">
+                    <span class="text-black">&#10094;</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Botão Próximo -->
+        <div class="absolute top-1/2 right-4 sm:right-8 transform -translate-y-1/2 p-2 flex items-center justify-center z-20">
+            <div class="w-[40px] h-[40px] sm:w-[50px] sm:h-[50px] rounded-full flex items-center justify-center">
+                <button id="next"
+                    class="w-full h-full text-[16px] sm:text-[20px] rounded-full opacity-100
+                        transition-all duration-600 cursor-pointer border-none flex items-center justify-center">
+                    <span class="text-black">&#10095;</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Efeito de Neblina Próximo (Desktop) -->
+        <div id="next-nebula"
+            class="hidden md:block absolute top-1/2 right-0 transform -translate-y-1/2 w-[400px] h-[300px]
+                bg-[linear-gradient(to_left,_white_10%,_transparent_90%)] opacity-100
+                transition-all duration-600 border-none z-10">
+        </div>
+    </div>
+
+    <!--Titulo-->
+    <div class="text-left lg:ml-60 ml-4 my-4">
+        <h2 class="lg:text-3xl text-2xl lg:mt-10 mt-4 font-bold text-black">CARRO XXXXXXXXXXXX</h2>
+        <p class="text-gray-500">Descrição adicional do veiculo</p>
+    </div>
+
+    <!--Caixa branca 1-->
+    <div class="mt-4 bg-white p-4 rounded-xl shadow-md lg:w-9/12 w-11/12 mx-auto">
+        <!-- Conteúdo da caixa branca -->
+        <p class="text-black mb-4 mt-6 lg:ml-14">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et 
+            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex 
+            ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore ipsum.</p>
+        <!-- Container para os textos lado a lado -->
+        <div class="lg:grid lg:grid-cols-2 gap-4 mt-14 lg:ml-14">
+            <div class="text-black">
+                • Localização: Pato Branco, PR
+            </div>
+            <div class="text-black text-left">
+                • Quilometragem: 0
+            </div>
+        </div>
+        <div class="lg:grid lg:grid-cols-2 gap-4 lg:mt-4 lg:ml-14">
+            <div class="text-black">
+                • Cor: Branco
+            </div>
+            <div class="text-black text-left">
+                • Combustível: Alcool
+            </div>
+        </div>
+        <div class="lg:grid lg:grid-cols-2 gap-4 lg:mt-4 lg:ml-14 mb-4">
+            <div class="text-black">
+                • Ano: 2016
+            </div>
+            <div class="text-black text-left">
+                • Garantia: Sim
+            </div>
+        </div>
+    </div>
+
+    <!-- Caixa branca 2 -->
+    <div class="mt-6 bg-white p-4 rounded-xl shadow-md lg:w-9/12 w-11/12 mx-auto mb-8">
+        <!-- Conteúdo da caixa branca -->
+        <h3 class="lg:text-4xl text-3xl font-bold lg:ml-14 lg:mt-10 mt-4">R$ XX.XXX,XX</h3>
+        <p class="text-gray-500 mb-4 mt-6 lg:ml-14">Vendedo: Concessionária XXXXXXXXX</p>
+        <p class="text-gray-500 mb-4 mt-6 lg:ml-14">Reputação como vendedor: <span class="text-yellow-500 font-bold">Ouro</span></p>
+        <p class="text-gray-500 mb-4 mt-6 lg:ml-14">Vende na car turbo desde: 2024</p>
+
+        <!-- Caixa botoes -->
+        <div class="mt-14 mb-2 lg:mr-14 flex flex-col justify-center items-center">
+            <button class="bg-cinzaBG rounded-lg shadow-md text-black border border-gray-300 w-[50%] py-2">
+                <p class="font-bold">ENTRAR EM CONTATO</p>
+            </button>
+        </div>
+    </div>
+
+    <!--Footer Desktop-->
+    <div class="bg-amareloEscuro pt-9 hidden lg:block z-50 bottom-0 relative">
+        <div class="mx-auto w-full max-w-full px-4 xl:px-0">
+            <div class="flex flex-col justify-between sm:px-[18px] md:flex-row md:mx-16">
+                <div class="md:w-[316px]">
+                    <div class="flex scale-75 md:scale-100 w-3/5 md:w-4/6 md:h-1/6">
+                        <img src="imagens/carrologo.png" alt="">
+                        <img src="imagens/carturbo.png" alt="">
+                    </div>
+                    <p class="mt-[18px] text-base font-normal text-white">Empresa especialista em compras, vendas e
+                        alugueis de carros novos e usados.</p>
+                    <br>
+                    <div>
+                        <p class="text-white font-inter text-base font-medium leading-normal">Fale conosco</p>
+                        <p class="text-white">Dúvidas sobre nosso trabalho e atendimento?
+                            entre no nosso SAC</p>
+                    </div>
+                </div>
+                <!--Fale Conosco-->
+                <div class="mt-4 md:mt-14 w-full text-white md:max-w-[600px] space-y-12">
+                    <div class="md:mt-6 md:space-x-12 md:flex md:justify-center md:text-[20px]">
+                        <a class="text-deutziawhite hover:text-deutziawhite/80 font-inter font-normal hover:font-bold"
+                            href="AnunciosCompras.html">Comprar</a>
+                        <a class="text-deutziawhite hover:text-deutziawhite/80 font-inter font-normal hover:font-bold"
+                            href="Vendas.html">Vender</a>
+                        <a class="text-deutziawhite hover:text-deutziawhite/80 font-inter font-normal hover:font-bold"
+                            href="AnuncioLocação.html">Alugar</a>
+                        <a class="text-deutziawhite hover:text-deutziawhite/80 font-inter font-normal hover:font-bold"
+                            href="ajuda.html">Ajuda</a>
+                    </div>
+                    <div class="w-full justify-center flex">
+                        <a href="Login.html" class="px-4 py-2 rounded-2xl border border-2 border-white hover:font-bold hover:bg-amareloEscuro2 text-xl">Cadastre-se</a>
+                    </div>
+                </div>
+            </div>
+            <!--Parte inferior do footer-->
+            <div class="md:flex space-x-20 mx-20">
+                <div class="flex">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+                        class="mt-3">
+                        <path
+                            d="M20.8472 14.8554L16.4306 12.8764L16.4184 12.8707C16.1892 12.7727 15.939 12.7333 15.6907 12.7562C15.4424 12.7792 15.2037 12.8636 14.9963 13.002C14.9718 13.0181 14.9484 13.0357 14.9259 13.0545L12.6441 14.9998C11.1984 14.2976 9.70595 12.8164 9.00376 11.3895L10.9519 9.07294C10.9706 9.0495 10.9884 9.02606 11.0053 9.00075C11.1407 8.79384 11.2229 8.55667 11.2445 8.31035C11.2661 8.06402 11.2264 7.81618 11.1291 7.58887V7.57762L9.14438 3.15356C9.0157 2.85662 8.79444 2.60926 8.51362 2.44841C8.2328 2.28756 7.9075 2.22184 7.58626 2.26106C6.31592 2.42822 5.14986 3.05209 4.30588 4.01615C3.4619 4.98021 2.99771 6.21852 3.00001 7.49981C3.00001 14.9436 9.05626 20.9998 16.5 20.9998C17.7813 21.0021 19.0196 20.5379 19.9837 19.6939C20.9477 18.85 21.5716 17.6839 21.7388 16.4136C21.7781 16.0924 21.7125 15.7672 21.5518 15.4864C21.3911 15.2056 21.144 14.9843 20.8472 14.8554ZM16.5 19.4998C13.3185 19.4963 10.2682 18.2309 8.01856 15.9813C5.76888 13.7316 4.50348 10.6813 4.50001 7.49981C4.49648 6.58433 4.82631 5.69887 5.42789 5.00879C6.02947 4.3187 6.86167 3.87118 7.76907 3.74981C7.7687 3.75355 7.7687 3.75732 7.76907 3.76106L9.73782 8.16731L7.80001 10.4867C7.78034 10.5093 7.76247 10.5335 7.74657 10.5589C7.60549 10.7754 7.52273 11.0246 7.5063 11.2825C7.48988 11.5404 7.54035 11.7981 7.65282 12.0307C8.5022 13.7679 10.2525 15.5051 12.0084 16.3536C12.2428 16.465 12.502 16.5137 12.7608 16.495C13.0196 16.4762 13.2692 16.3907 13.485 16.2467C13.5091 16.2305 13.5322 16.2129 13.5544 16.1942L15.8334 14.2498L20.2397 16.2232C20.2397 16.2232 20.2472 16.2232 20.25 16.2232C20.1301 17.1319 19.6833 17.9658 18.9931 18.5689C18.3028 19.172 17.4166 19.5029 16.5 19.4998Z"
+                            fill="white"></path>
+                    </svg>
+                    <a href="tel:+911800123444" class="mt-2.5 font-Inter text-[14px] font-medium text-white">(XX)
+                        XXXXX-XXXX</a>
+                </div>
+                <div class="flex">
+                    <svg class="mt-3" width="20" height="15" viewBox="0 0 20 15" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M19 0H1C0.801088 0 0.610322 0.0790178 0.46967 0.21967C0.329018 0.360322 0.25 0.551088 0.25 0.75V13.5C0.25 13.8978 0.408035 14.2794 0.68934 14.5607C0.970644 14.842 1.35218 15 1.75 15H18.25C18.6478 15 19.0294 14.842 19.3107 14.5607C19.592 14.2794 19.75 13.8978 19.75 13.5V0.75C19.75 0.551088 19.671 0.360322 19.5303 0.21967C19.3897 0.0790178 19.1989 0 19 0ZM10 7.98281L2.92844 1.5H17.0716L10 7.98281ZM7.25406 7.5L1.75 12.5447V2.45531L7.25406 7.5ZM8.36406 8.51719L9.48906 9.55312C9.62743 9.68014 9.80842 9.75062 9.99625 9.75062C10.1841 9.75062 10.3651 9.68014 10.5034 9.55312L11.6284 8.51719L17.0659 13.5H2.92844L8.36406 8.51719ZM12.7459 7.5L18.25 2.45438V12.5456L12.7459 7.5Z"
+                            fill="white"></path>
+                    </svg>
+                    <a href="mailto:help@lorem.com"
+                        class="mt-2 ml-1 font-Inter text-[14px] font-medium text-white">carturbo@email.com</a>
+                </div>
+                <div class="flex">
+                    <svg class="mt-3" width="18" height="21" viewBox="0 0 18 21" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M9 4.5C8.25832 4.5 7.5333 4.71993 6.91661 5.13199C6.29993 5.54404 5.81928 6.12971 5.53545 6.81494C5.25162 7.50016 5.17736 8.25416 5.32205 8.98159C5.46675 9.70902 5.8239 10.3772 6.34835 10.9017C6.8728 11.4261 7.54098 11.7833 8.26841 11.9279C8.99584 12.0726 9.74984 11.9984 10.4351 11.7145C11.1203 11.4307 11.706 10.9501 12.118 10.3334C12.5301 9.7167 12.75 8.99168 12.75 8.25C12.75 7.25544 12.3549 6.30161 11.6517 5.59835C10.9484 4.89509 9.99456 4.5 9 4.5ZM9 10.5C8.55499 10.5 8.11998 10.368 7.74997 10.1208C7.37996 9.87357 7.09157 9.52217 6.92127 9.11104C6.75097 8.6999 6.70642 8.2475 6.79323 7.81105C6.88005 7.37459 7.09434 6.97368 7.40901 6.65901C7.72368 6.34434 8.12459 6.13005 8.56105 6.04323C8.9975 5.95642 9.4499 6.00097 9.86104 6.17127C10.2722 6.34157 10.6236 6.62996 10.8708 6.99997C11.118 7.36998 11.25 7.80499 11.25 8.25C11.25 8.84674 11.0129 9.41903 10.591 9.84099C10.169 10.2629 9.59674 10.5 9 10.5ZM9 0C6.81273 0.00248131 4.71575 0.872472 3.16911 2.41911C1.62247 3.96575 0.752481 6.06273 0.75 8.25C0.75 11.1938 2.11031 14.3138 4.6875 17.2734C5.84552 18.6108 7.14886 19.8151 8.57344 20.8641C8.69954 20.9524 8.84978 20.9998 9.00375 20.9998C9.15772 20.9998 9.30796 20.9524 9.43406 20.8641C10.856 19.8147 12.1568 18.6104 13.3125 17.2734C15.8859 14.3138 17.25 11.1938 17.25 8.25C17.2475 6.06273 16.3775 3.96575 14.8309 2.41911C13.2843 0.872472 11.1873 0.00248131 9 0ZM9 19.3125C7.45031 18.0938 2.25 13.6172 2.25 8.25C2.25 6.45979 2.96116 4.7429 4.22703 3.47703C5.4929 2.21116 7.20979 1.5 9 1.5C10.7902 1.5 12.5071 2.21116 13.773 3.47703C15.0388 4.7429 15.75 6.45979 15.75 8.25C15.75 13.6153 10.5497 18.0938 9 19.3125Z"
+                            fill="white"></path>
+                    </svg>
+                    <div class="mt-2 ml-1">
+                        <a href="mailto:help@lorem.com" class="font-Inter text-[14px] font-medium text-[#fff]">Avenida
+                            das paçoquinhas, 1234
+                            bairro, 1234-123
+                            Pato Branco, Paraná - BR</a>
+                    </div>
+                </div>
+            </div>
+            <hr class="mt-[30px] text-white" />
+            <div class="flex items-center justify-center pb-8 pt-[9px] md:py-8">
+                <p class="text-[10px] text-white font-bold md:text-[12px]">
+                    © 2024 - 2024 Car Turbo CNPJ: xx.xxx.xxx/xxxx-xx
+                    Todos os direitos Reservados.
+                </p>
+            </div>
+        </div>
+    </div>
+    <!--Footer Mobile-->
+    <div class="bg-amareloEscuro w-full lg:hidden -z-20 bottom-0 relative">
+        <div class="flex justify-center space-x-2">
+            <div class="flex object-cover h-1/5 w-2/5">
+                <img src="imagens/carrologo2.png" alt="">
+            </div>
+            <div class="bg-white my-3 px-[1px] rounded-md">
+                <hr class="" />
+            </div>
+            <div class="flex-col w-2/4 mt-2">
+                <div class="flex space-x-2">
+                    <svg class="mt-1.5 ml-2.5" width="20" height="20" viewBox="0 0 20 20" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M19 0H1C0.801088 0 0.610322 0.0790178 0.46967 0.21967C0.329018 0.360322 0.25 0.551088 0.25 0.75V13.5C0.25 13.8978 0.408035 14.2794 0.68934 14.5607C0.970644 14.842 1.35218 15 1.75 15H18.25C18.6478 15 19.0294 14.842 19.3107 14.5607C19.592 14.2794 19.75 13.8978 19.75 13.5V0.75C19.75 0.551088 19.671 0.360322 19.5303 0.21967C19.3897 0.0790178 19.1989 0 19 0ZM10 7.98281L2.92844 1.5H17.0716L10 7.98281ZM7.25406 7.5L1.75 12.5447V2.45531L7.25406 7.5ZM8.36406 8.51719L9.48906 9.55312C9.62743 9.68014 9.80842 9.75062 9.99625 9.75062C10.1841 9.75062 10.3651 9.68014 10.5034 9.55312L11.6284 8.51719L17.0659 13.5H2.92844L8.36406 8.51719ZM12.7459 7.5L18.25 2.45438V12.5456L12.7459 7.5Z"
+                            fill="white"></path>
+                    </svg>
+                    <a href="mailto:help@lorem.com"
+                        class="font-Inter text-lg font-light underline decoration-2 text-white">carturbo@email.com</a>
+                </div>
+                <p class="mt-2 mb-1.5 ml-2 text-base font-light text-white">Empresa especialista em
+                    compras, vendas e alugueis de carros novos e usados.</p>
+            </div>
+        </div>
+        <div class="flex justify-center text-center text-[10px] text-white font-medium">
+            <p>
+                © 2024 - 2024 Car Turbo CNPJ: xx.xxx.xxx/xxxx-xx
+                Todos os direitos Reservados.
+            </p>
+        </div>
+    </div>
+
+    <!--slider-->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+        const carousel = document.getElementById('carousel');
+        const prevButton = document.getElementById('prev');
+        const nextButton = document.getElementById('next');
+        const slides = document.querySelectorAll('#carousel > div');
+        let index = 0;
+        
+        function updateSliderConfig() {
+            // Número de slides visíveis depende da largura da tela
+            const slidesToShow = window.innerWidth < 640 ? 1 : 3;
+            const slideWidth = 100 / slidesToShow;
+            
+            // Ajusta a largura dos slides
+            slides.forEach(slide => {
+                slide.style.width = `${slideWidth}%`;
+            });
+            // Atualiza a posição do slide
+            carousel.style.transform = `translateX(-${index * slideWidth}%)`;
+            return { slidesToShow, slideWidth };
+        }
+        function showSlide(i) {
+            const { slidesToShow, slideWidth } = updateSliderConfig();
+            if (i >= slides.length - slidesToShow) {
+                index = 0;
+            } else if (i < 0) {
+                index = slides.length - slidesToShow;
+            } else {
+                index = i;
+            }
+            carousel.style.transform = `translateX(-${index * slideWidth}%)`;
+        }
+        function nextSlide() {
+            showSlide(index + 1);
+        }
+        prevButton.addEventListener('click', () => {
+            clearInterval(autoSlide);
+            showSlide(index - 1);
+            autoSlide = setInterval(nextSlide, 3000);
+        });
+        nextButton.addEventListener('click', () => {
+            clearInterval(autoSlide);
+            showSlide(index + 1);
+            autoSlide = setInterval(nextSlide, 3000);
+        });
+        let autoSlide = setInterval(nextSlide, 3000); // Troca de slide a cada 3 segundos
+        window.addEventListener('resize', () => {
+            updateSliderConfig(); // Atualiza a configuração ao redimensionar a janela
+        });
+        showSlide(index); // Mostra o slide inicial
+        });
+    </script>
+    
+    
+
+    </script>
+    <!--Script Navbar-->
+    <script>
+        function Menu(e) {
+            let list = document.querySelector('ul');
+            e.name === 'menu' ? (e.name = "close", list.classList.add('top-[50px]'), list.classList.add('opacity-100')) : (e.name = "menu", list.classList.remove('top-[50px]'), list.classList.remove('opacity-100'))
+        }
+    </script>
+</body>
+
+</html>

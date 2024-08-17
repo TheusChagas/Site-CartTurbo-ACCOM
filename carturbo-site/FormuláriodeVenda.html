@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js" integrity="sha512-0XDfGxFliYJPFrideYOoxdgNIvrwGTLnmK20xZbCAvPfLGQMzHUsaqZK8ZoH+luXGRxTrS46+Aq400nCnAT0/w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <title>Formulários de venda</title>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              amareloEscuro: '#CFA633',
+              amareloEscuro2: '#DCB23A',
+              amareloClaro: '#fABD14',
+              azul: '#3336FF',
+              cinza: '#575757',
+              cinzaEscuro: '#33312D',
+              cinzaClaro: '#DBDBDB',
+            }
+          }
+        }
+      }
+    </script>
+
+    <style>
+      .hidden {
+        display: none;
+      }
+
+      .step-indicator.active,
+      button.active {
+        background-color: #CFA633;
+        color: white;
+      }
+
+      .step.active p {
+        color: #CFA633;
+      }
+
+      .botao.selecionado {
+            background-color: #FABD14;
+            color: white;
+        }
+    </style>
+  </head>
+
+  <body class="flex flex-col justify-center items-center bg-cinzaClaro pb-10">
+    <!--Stepper-->
+    <div class="w-full flex flex-col lg:flex-row md:w-4/6 lg:w-5/6 justify-center items-center">
+      <!-- Stepper -->
+      <div class="h-fit w-full lg:w-1/2 flex justify-around md:justify-around text-sm lg:text-base 2xl:text-lg">
+        <div class="step text-cinza w-fit flex text-center mt-8 space-x-1" data-step="1">
+          <div class="step-indicator w-5 h-5 lg:h-6 lg:w-6 2xl:w-8 2xl:h-8 bg-cinza text-white text-center">1</div>
+          <p>Dados do veículo</p>
+        </div>
+        <div class="step text-cinza w-fit flex text-center mt-8 space-x-1" data-step="2">
+          <div class="step-indicator w-5 h-5 lg:h-6 lg:w-6 2xl:w-8 2xl:h-8 bg-cinza text-white text-center">2</div>
+          <p>Extras</p>
+        </div>
+        <div class="step text-cinza w-fit flex text-center mt-8 space-x-1" data-step="3">
+          <div class="step-indicator w-5 h-5 lg:h-6 lg:w-6 2xl:w-8 2xl:h-8 bg-cinza text-white text-center">3</div>
+          <p>Adicionais</p>
+        </div>
+      </div>
+      <div class="h-fit w-full lg:w-1/2 flex justify-around md:justify-around text-sm lg:text-base 2xl:text-lg">
+        <div class="step text-cinza w-fit flex text-center mt-8 space-x-1" data-step="4">
+          <div class="step-indicator w-5 h-5 lg:h-6 lg:w-6 2xl:w-8 2xl:h-8 bg-cinza text-white text-center">4</div>
+          <p>Completar dados</p>
+        </div>
+        <div class="step text-cinza w-fit flex text-center mt-8 space-x-1" data-step="5">
+          <div class="step-indicator w-5 h-5 lg:h-6 lg:w-6 2xl:w-8 2xl:h-8 bg-cinza text-white text-center">5</div>
+          <p>Fotos do veículo</p>
+        </div>
+        <div class="step text-cinza w-fit flex text-center mt-8 space-x-1" data-step="6">
+          <div class="step-indicator w-5 h-5 lg:h-6 lg:w-6 2xl:w-8 2xl:h-8 bg-cinza text-white text-center">6</div>
+          <p>Finalizar</p>
+        </div>
+      </div>
+    </div>
+    <!--Fim do Stepper-->
+
+    <!--Formularios-->
+    <div class="w-5/6 xl:w-4/6 h-fit md:h-[875px] lg:h-[1100px] xl:h-[700px] 2xl:h-[800px] bg-white pt-10 pb-24 mt-5 lg:mt-10 flex flex-col justify-center items-center relative">
+      <div class="form-container w-full flex items-center justify-center">
+        <!--Formulario 1-->
+        <form id="form-step-1" class="form-step w-[90%] h-fit flex flex-col md:mt-[50px] lg:mt-0 justify-center items-center">
+          <div class="flex flex-col justify-center items-center w-full">
+            <!--Dados do veículo-->
+            <h1 class="font-bold text-xl lg:text-[36px] lg:text-center">Informações do veículo</h1>
+            <div class="flex flex-col justify-center items-center content-center w-full mt-5">
+              <div class="mb-6 pt-4 w-full lg:w-4/5">
+                <div class="">
+                  <label class="block text-black font-normal md:text-left lg:text-xl" for="my-select">
+                    Marca*
+                  </label>
+                </div>
+                <div class="">
+                  <select name="marca" class="block w-full lg:w-full focus:bg-white border-b-2 border-black focus:ring-0 focus:outline-none appearance-none focus:border-amareloClaro" id="extras" name="extras" required>
+                    <option value="" disabled selected>Escolha uma Marca</option>
+                    <option value="A">FIAT</option>
+                    <option value="B">BMW</option>
+                    <option value="C">JEEP</option>
+                  </select>
+                </div>
+              </div>
+              <div class="mb-6 pt-4 w-full lg:w-4/5">
+                <div class="">
+                  <label class="block text-black font-normal md:text-left mb-1 md:mb-0 pr-4 lg:text-xl" for="my-select">
+                    Modelo*
+                  </label>
+                </div>
+                <div class=" ">
+                  <select name="modelo" class="block w-full lg:w-full focus:bg-white  border-b-2 border-black focus:ring-0 focus:outline-none appearance-none focus:border-amareloClaro" id="extras" name="extras" required>
+                    <option value="" disabled selected>Escolha um Modelo</option>
+                    <option value="A">Corsa</option>
+                    <option value="B">Gol</option>
+                    <option value="C">Jetta</option>
+                  </select>
+                </div>
+              </div>
+              <div class=" mb-6 pt-4 w-full lg:w-4/5">
+                <div class="flex flex-col lg:flex-row space-y-10 lg:space-y-0 lg:space-x-14">
+                  <div class="lg:w-1/2">
+                    <div>
+                      <label class="block text-black font-normal  mb-1 md:mb-0 pr-4 lg:text-xl" for="my-select">
+                        Ano do Modelo*
+                      </label>
+                    </div>
+                    <div class="">
+                      <select name="ano" class="form-select block w-full lg:w-full  focus:bg-white  border-b-2 border-black focus:ring-0 focus:outline-none appearance-none focus:border-amareloClaro" id="extras" name="extras" required>
+                        <option value="" disabled selected>Escolha um ano</option>
+                        <option value="A">2009</option>
+                        <option value="B">2019</option>
+                        <option value="C">2024</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="lg:w-1/2">
+                    <div class="">
+                      <label class="block text-black font-normal  mb-1 md:mb-0 pr-4 lg:text-xl" for="my-select">
+                        Ano de Fabricação*
+                      </label>
+                    </div>
+                    <div class="">
+                      <select name="anoFabricacao" class="form-select block w-full lg:w-full  focus:bg-white  border-b-2 border-black focus:ring-0 focus:outline-none appearance-none focus:border-amareloClaro" id="extras" name="extras" required>
+                        <option value="" disabled selected>Escolha um ano</option>
+                        <option value="A">2009</option>
+                        <option value="B">2019</option>
+                        <option value="C">2024</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class=" mb-6 pt-4 w-full lg:w-4/5">
+                <div class="">
+                  <label class="block text-black font-normal md:text-left mb-1 md:mb-0 pr-4 lg:text-xl" for="my-select">
+                    Versão*
+                  </label>
+                </div>
+                <div class="">
+                  <select name="versao" class="form-select block w-full lg:w-full focus:bg-white  border-b-2 border-black focus:ring-0 focus:outline-none appearance-none focus:border-amareloClaro" id="extras" name="extras" required>
+                    <option value="" disabled selected>Escolha uma versão</option>
+                    <option value="A">Corsa super</option>
+                    <option value="B">Gol Quadrado</option>
+                    <option value="C">Jetta nutella</option>
+                  </select>
+                </div>
+              </div>
+              <div class=" mb-6 pt-4 w-full lg:w-4/5">
+                <div class="">
+                  <label class="block text-black font-normal md:text-left mb-1 md:mb-0 pr-4 lg:text-xl" for="my-select">
+                    Cor*
+                  </label>
+                </div>
+                <div class=" ">
+                  <select name="cor" class="form-select block w-full lg:w-full focus:bg-white  border-b-2 border-black focus:ring-0 focus:outline-none appearance-none focus:border-amareloClaro" id="extras" name="extras" required>
+                    <option value="" disabled selected>Escolha uma cor</option>
+                    <option value="A">Prata</option>
+                    <option value="B">Preto</option>
+                    <option value="C">Branco</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="w-4/5 flex justify-start">
+              <label class="inline-flex items-center">
+                <input type="checkbox" class="form-checkbox text-indigo-600">
+                  <span class="ml-2 text-base font-medium">Blindado</span>
+              </label>
+            </div>
+          </div>
+          <button type="button" class="next-step px-4 py-1 absolute bottom-[50px] md:bottom-[70px] xl:bottom-[50px] end-[15px] md:end-[75px] lg:end-[110px] 2xl:end-[200px] rounded-lg duration-[250ms] text-white bg-amareloClaro">Próximo &rarr;</button>
+        </form>
+
+        <!--Formulário 2-->
+        <form id="form-step-2" class="form-step w-[90%] h-fit flex flex-col md:mt-[50px] lg:mt-0 justify-center items-center hidden mb-[150px]">
+          <div class="flex flex-col justify-center items-center w-full">
+            <!--Dados adcionaus do veículo-->
+            <div class="flex flex-col justify-center w-5/6">
+              <h1 class="font-bold text-xl lg:text-[36px] mb-4 lg:text-center">Informações Adicionais</h1>
+              <div class="flex flex-col justify-center items-center content-center w-full mt-5">
+                <div class="mb-3 pt-4 w-full lg:w-4/5">
+                  <div class="">
+                    <label class="block text-black font-normal md:text-left lg:text-xl" for="my-select" required>
+                      Quilometragem*
+                    </label>
+                  </div>
+                  <div class="">
+                    <input type="text" id="quilometragem" name="quilometragem" class="border-b-2 border-black text-gray-900 placeholder-black w-full duration-500 focus:border-amareloClaro focus:border-b-2 focus:outline focus:outline-0 pt-1" placeholder="Informe a quilometragem" required>
+                  </div>
+                </div>
+                <div class="mb-3 pt-4 w-full lg:w-4/5">
+                  <div class="">
+                    <label class="block text-black font-normal md:text-left lg:text-xl" for="my-select">
+                      Informe os detalhes e diferenciais do seu carro
+                    </label>
+                  </div>
+                  <div class="">
+                    <textarea name="" id="caixaTexto" oninput="contaCaracter()" maxlength="500" class="border-b-2 border-black text-gray-900 placeholder-black w-full duration-500 focus:border-amareloClaro focus:border-b-2 focus:outline focus:outline-0 pt-1"></textarea>
+                    <div class="flex">
+                      <p><span id="charCount">0</span></p>
+                      <p>/500</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="mb-3 pt-4 w-full lg:w-4/5">
+                  <div>
+                    <label class="block text-black font-normal  mb-1 md:mb-0 pr-4 lg:text-xl" for="my-select" required>
+                      Preço*
+                    </label>
+                  </div>
+                  <div class="">
+                    <input type="text" id="preco" name="preco" class="border-b-2 border-black text-gray-900 placeholder-black placeholder:text-sm w-full duration-500 focus:border-amareloClaro focus:border-b-2 focus:outline focus:outline-0 pt-1" placeholder="Informe o valor de venda do veículo" required>
+                  </div>
+                </div> 
+              </div>
+            </div>
+          </div>
+          <button type="button" class="prev-step px-4 py-1 absolute bottom-[50px] md:bottom-[70px] xl:bottom-[50px] start-[15px] md:start-[75px] lg:start-[110px] 2xl:start-[200px] rounded-lg duration-[250ms] bg-white text-amareloClaro">&larr;
+            Voltar
+          </button>
+          <button type="button" class="next-step px-4 py-1 absolute bottom-[50px] md:bottom-[70px] xl:bottom-[50px] end-[15px] md:end-[75px] lg:end-[110px] 2xl:end-[200px] rounded-lg duration-[250ms] text-white bg-amareloClaro">
+            Próximo &rarr;
+          </button>
+        </form>
+
+        <!--Formulario 3-->
+        <form id="form-step-3" class=" form-step hidden w-full h-fit flex flex-col justify-center items-center">
+          <div class="step-content flex flex-col justify-center items-center w-full">
+            <!--adcionais do veículo-->
+            <div class="flex flex-col justify-center w-5/6">
+              <h1 class="font-bold text-2xl lg:text-[36px] text-center">Adicionais do veículo</h1>
+              <h1 class="font-base text-lg text-center mt-5">Selecione os adicionais do seu veiculo</h1>
+              <!--Botões-->
+              <div class="flex flex-col justify-center items-center content-center w-full mt-5">
+                <div class="relative h-full pb-4 w-4/6 md:w-5/6 xl:w-4/6">
+                  <div class="w-full relative text-[16px]">
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-2 gap-y-4 lg:gap-x-8 2xl:gap-x-10 lg:gap-y-6 mt-6">
+                      <a class="botao transition-all duration-500 border-b-2 border-l-2 bg-white rounded-xl hover:bg-amareloClaro hover:shadow-xl p-[2px] text-center my-auto relative z-40" onclick="toggleSelecionado(this)" >
+                        <p class="my-[12px] tracking-tight">Unico Dono +</p>
+                      </a>
+                      <a class="botao transition-all duration-500 border-b-2 border-l-2 bg-white rounded-xl hover:bg-amareloClaro hover:shadow-xl p-[2px] text-center my-auto relative z-40" onclick="toggleSelecionado(this)" >
+                        <p class="my-[12px] tracking-tight">IPVA pago +</p>
+                      </a>
+                      <a class="botao transition-all duration-500 border-b-2 border-l-2 bg-white rounded-xl hover:bg-amareloClaro hover:shadow-xl p-[2px] text-center my-auto relative z-40" onclick="toggleSelecionado(this)" >
+                        <p class="my-[12px] tracking-tight">Não aceito troca +</p>
+                      </a>
+                      <a class="botao transition-all duration-500 border-b-2 border-l-2 bg-white rounded-xl hover:bg-amareloClaro hover:shadow-xl p-[2px] text-center my-auto relative z-40" onclick="toggleSelecionado(this)" >
+                        <p class="my-[12px] tracking-tight text-[14px]">Veiculo Financiado +</p>
+                      </a>
+                      <a class="botao transition-all duration-500 border-b-2 border-l-2 bg-white rounded-xl hover:bg-amareloClaro hover:shadow-xl p-[2px] text-center my-auto relative z-40" onclick="toggleSelecionado(this)" >
+                        <p class="my-[12px] tracking-tight">Licenciado +</p>
+                      </a>
+                      <a class="botao transition-all duration-500 border-b-2 border-l-2 bg-white rounded-xl hover:bg-amareloClaro hover:shadow-xl p-[2px] text-center my-auto relative z-40" onclick="toggleSelecionado(this)" >
+                        <p class="my-[12px] tracking-tight text-[14px]">Garantia de fábrica +</p>
+                      </a>
+                      <a class="botao transition-all duration-500 border-b-2 border-l-2 bg-white rounded-xl hover:bg-amareloClaro hover:shadow-xl p-[2px] text-center my-auto relative z-40" onclick="toggleSelecionado(this)" >
+                        <p class="my-[12px] tracking-tight">Veículo de colecionador +</p>
+                      </a>
+                      <a class="botao transition-all duration-500 border-b-2 border-l-2 bg-white rounded-xl hover:bg-amareloClaro hover:shadow-xl p-[2px] text-center my-auto relative z-40" onclick="toggleSelecionado(this)" >
+                        <p class="my-[12px] tracking-tight">Adaptado para deficientes +</p>
+                      </a>
+                      <a class="botao transition-all duration-500 border-b-2 border-l-2 bg-white rounded-xl hover:bg-amareloClaro hover:shadow-xl p-[2px] text-center my-auto relative z-40" onclick="toggleSelecionado(this)" >
+                        <p class="my-[12px] tracking-tight">Revisado em concessionária +</p>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button type="button" class="prev-step px-4 py-1 absolute bottom-[50px] md:bottom-[70px] xl:bottom-[50px] start-[15px] md:start-[75px] lg:start-[110px] 2xl:start-[200px] rounded-lg duration-[250ms] bg-white text-amareloClaro">
+            &larr; Voltar
+          </button>
+          <button type="button" class="next-step px-4 py-1 absolute bottom-[50px] md:bottom-[70px] xl:bottom-[50px] end-[15px] md:end-[75px] lg:end-[110px] 2xl:end-[200px] rounded-lg duration-[250ms] text-white bg-amareloClaro">
+            Próximo &rarr;
+          </button>
+        </form>
+
+        <!--Formulário 4-->
+        <form id="form-step-4" class="form-step w-full h-fit flex flex-col md:mt-[0px] lg:mt-0 justify-center items-center hidden">
+          <div class="flex flex-col justify-center items-center w-full">
+            <!--Dados do cliente-->
+            <div class="flex flex-col justify-center w-5/6">
+              <h1 class="font-bold text-xl lg:text-[36px] lg:text-center">Complete seus dados cadastrais</h1>
+              <h1 class="font-base text-lg text-center mt-5">Preencha ou atualize seus dados para continuar o anúncio</h1>
+              <div class="flex flex-col justify-center items-center content-center w-full mt-5">
+                <div class="mb-3 pt-4 w-full lg:w-4/5">
+                  <div class="">
+                    <label class="block text-black font-normal md:text-left lg:text-xl" for="my-select" required>
+                      E-mail*
+                    </label>
+                  </div>
+                  <div class="">
+                    <input type="email" id="email" name="email" class="border-b-2 border-black text-gray-900 placeholder-black w-full duration-500 focus:border-amareloClaro focus:border-b-2 focus:outline focus:outline-0 pt-1" placeholder="E-mail pessoal" required>
+                    <p id="email-error" class="text-red-600 hidden">E-mail é obrigatório.</p>
+                  </div>
+                </div>
+                <div class="mb-3 pt-4 w-full lg:w-4/5">
+                  <div class="">
+                    <label class="block text-black font-normal md:text-left lg:text-xl" for="my-select" required>
+                      Nome completo*
+                    </label>
+                  </div>
+                  <div class="">
+                    <input type="text" id="nome" name="nome" class="border-b-2 border-black text-gray-900 placeholder-black w-full duration-500 focus:border-amareloClaro focus:border-b-2 focus:outline focus:outline-0 pt-1" placeholder="Nome completo da pessoa" required>
+                    <p id="nome-error" class="text-red-600 hidden">Nome é obrigatório.</p>
+                  </div>
+                </div>
+                <div class="mb-3 pt-4 w-full lg:w-4/5">
+                  <div class="flex flex-col lg:flex-row space-y-10 lg:space-y-0 lg:space-x-14">
+                    <div class="lg:w-1/2">
+                      <div>
+                        <label class="block text-black font-normal  mb-1 md:mb-0 pr-4 lg:text-xl" for="my-select" required>
+                          Gênero*
+                        </label>
+                      </div>
+                      <select name="genero" class="form-select block w-full lg:w-full focus:bg-white border-b-2 border-black focus:ring-0 focus:outline-none appearance-none" id="genero" required>
+                        <option value="Default">Gênero da pessoa</option>
+                        <option value="A">Masculino</option>
+                        <option value="B">Feminino</option>
+                        <option value="C">Não informar</option>
+                      </select>
+                    </div>
+                    <div class="lg:w-1/2">
+                      <div class="">
+                        <label class="block text-black font-normal  mb-1 md:mb-0 pr-4 lg:text-xl" for="my-select" required>
+                          Data de nascimento*
+                        </label>
+                      </div>
+                      <input type="text" id="data" name="data" class="border-b-2 border-black text-gray-900 placeholder-black w-full duration-500 focus:border-amareloClaro focus:border-b-2 focus:outline focus:outline-0 pt-1" required>
+                        <p id="data-error" class="text-red-600 hidden">Data de nascimento é obrigatório.</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="mb-3 pt-4 w-full lg:w-4/5">
+                  <div class="flex flex-col lg:flex-row space-y-10 lg:space-y-0 lg:space-x-14">
+                    <div class="lg:w-1/2">
+                      <div>
+                        <label class="block text-black font-normal  mb-1 md:mb-0 pr-4 lg:text-xl" for="my-select" required>
+                          Celular*
+                        </label>
+                      </div>
+                      <input type="text" id="celular" name="celular" class="border-b-2 border-black text-gray-900 placeholder-black w-full duration-500 focus:border-amareloClaro focus:border-b-2 focus:outline focus:outline-0 pt-1" required>
+                    </div>
+                    <div class="lg:w-1/2">
+                      <div class="">
+                        <label class="block text-black font-normal  mb-1 md:mb-0 pr-4 lg:text-xl" for="my-select" required>
+                          Cep*
+                        </label>
+                      </div>
+                      <input type="text" id="cep" name="cep" class="border-b-2 border-black text-gray-900 placeholder-black w-full duration-500 focus:border-amareloClaro focus:border-b-2 focus:outline focus:outline-0 pt-1" required>
+                    </div>
+                  </div>
+                </div>
+                <div class="mb-3 pt-4 w-full lg:w-4/5">
+                  <div class="flex flex-col lg:flex-row space-y-10 lg:space-y-0 lg:space-x-14">
+                    <div class="lg:w-full">
+                      <div>
+                        <label class="block text-black font-normal  mb-1 md:mb-0 pr-4 lg:text-xl" for="my-select" required>
+                          CPF*
+                        </label>
+                      </div>
+                      <input type="text" id="cpf" name="cpf" class="border-b-2 border-black text-gray-900 placeholder-black w-full duration-500 focus:border-amareloClaro focus:border-b-2 focus:outline focus:outline-0 pt-1" required>
+                  </div>    
+                </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button type="button" class="prev-step px-4 py-1 absolute bottom-[50px] md:bottom-[70px] xl:bottom-[50px] start-[15px] md:start-[75px] lg:start-[110px] 2xl:start-[200px] rounded-lg duration-[250ms] bg-white text-amareloClaro">
+            &larr; Voltar
+          </button>
+          <button type="button" class="next-step px-4 py-1 absolute bottom-[50px] md:bottom-[70px] xl:bottom-[50px] end-[15px] md:end-[75px] lg:end-[110px] 2xl:end-[200px] rounded-lg duration-[250ms] text-white bg-amareloClaro">
+            Próximo &rarr;
+          </button>
+        </form>
+
+        <!--Formulario 5-->
+        <!--Adcionar a lógica de adição de imagens novas ao campo de fotos-->
+        <form id="form-step-5" class="form-step w-full hidden h-fit flex flex-col justify-center items-center">
+          <div class="flex flex-col justify-center items-center w-full">
+            <!--Upload de fotos-->
+            <div class="flex flex-col justify-center w-5/6">
+              <h1 class="font-bold text-xl lg:text-[36px] text-center">Adcione as fotos do veículo</h1>
+              <h1 class="font-base text-lg text-center mt-5">Adcione até 8 imagens e lembre-se de terem uma boa qualidade</h1>
+              <p class="font-base text-lg text-center ">Arraste a imagem na area tracejada ou clique-a</p>
+              <div class="flex flex-col justify-center items-center content-center w-full">
+                <div id="previewGallery" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 h-[300px] md:h-[500px] lg:h-[600px] xl:h-[420px] overflow-auto gap-x-2 gap-y-2 lg:gap-x-8 2xl:gap-x-10 lg:gap-y-6 mt-6">
+                  <!--Imagens-->
+                  <!--Botão de adição-->
+                  <div id="dropArea" class="flex border-2 border-black border-dashed h-fit w-fit rounded-md mb-4">
+                    <label href="" class=" h-[200px] w-[200px]">
+                      <p class="text-center mt-20 text-4xl">+</p>
+                      <input type="file" id="imageInput" class=" w-36 text-white hidden  " multiple accept="image/*" onchange="handleInputChange(event)">
+                    </label>
+                  </div>    
+                </div>
+              </div>
+            </div>
+          </div>
+          <button type="button" class="prev-step px-4 py-1 absolute bottom-[50px] md:bottom-[70px] xl:bottom-[50px] start-[15px] md:start-[75px] lg:start-[110px] 2xl:start-[200px] rounded-lg duration-[250ms] bg-white text-amareloClaro">
+            &larr; Voltar
+          </button>
+          <button type="button" class="next-step px-4 py-1 absolute bottom-[50px] md:bottom-[70px] xl:bottom-[50px] end-[15px] md:end-[75px] lg:end-[110px] 2xl:end-[200px] rounded-lg duration-[250ms] text-white bg-amareloClaro">
+            Próximo &rarr;
+          </button>
+        </form>
+
+        <!--Formulário 6-->
+        <form id="form-step-6" class="form-step hidden w-full h-fit flex flex-col justify-center items-center">
+          <div class="flex flex-col justify-center items-center w-full">
+            <!--Dados de pagamento-->
+            <div class="flex flex-col justify-center w-5/6">
+              <h1 class="font-bold text-xl lg:text-[36px] text-center">Seu anúncio está quase pronto!</h1>
+              <h1 class="font-base text-lg text-center mt-5">Pague a taxa abaixo para publica seu anúncio</h1>
+              <div class="flex flex-col justify-center items-center content-center w-full">
+                <!--Menu de pagamento-->
+                <!--PIX-->
+                <div class="flex flex-col md:flex-row justify-center items-center p-10 rounded-2xl bg-white w-full max-w-4xl space-y-4 md:space-y-0" id="pix">
+                  <div class="flex items-center flex-col space-y-4 w-3/4">
+                    <img src="Imagens/QRcode.png" alt="">
+                    <button class="font-semibold bg-amareloEscuro px-4 py-2 rounded">Copiar código pix</button>
+                  </div>
+                  <div class="flex flex-col">
+                    <h2 class="font-bold text-2xl mb-4">Como pagar:</h2>
+                      <ul class="list-disc">
+                        <li>Utilize o aplicativo do seu banco copiando o código pix ou escaneando o QR-Code ao lado. </li>
+                        <li>Confirme os dados de pagamento e o valor do seu pedido. </li>
+                        <li>Seu pagamento será processado e debitado do valor disponível em sua conta.</li>
+                      </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button type="button" class="prev-step px-4 py-1 absolute bottom-[50px] md:bottom-[70px] xl:bottom-[50px] start-[15px] md:start-[75px] lg:start-[110px] 2xl:start-[200px] rounded-lg duration-[250ms] bg-white text-amareloClaro">
+            &larr; Voltar
+          </button>
+          <a href="Vendas.html"  id="cria" type="button" class="next-step px-4 py-1 absolute bottom-[50px] md:bottom-[70px] xl:bottom-[50px] end-[15px] md:end-[75px] lg:end-[110px] 2xl:end-[200px] rounded-lg duration-[250ms] text-white bg-amareloClaro">
+            Criar anúncio &rarr;
+          <a>
+        </form>
+        <!---->
+      </div>
+    </div>
+
+    <!--stepper-->
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        let currentStep = 1;
+        const totalSteps = 6;
+
+        function showStep(step) {
+          document.querySelectorAll('.form-step').forEach((form, index) => {
+          form.classList.toggle('hidden', index + 1 !== step);
+        });
+
+        document.querySelectorAll('.step').forEach((stepElement, index) => {
+          stepElement.classList.toggle('active', index + 1 === step);
+        });
+
+        document.querySelectorAll('.step-indicator').forEach((indicator, index) => {
+          indicator.classList.toggle('active', index + 1 === step);
+        });
+
+        document.querySelectorAll('button').forEach((button) => {
+          button.classList.toggle('active', button.dataset.step === step.toString());
+        });
+      }
+
+      function validateForm(step) {
+        const form = document.querySelector(`#form-step-${step}`);
+        return form.checkValidity();
+      }
+
+      document.querySelectorAll('.next-step').forEach(button => {
+        button.addEventListener('click', () => {
+          if (validateForm(currentStep)) {
+            currentStep = Math.min(currentStep + 1, totalSteps);
+            showStep(currentStep);
+          } else {
+            alert('Preencha todos os campos obrigatórios.');
+          }
+        });
+      });
+
+      document.querySelectorAll('.prev-step').forEach(button => {
+        button.addEventListener('click', () => {
+          currentStep = Math.max(currentStep - 1, 1);
+          showStep(currentStep);
+        });
+      });
+
+      showStep(currentStep);
+    });
+
+    </script>
+
+    <!--TEXTO-->
+    <script>
+      function contaCaracter() {
+        var textarea = document.getElementById('caixaTexto');
+        var charCount = document.getElementById('charCount');
+        charCount.textContent = (textarea.value.length);
+      }
+    </script>
+
+    <!--Mascara-->
+    <script>
+      $('#quilometragem').mask('###.##0 km', {reverse: true});
+      $('#preco').mask("R$#.###.##0,00");
+      $('#celular').mask('(00) 00000-0000');
+      $('#cep').mask('00000-000');
+      $('#data').mask('00/00/0000');
+      $('#cpf').mask('000.000.000-00', {reverse: true});
+      $(document).ready(function() {
+        $('#form-step-4').on('button', function(event) {
+          var emailInput = $('#email').val();
+          var emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+          if (!emailPattern.test(emailInput)) {
+            lert('Por favor, insira um email válido.');
+            event.preventDefault();
+          }
+        });
+      });
+    </script>
+
+    <!--fotos upload-->
+    <script>
+      let imageCount = 0;
+      const maxImages = 8;
+
+      // Função para adicionar uma imagem à pré-visualização
+      function addImageToPreview(file) {
+          const previewGallery = document.getElementById('previewGallery');
+          const imageUrl = URL.createObjectURL(file);
+          const imgElement = document.createElement('img');
+          imgElement.src = imageUrl;
+          imgElement.alt = file.name;
+          imgElement.classList.add('w-[200px]', 'h-[200px]', 'object-scale-down', 'rounded-lg', 'shadow-lg');
+
+          const imgContainer = document.createElement('div');
+          imgContainer.classList.add('p-2', 'w-[200px]', 'h-[200px]', 'bg-white', 'rounded-lg', 'shadow-lg');
+          imgContainer.appendChild(imgElement);
+
+          previewGallery.appendChild(imgContainer);
+      }
+
+      // Função para manipular o evento de mudança do input de arquivos
+      function handleInputChange(event) {
+          const files = event.target.files;
+          if (imageCount + files.length > maxImages) {
+            alert(`Você pode adicionar no máximo ${maxImages} imagens.`);
+            return;
+          }
+
+          for (let i = 0; i < files.length; i++) {
+            addImageToPreview(files[i]);
+            imageCount++;
+          }
+
+          event.target.value = '';
+      }
+
+      // Função para manipular o evento de arrastar e soltar
+      function handleDrop(event) {
+        event.preventDefault();
+        const files = event.dataTransfer.files;
+        if (imageCount + files.length > maxImages) {
+          alert(`Você pode adicionar no máximo ${maxImages} imagens.`);
+          return;
+        }
+
+        for (let i = 0; i < files.length; i++) {
+          addImageToPreview(files[i]);
+          imageCount++;
+        }
+      }
+
+      // Função para prevenir o comportamento padrão do evento de arrastar e soltar
+      function handleDragOver(event) {
+          event.preventDefault();
+      }
+
+      // Adicionar event listeners para o input de arquivos e a área de arrastar e soltar
+      document.getElementById('imageInput').addEventListener('change', handleInputChange);
+      const dropArea = document.getElementById('dropArea');
+      dropArea.addEventListener('dragover', handleDragOver);
+      dropArea.addEventListener('drop', handleDrop);
+    </script>
+
+    <!--botões select-->
+    <script>
+      function toggleSelecionado(botao) {
+          
+          botao.classList.toggle('selecionado');
+      }
+  </script>
+
+  <!--Enviar-->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var button = document.getElementById('cria');
+
+        button.addEventListener('click', function(event) {
+            event.preventDefault(); 
+            
+            alert('Anúncio Criado com sucesso!');
+
+            setTimeout(function() {
+                window.location.href = button.getAttribute('href');
+            }, 500); 
+        });
+    });
+</script>
+
+
+  </body>
+</html>

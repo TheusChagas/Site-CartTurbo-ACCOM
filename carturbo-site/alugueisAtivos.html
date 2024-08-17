@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        amareloEscuro: '#CFA633',
+                        amareloEscuro2: '#DCB23A',
+                        amareloClaro: '#fABD14',
+                        azul: '#3336FF',
+                        cinza: '#575757',
+                        cinzaEscuro: '#33312D',
+                        cinzaClaro: '#DBDBDB',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Garante que o texto dentro da textarea seja alinhado à esquerda */
+        textarea {
+            text-align: left;
+        }
+
+        .bg-amarelo-transparente {
+            background-color: #cfa63333;
+            /* #CFA633 com 20% de opacidade */
+        }
+
+        .quadrado-amarelo::before {
+            content: "";
+            display: inline-block;
+            width: 15px;
+            height: 15px;
+            background-color: #CFA633;
+            margin-right: 8px;
+            border-radius: 20%;
+        }
+
+        .quadrado-cinza::before {
+            content: "";
+            display: inline-block;
+            width: 15px;
+            height: 15px;
+            background-color: #575757;
+            margin-right: 8px;
+            border-radius: 20%;
+        }
+
+        .minimized-sidebar {
+            width: 64px;
+            /* Largura mínima da sidebar */
+            overflow: hidden;
+        }
+
+        .amarelo {
+            filter: invert(38%) sepia(86%) saturate(584%) hue-rotate(2deg) brightness(95%) contrast(90%);
+        }
+    </style>
+    <title>Alugueis ativos</title>
+</head>
+
+<body class="h-screen">
+
+    <!-- Header -->
+    <nav class="w-full shadow flex justify-center bg-amareloEscuro">
+        <div class="p-4 pb-10 w-full relative z-50 bg-amareloEscuro">
+            <span id="menuIcon" class="text-3xl cursor-pointer mx-2 absolute end-10 lg:hidden">
+                <ion-icon name="menu"></ion-icon>
+            </span>
+        </div>
+
+        <div class="hidden lg:block mr-10 mt-2">
+            <a href="HomePage.html" class="flex space-x-6 lg:z-40 end-10 top-4">
+
+                <span><!--Login-->
+
+                    <img class="h-10 inline" src="imagens/carrologo2.png">
+
+                </span>
+            </a>
+        </div>
+    </nav>
+
+    <div class="flex h-screen h-[91%]">
+
+        <!-- Sidebar -->
+        <div id="sidebar"
+            class="fixed lg:static flex top-0 left-0 h-full bg-white p-4 transition-transform duration-300 lg:w-1/4 w-full lg:translate-x-0 -translate-x-full z-40">
+            <nav class="mt-20 lg:mt-10">
+                <a href="chamadosClientes.html"
+                    class="block mb-2 px-4 rounded transition-transform duration-200 transform hover:scale-95 hover:bg-gray-300 hover:text-white flex items-center">
+                    <img src="imagens/telephone.svg" alt="Histórico de transações" class="w-4 h-4 mr-2">
+                    Chamados Clientes
+                </a>
+                <a href="alugueisAtivos.html"
+                    class="block mb-2 px-4 rounded transition-transform duration-200 transform bg-amarelo-transparente text-[#CFA633] flex items-center">
+                    <img src="imagens/calendario.svg" alt="Histórico de transações" class="w-4 h-4 mr-2 amarelo">
+                    Aluguéis ativos
+                </a>
+                <a href="FAQ.html"
+                    class="block mb-2 px-4 rounded transition-transform duration-200 transform hover:scale-95 hover:bg-gray-300 hover:text-white flex items-center">
+                    <img src="imagens/question.svg" alt="FAQ" class="w-4 h-4 mr-2">
+                    FAQ
+                </a>
+                <a href="anunciosClientes.html"
+                    class="block mb-2 px-4 rounded transition-transform duration-200 transform hover:scale-95 hover:bg-gray-300 hover:text-white flex items-center">
+                    <img src="imagens/megaphone.svg" alt="Histórico de transações" class="w-4 h-4 mr-2">
+                    Anúncios Criados
+                </a>
+                <a href="historicoTransacao.html"
+                    class="block mb-2 px-4 rounded transition-transform duration-200 transform hover:scale-95 hover:bg-gray-300 hover:text-white flex items-center">
+                    <img src="imagens/hourglass.svg" alt="Histórico de transações" class="w-4 h-4 mr-2">
+                    Histórico de transações
+                </a>
+            </nav>
+        </div>
+
+        <!--Conteúdo da página-->
+        <div class="lg:flex flex-1">
+
+            <!-- MAPA -->
+            <div class="h-screen lg:h-full w-full hidden lg:block" id="mapa">
+                <div class="w-full h-full ">
+                    <div class="flex flex-col w-full bg-cinzaClaro h-full">
+
+                        <!-- Nome do usuario -->
+                        <div
+                            class="flex bg-gray-700 font-semibold text-white p-4 items-center space-x-4 inset-x-0 top-0">
+                            <button id="voltarButton">
+                                <img src="imagens/ButtonBack.png" alt="">
+                            </button>
+                            <img id="fotoUsuario" src="imagens/fotoGenerica.jpg" alt="" class="rounded-3xl w-10">
+                            <h2 id="nomeUsuario" class="text-xl" data-id="">Selecione o usuario</h2>
+                        </div>
+
+                        <!-- Mapa box -->
+                        <div class="flex-1 overflow-y-auto" id="fotoMapa">
+                            <!-- Mapa (inicialmente vazia) -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Listas de mapas -->
+            <div id="listaUsuario" class="bg-gray-800 overflow-hidden lg:w-1/2 text-white space-y-4 p-4">
+                <h2 class="font-semibold text-2xl">Chamadas ativas</h2>
+
+                <!-- Barra de pesquisa -->
+                <div class="border-2 flex flex-row w-full items-center rounded-2xl px-3">
+                    <input type="text" id="pesquisa" class="bg-gray-800 w-full p-2 text-white" placeholder="Pesquisar">
+                    <img src="imagens/Pesquisa.png" alt="" class="w-6 h-6">
+                </div>
+
+                <hr>
+
+                <div class="lg:h-[78%] min-h-screen">
+                    <!-- Lista de usuário -->
+                    <div class="space-y-4 h-full overflow-y-auto" id="user-list">
+                        <!-- Usuários teste -->
+                        <div class="usuario flex flex-col space-y-2 mb-2 cursor-pointer" data-id="1">
+                            <div class="flex space-x-4 items-center">
+                                <img src="imagens/Usuario 1.jpg" alt="" class="w-16 lg:w-10 rounded-full">
+                                <h3 class="font-semibold text-xl">Usuário 1</h3>
+                            </div>
+                            <hr>
+                        </div>
+                        <div class="usuario flex flex-col space-y-2 mb-2 cursor-pointer" data-id="2">
+                            <div class="flex space-x-4 items-center">
+                                <img src="imagens/Usuario 2.jpg" alt="" class="w-16 lg:w-10 rounded-full">
+                                <h3 class="font-semibold text-xl">Usuário 2</h3>
+                            </div>
+                            <hr>
+                        </div>
+                        <div class="usuario flex flex-col space-y-2 mb-2 cursor-pointer" data-id="3">
+                            <div class="flex space-x-4 items-center">
+                                <img src="imagens/Usuario 3.jpeg" alt="" class="w-16 lg:w-10 rounded-full">
+                                <h3 class="font-semibold text-xl">Usuário 3</h3>
+                            </div>
+                            <hr>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!--Footer Desktop-->
+    <div class="bg-black pt-2 pb-[11px] hidden lg:block z-50 bottom-0 relative">
+        <div class="flex items-center justify-center ">
+            <p class="text-[10px] text-white font-bold md:text-[12px]">
+                © 2024 - 2024 Car Turbo CNPJ: xx.xxx.xxx/xxxx-xx
+                Todos os direitos Reservados.
+            </p>
+        </div>
+    </div>
+
+    <!--Footer Mobile-->
+    <div class="bg-black w-full lg:hidden -z-20 bottom-0 relative">
+        <div class="flex items-center justify-center ">
+            <p class="text-[8px] text-white font-bold md:text-[8px]">
+                © 2024 - 2024 Car Turbo CNPJ: xx.xxx.xxx/xxxx-xx
+                Todos os direitos Reservados.
+            </p>
+        </div>
+    </div>
+
+    <script>
+        const nomeUsuario = document.getElementById('nomeUsuario'); //
+        const fotoUsuario = document.getElementById('fotoUsuario'); //
+        const usuarios = document.querySelectorAll('.usuario'); //
+        const pesquisa = document.getElementById('pesquisa'); //
+        const voltarButton = document.getElementById('voltarButton'); //
+        const fotoMapa = document.getElementById('fotoMapa'); //
+        const img = document.createElement('img'); //
+
+        //Navegar entre conversas
+        usuarios.forEach(usuario => {
+            usuario.addEventListener('click', () => {
+
+                //Responsividade
+                if (window.innerWidth <= 1024) {
+                    document.getElementById('mapa').classList.remove('hidden');
+                    document.getElementById('listaUsuario').classList.add('hidden');
+                }
+
+                const usuarioId = usuario.dataset.id;
+
+                nomeUsuario.textContent = usuario.querySelector('h3').textContent;
+                nomeUsuario.dataset.id = usuarioId;
+                fotoUsuario.src = usuario.querySelector('img').src;
+                fotoMapa.innerHTML = '';
+
+                img.classList.add('w-full', 'h-auto');
+                img.alt = 'Mapa';
+
+                switch (usuarioId) {
+                    case '1': img.src = 'imagens/Mapa 1.jpg';
+                        break;
+                    case '2': img.src = 'imagens/Mapa 2.jpg';
+                        break;
+                    case '3': img.src = 'imagens/Mapa 3.jpg';
+                        break;
+                }
+
+                fotoMapa.appendChild(img);
+            });
+        });
+
+        //Busca
+        pesquisa.addEventListener('input', () => {
+            const term = pesquisa.value.toLowerCase();
+            usuarios.forEach(usuario => {
+                const nome = usuario.querySelector('h3').textContent.toLowerCase();
+                if (nome.includes(term)) {
+                    usuario.style.display = 'flex';
+                } else {
+                    usuario.style.display = 'none';
+                }
+            });
+        });
+
+        //Botão voltar
+        voltarButton.addEventListener('click', () => {
+
+            //Responsividade
+            if (window.innerWidth <= 1024) {
+                document.getElementById('listaUsuario').classList.remove('hidden');
+                document.getElementById('mapa').classList.add('hidden');
+            }
+
+            nomeUsuario.textContent = "Selecione o usuario";
+            nomeUsuario.dataset.id = "";
+            fotoUsuario.src = "imagens/fotoGenerica.jpg";
+            fotoMapa.innerHTML = '';
+        });
+
+        //Sidebar
+        document.addEventListener('DOMContentLoaded', () => {
+            const rectangles = document.querySelectorAll('[id^="rectangle"]');
+            const sidebar = document.getElementById('sidebar');
+            const menuIcon = document.getElementById('menuIcon');
+
+            let sidebarOpen = false;
+
+            // Código para alternar a expansão dos retângulos
+            rectangles.forEach(rectangle => {
+                let expanded = false;
+
+                rectangle.addEventListener('click', () => {
+                    const textarea = rectangle.querySelector('textarea');
+
+                    if (expanded) {
+                        rectangle.classList.remove('w-full', 'h-96');
+                        rectangle.classList.add('w-full', 'lg:h-10');
+                        textarea.classList.add('hidden');
+                    } else {
+                        rectangle.classList.remove('w-full', 'lg:h-10');
+                        rectangle.classList.add('w-full', 'h-96');
+                        textarea.classList.remove('hidden');
+                    }
+                    expanded = !expanded;
+                });
+            });
+
+            // Código para alternar a visibilidade da sidebar
+            menuIcon.addEventListener('click', () => {
+                sidebar.classList.toggle('-translate-x-full');
+                sidebar.classList.toggle('translate-x-0');
+                sidebarOpen = !sidebarOpen;
+
+                // Alternar o ícone entre menu e close
+                const icon = menuIcon.querySelector('ion-icon');
+                icon.name = sidebarOpen ? 'close' : 'menu';
+            });
+        });
+    </script>
+</body>
+
+</html>

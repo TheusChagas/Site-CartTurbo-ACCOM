@@ -1,0 +1,1687 @@
+ <!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anuncios de Locação</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        amareloEscuro: '#CFA633',
+                        amareloEscuro2: '#DCB23A',
+                        amareloClaro: '#fABD14',
+                        azul: '#3336FF',
+                        cinza: '#575757',
+                        cinzaEscuro: '#33312D',
+                        cinzaClaro: '#DBDBDB',
+                        marrom: '#7A6D47',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+
+    <style>
+        @layer utilities {
+            .scrollbar::-webkit-scrollbar {
+                width: 10px;
+                height: 20px;
+            }
+
+            .scrollbar::-webkit-scrollbar-track {
+                border-radius: 100vh;
+                background: #FFFFFF;
+                border: 2px solid #DBDBDB;
+            }
+
+            .scrollbar::-webkit-scrollbar-thumb {
+                background: #33312D;
+                border-radius: 10px;
+                border: 2px solid #DBDBDB;
+            }
+
+            .scrollbar::-webkit-scrollbar-thumb:hover {
+
+                background: #FABD14;
+            }
+        }
+    </style>
+    <style>
+        ul.breadcrumb li+li::before {
+            content: "\276F";
+            padding-left: 8px;
+            padding-right: 4px;
+            color: inherit;
+        }
+
+        ul.breadcrumb li span {
+            opacity: 60%;
+        }
+
+        #sidebar {
+            -webkit-transition: all 300ms cubic-bezier(0, 0.77, 0.58, 1);
+            transition: all 300ms cubic-bezier(0, 0.77, 0.58, 1);
+        }
+
+        #sidebar.show {
+            transform: translateX(0);
+        }
+
+        #sidebar ul li a.active {
+            background: #1f2937;
+            background-color: #1f2937;
+        }
+    </style>
+
+</head>
+
+<body class="static bg-white xl:overflow-hidden">
+
+    <!--Header-->
+    <nav class="w-full shadow flex justify-center fixed top-0 left-0 right-0 z-40">
+        <div class="p-4 pb-10 w-full z-50 bg-amareloEscuro">
+            <span class="text-2xl font-[Poppins] cursor-pointer absolute start-10">
+                <img class="h-10 inline" src="imagens/carrologo2.png">
+            </span>
+            <span class="text-3xl cursor-pointer mx-2 absolute end-10 lg:hidden">
+                <ion-icon name="menu" onclick="Menu(this)"></ion-icon>
+            </span>
+        </div>
+
+        <ul
+            class="z-40 lg:z-50 absolute lg:top-4 xl:left-[34%] lg:flex bg-white lg:bg-amareloEscuro w-full lg:w-auto lg:py-0 py-4 lg:pl-0 pl-7 lg:opacity-100 opacity-0 top-[-1000px] transition-all ease-in duration-500">
+            <li class="mx-4 my-6 md:my-0 border-b border-black lg:border-0">
+                <a href="HomePage.html" class="text-xl hover:text-amareloClaro duration-500">Home</a>
+            </li>
+            <li class="mx-4 my-6 md:my-0 border-b border-black lg:border-0">
+                <a href="AnunciosCompras.html" class="text-xl hover:text-amareloClaro duration-500">Compras</a>
+            </li>
+            <li class="mx-4 my-6 md:my-0 border-b border-black lg:border-0">
+                <a href="Vendas.html" class="text-xl hover:text-amareloClaro duration-500">Vender</a>
+            </li>
+            <li class="mx-4 my-6 md:my-0 border-b border-black lg:border-0">
+                <a href="AnuncioLocação.html" class="text-xl hover:text-amareloClaro duration-500">Alugar</a>
+            </li>
+            <li class="mx-4 my-6 md:my-0 border-b border-black lg:border-0">
+                <a href="ajuda.html" class="text-xl hover:text-amareloClaro duration-500">Ajuda</a>
+            </li>
+            <button
+                class="bg-amareloEscuro lg:hidden mt-4 text-white font-[Poppins] duration-500 px-6 py-2 mx-4 hover:bg-amareloEscuro2 rounded ">
+                Entrar
+            </button>
+            <h2 class=""></h2>
+        </ul>
+
+        <div class="hidden lg:block">
+            <div class="flex space-x-6 absolute lg:z-50 end-10 top-4">
+                <span><!--SAC-->
+                    <a href="ajuda.html" class="flex">
+                        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M21 6H3C1.9 6 1 6.9 1 8V16C1 17.1 1.9 18 3 18H7V21.23C7 21.84 7.61 22.22 8.17 21.95L13 19H21C22.1 19 23 18.1 23 17V8C23 6.9 22.1 6 21 6Z"
+                                fill="black" />
+                        </svg>
+                        <p class="mt-1 ml-1 mr-1">SAC</p>
+                    </a>
+                </span>
+                <span><!--Login-->
+                    <a href="Login.html" class="flex">
+                        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="12" cy="12" r="12" fill="#000000" />
+                            <path
+                                d="M12 4C10.34 4 9 5.34 9 7C9 8.66 10.34 10 12 10C13.66 10 15 8.66 15 7C15 5.34 13.66 4 12 4ZM12 12C10.33 12 6 13.34 6 15V16C6 16.55 6.45 17 7 17H17C17.55 17 18 16.55 18 16V15C18 13.34 13.67 12 12 12Z"
+                                fill="#CFA633" />
+                        </svg>
+                        <p class="mt-0.5 ml-1">LOGIN</p>
+                    </a>
+                </span>
+            </div>
+
+        </div>
+    </nav>
+
+    <!--Navbar para sidebar-->
+    <nav id="navbar"
+        class="fixed top-[56px] z-20 flex w-full lg:w-[10%] xl:w-[5%] flex-row justify-end lg:justify-start bg-white px-8 lg:px-11">
+        <button id="btnSidebarToggler" type="button" class="relative p-2 text-xl text-black flex">
+            <p class="mb-2 mr-2 lg:text-white">filtros</p>
+            <svg id="navClosed" xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 16"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5zm1 .5v1.308l4.372 4.858A.5.5 0 0 1 7 8.5v5.306l2-.666V8.5a.5.5 0 0 1 .128-.334L13.5 3.308V2z" />
+            </svg>
+            <svg id="navOpen" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                stroke="currentColor" class="hidden h-8 w-8">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+        </button>
+    </nav>
+
+    <!--Main Body-->
+    <div class="w-full h-screen">
+
+        <!-- Sidebar start-->
+        <div id="containerSidebar" class="z-20 lg:h-[94%]">
+            <div class="navbar-menu relative z-30 lg:h-full">
+                <nav id="sidebar"
+                    class="fixed left-0 bottom-0 lg:h-[97%] xl:h-[99%] 2xl:h-full mt-[59px] md:mt-[45px] lg:mt-0 lg:pt-[25px] flex w-screen md:w-[50%] lg:w-[25%] xl:w-[20%] -translate-x-full flex-col overflow-y-auto bg-white pt-1 lg:transform-none lg:relative lg:top-0 lg:left-0 lg:translate-x-0">
+
+                    <!--Retirada / Devolução-->
+                    <div class="my-2 ml-2 w-[95%] flex flex-col gap-y-1.5 text-cinzaClaro fill- text-sm">
+                        <div class=" pl-4 text-black text-[14px] font-semibold uppercase">
+                            Local de Retirada e Devolução
+                        </div>
+                        <div class="relative h-10 w-full min-w-[200px] max-w-[90%]">
+                            <input type="text" id="retirada"
+                                class="peer h-full w-full rounded-[7px] border border-black border-t-transparent bg-transparent px-3 py-2.5 font-sans text-[12px] text-black outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-black placeholder-shown:border-t-black focus:border-2 focus:border-amareloClaro focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
+                                placeholder=" " />
+                            <label
+                                class="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-black transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-black before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-black after:transition-all peer-placeholder-shown:text-[12px] peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-black peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-amareloClaro peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-amareloClaro peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-amareloClaro peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
+                                Informe onde sera a retirada
+                            </label>
+                        </div>
+                        <div class="flex flex-row justify-around">
+                            <div class="w-full flex items-center group select-none">
+                                <div class="relative h-10 w-full max-w-[80%]">
+                                    <input type="date" id="dataRetirada"
+                                        class="peer h-full w-full rounded-[7px] border border-black border-t-transparent bg-transparent px-3 py-2.5 font-sans text-[12px] text-black outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-black placeholder-shown:border-t-black focus:border-2 focus:border-amareloClaro focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
+                                        placeholder=" " />
+                                    <label
+                                        class="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-black transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-black before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-black after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-black peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-amareloClaro peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-amareloClaro peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-amareloClaro peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
+                                        Data
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="w-full flex items-center group select-none">
+                                <div class="relative h-10 w-full max-w-[80%]">
+                                    <input type="time" id="horaRetirada"
+                                        class="peer h-full w-full rounded-[7px] border border-black border-t-transparent bg-transparent px-3 py-2.5 font-sans text-[12px] text-black outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-black placeholder-shown:border-t-black focus:border-2 focus:border-amareloClaro focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
+                                        placeholder=" " />
+                                    <label
+                                        class="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-black transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-black before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-black after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-black peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-amareloClaro peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-amareloClaro peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-amareloClaro peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
+                                        hora
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="relative h-10 w-full min-w-[200px] max-w-[90%] mt-2">
+                            <input type="text" id="devoluçao"
+                                class="peer h-full w-full rounded-[7px] border border-black border-t-transparent bg-transparent px-3 py-2.5 font-sans text-[12px] text-black outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-black placeholder-shown:border-t-black focus:border-2 focus:border-amareloClaro focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
+                                placeholder=" " />
+                            <label
+                                class="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-black transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-black before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-black after:transition-all peer-placeholder-shown:text-[12px] peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-black peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-amareloClaro peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-amareloClaro peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-amareloClaro peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
+                                Informe onde sera a devolução
+                            </label>
+                        </div>
+                        <div class="flex flex-row justify-around">
+                            <div class="w-full flex items-center group select-none">
+                                <div class="relative h-10 w-full max-w-[80%]">
+                                    <input type="date" id="dataRetirada"
+                                        class="peer h-full w-full rounded-[7px] border border-black border-t-transparent bg-transparent px-3 py-2.5 font-sans text-[12px] text-black outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-black placeholder-shown:border-t-black focus:border-2 focus:border-amareloClaro focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
+                                        placeholder=" " />
+                                    <label
+                                        class="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-black transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-black before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-black after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-black peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-amareloClaro peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-amareloClaro peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-amareloClaro peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
+                                        Data
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="w-full flex items-center group select-none">
+                                <div class="relative h-10 w-full max-w-[80%]">
+                                    <input type="time" id="horaRetirada"
+                                        class="peer h-full w-full rounded-[7px] border border-black border-t-transparent bg-transparent px-3 py-2.5 font-sans text-[12px] text-black outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-black placeholder-shown:border-t-black focus:border-2 focus:border-amareloClaro focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
+                                        placeholder=" " />
+                                    <label
+                                        class="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-black transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-black before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-black after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-black peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-amareloClaro peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-amareloClaro peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-amareloClaro peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
+                                        hora
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--Classe desejada-->
+                    <div @click.away="open = false" class="relative" x-data="{ open: false }">
+                        <button @click="open = !open"
+                            class="flex flex-row items-center ml-2 w-[95%] py-2 mt-2 text-[14px] text-black uppercase font-semibold text-left bg-transparent rounded-lg focus:outline-none focus:shadow-outline">
+                            <span class="mx-2">Classe desejada</span>
+                            <svg fill="currentColor" viewBox="0 0 20 20"
+                                :class="{'rotate-180': open, 'rotate-0': !open}"
+                                class="inline w-4 h-4 transition-transform duration-200 transform lg:-mt-1">
+                                <path fill-rule="evenodd"
+                                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                    clip-rule="evenodd"></path>
+                            </svg>
+                        </button>
+                        <div x-show="open" x-transition:enter="transition ease-out duration-100"
+                            x-transition:enter-start="transform opacity-0 scale-95"
+                            x-transition:enter-end="transform opacity-100 scale-100"
+                            x-transition:leave="transition ease-in duration-75"
+                            x-transition:leave-start="transform opacity-100 scale-100"
+                            x-transition:leave-end="transform opacity-0 scale-95"
+                            class="absolute right-0 w-full origin-top-right rounded-md z-40">
+                            <div class="py-2 bg-white rounded-md z-40">
+                                <div class="w-full flex items-center gap-x-1.5 select-none">
+                                    <div class="relative h-fit px-1 w-full max-w-screen min-w-[200px]">
+                                        <div
+                                            class="grid grid-cols-2 gap-x-6 gap-y-3 lg:gap-y-5 lg:mt-0 mx-3 z-40">
+
+                                            <!--Classes-->
+                                            <div class="relative group h-20 flex flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md">
+                                                <a href="#grupoB" class="block">
+                                                    <div class="">
+                                                        <div class="absolute top-[5%] left-[5%] z-30 group-hover:top-[-20%] group-hover:opacity-[0.9] duration-500 w-[90%] h-20 group-hover:h-14 bg-white rounded-xl justify-items-center align-middle">
+                                                            <img src="https://image.webmotors.com.br/_fotos/anunciousados/gigante/2024/202407/20240709/fiat-mobi-1.0-evo-flex-trekking-manual-wmimagem10483618067.jpg?s=fill&w=1920&h=1440&q=75"
+                                                                class="w-20 h-9 mt-1 m-auto" alt="Automotive"
+                                                                title="Automotive" loading="lazy" width="200"
+                                                                height="200">
+                                                                <p class="text-center group-hover:opacity-0 duration-500">Grupo B</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="text-center text-[14px] leading-tight mt-12 z-10 max-w-[100px] mx-auto">
+                                                        Compactos
+                                                    </div>
+                                                </a>
+                                            </div>
+                                            <div class="relative group h-20 flex flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md">
+                                                <a href="#grupoC" class="block">
+                                                    <div class="">
+                                                        <div
+                                                            class="absolute top-[5%] left-[5%] z-30 group-hover:top-[-20%] group-hover:opacity-[0.9] duration-500 w-[90%] h-20 group-hover:h-14 bg-white rounded-xl justify-items-center align-middle">
+                                                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6vtcgKAKlM7iGULaJikeqQvTGNdI75SHifQ&s"
+                                                                class="w-20 h-9 mt-1 m-auto" alt="Automotive"
+                                                                title="Automotive" loading="lazy" width="200"
+                                                                height="200">
+                                                                <p class="text-center group-hover:opacity-0 duration-500">Grupo C</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="text-center text-[14px] leading-tight mt-12 z-10 max-w-[100px] mx-auto">
+                                                        Econômico
+                                                    </div>
+                                                </a>
+                                            </div>
+                                            <div class="relative group h-20 flex flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md">
+                                                <a href="#grupoCS" class="block">
+                                                    <div class="">
+                                                        <div
+                                                            class="absolute top-[5%] left-[5%] z-30 group-hover:top-[-20%] group-hover:opacity-[0.9] duration-500 w-[90%] h-20 group-hover:h-14 bg-white rounded-xl justify-items-center align-middle">
+                                                            <img src=""
+                                                                class="w-20 h-9  mt-4 m-auto" alt="Automotive"
+                                                                title="Automotive" loading="lazy" width="200"
+                                                                height="200">
+                                                                <p class="text-center group-hover:opacity-0 duration-500">Grupo CS</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="text-center text-[14px] leading-tight mt-11 z-10 max-w-[100px] mx-auto">
+                                                        Econômico Sedan
+                                                    </div>
+                                                </a>
+                                            </div>
+                                            <div class="relative group h-20 flex flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md">
+                                                <a href="#grupoF" class="block">
+                                                    <div class="">
+                                                        <div
+                                                            class="absolute top-[5%] left-[5%] z-30 group-hover:top-[-20%] group-hover:opacity-[0.9] duration-500 w-[90%] h-20 group-hover:h-14 bg-white rounded-xl justify-items-center align-middle">
+                                                            <img src=""
+                                                                class="w-full h-9  mt-4 m-auto" alt="Automotive"
+                                                                title="Automotive" loading="lazy" width="200"
+                                                                height="200">
+                                                                <p class="text-center group-hover:opacity-0 duration-500">Grupo F</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="text-center text-[14px] leading-tight mt-12 z-10 max-w-[100px] mx-auto">
+                                                        Intermediários
+                                                    </div>
+                                                </a>
+                                            </div>
+                                            <div class="relative group h-20 flex flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md">
+                                                <a href="#grupoFS" class="block">
+                                                    <div class="">
+                                                        <div
+                                                            class="absolute top-[5%] left-[5%] z-30 group-hover:top-[-20%] group-hover:opacity-[0.9] duration-500 w-[90%] h-20 group-hover:h-14 bg-white rounded-xl justify-items-center align-middle">
+                                                            <img src=""
+                                                                class="w-20 h-9  mt-4 m-auto" alt="Automotive"
+                                                                title="Automotive" loading="lazy" width="200"
+                                                                height="200">
+                                                                <p class="text-center group-hover:opacity-0 duration-500">Grupo FS</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="text-center text-[14px] leading-tight mt-10 z-10 max-w-[100px] mx-auto">
+                                                        Intermediários Sedan
+                                                    </div>
+                                                </a>
+                                            </div>
+                                            <div class="relative group h-20 flex flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md">
+                                                <a href="#grupoFA" class="block">
+                                                    <div class="">
+                                                        <div
+                                                            class="absolute top-[5%] left-[5%] z-30 group-hover:top-[-20%] group-hover:opacity-[0.9] duration-500 w-[90%] h-20 group-hover:h-14 bg-white rounded-xl justify-items-center align-middle">
+                                                            <img src=""
+                                                                class="w-20 h-9  mt-4 m-auto" alt="Automotive"
+                                                                title="Automotive" loading="lazy" width="200"
+                                                                height="200">
+                                                                <p class="text-center group-hover:opacity-0 duration-500">Grupo FA</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="text-center text-[14px] lg:text-[16px] leading-tight mt-10 z-10 max-w-[100px] mx-auto">
+                                                        Adaptado p/ Deficiente
+                                                    </div>
+                                                </a>
+                                            </div>
+                                            <div class="relative group h-20 flex flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md">
+                                                <a href="#grupoGC" class="block">
+                                                    <div class="">
+                                                        <div
+                                                            class="absolute top-[5%] left-[5%] z-30 group-hover:top-[-20%] group-hover:opacity-[0.9] duration-500 w-[90%] h-20 group-hover:h-14 bg-white rounded-xl justify-items-center align-middle">
+                                                            <img src=""
+                                                                class="w-20 h-9  mt-4 m-auto" alt="Automotive"
+                                                                title="Automotive" loading="lazy" width="200"
+                                                                height="200">
+                                                                <p class="text-center group-hover:opacity-0 duration-500">Grupo GC</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="text-center text-[14px] leading-tight mt-11 z-10 max-w-[100px] mx-auto">
+                                                        SUV<br>Compacto
+                                                    </div>
+                                                </a>
+                                            </div>
+                                            <div class="relative group h-20 flex flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md">
+                                                <a href="#grupoL" class="block">
+                                                    <div class="">
+                                                        <div
+                                                            class="absolute top-[5%] left-[5%] z-30 group-hover:top-[-20%] group-hover:opacity-[0.9] duration-500 w-[90%] h-20 group-hover:h-14 bg-white rounded-xl justify-items-center align-middle">
+                                                            <img src=""
+                                                                class="w-20 h-9  mt-4 m-auto" alt="Automotive"
+                                                                title="Automotive" loading="lazy" width="200"
+                                                                height="200">
+                                                                <p class="text-center group-hover:opacity-0 duration-500">Grupo L</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="text-center text-[14px] leading-tight mt-12 z-10 max-w-[100px] mx-auto">
+                                                        Executivo
+                                                    </div>
+                                                </a>
+                                            </div>
+                                            <div class="relative group h-20 flex flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md">
+                                                <a href="#grupoGR" class="block">
+                                                    <div class="">
+                                                        <div
+                                                            class="absolute top-[5%] left-[5%] z-30 group-hover:top-[-20%] group-hover:opacity-[0.9] duration-500 w-[90%] h-20 group-hover:h-14 bg-white rounded-xl justify-items-center align-middle">
+                                                            <img src=""
+                                                                class="w-20 h-9  mt-4 m-auto" alt="Automotive"
+                                                                title="Automotive" loading="lazy" width="200"
+                                                                height="200">
+                                                                <p class="text-center group-hover:opacity-0 duration-500">Grupo GR</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="text-center text-[14px] leading-tight mt-11 z-10 max-w-[100px] mx-auto">
+                                                        SUV<br>Executivo
+                                                    </div>
+                                                </a>
+                                            </div>
+                                            <div class="relative group h-20 flex flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md">
+                                                <a href="#grupoV" class="block">
+                                                    <div class="">
+                                                        <div
+                                                            class="absolute top-[5%] left-[5%] z-30 group-hover:top-[-20%] group-hover:opacity-[0.9] duration-500 w-[90%] h-20 group-hover:h-14 bg-white rounded-xl justify-items-center align-middle">
+                                                            <img src=""
+                                                                class="w-20 h-9  mt-4 m-auto" alt="Automotive"
+                                                                title="Automotive" loading="lazy" width="200"
+                                                                height="200">
+                                                                <p class="text-center group-hover:opacity-0 duration-500">Grupo V</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="text-center text-[14px] leading-tight mt-12 z-10 max-w-[100px] mx-auto">
+                                                        Pick-up
+                                                    </div>
+                                                </a>
+                                            </div>
+                                            <div class="relative group h-20 flex flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md">
+                                                <a href="#grupoU" class="block">
+                                                    <div class="">
+                                                        <div
+                                                            class="absolute top-[5%] left-[5%] z-30 group-hover:top-[-20%] group-hover:opacity-[0.9] duration-500 w-[90%] h-20 group-hover:h-14 bg-white rounded-xl justify-items-center align-middle">
+                                                            <img src=""
+                                                                class="w-20 h-9  mt-4 m-auto" alt="Automotive"
+                                                                title="Automotive" loading="lazy" width="200"
+                                                                height="200">
+                                                                <p class="text-center group-hover:opacity-0 duration-500">Grupo U</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="text-center text-[14px] leading-tight mt-12 z-10 max-w-[100px] mx-auto">
+                                                        Furgão
+                                                    </div>
+                                                </a>
+                                            </div>
+                                            <div class="relative group h-20 flex flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md">
+                                                <a href="#grupoJ" class="block">
+                                                    <div class="">
+                                                        <div
+                                                            class="absolute top-[5%] left-[5%] z-30 group-hover:top-[-20%] group-hover:opacity-[0.9] duration-500 w-[90%] h-20 group-hover:h-14 bg-white rounded-xl justify-items-center align-middle">
+                                                            <img src=""
+                                                                class="w-20 h-9  mt-4 m-auto" alt="Automotive"
+                                                                title="Automotive" loading="lazy" width="200"
+                                                                height="200">
+                                                                <p class="text-center group-hover:opacity-0 duration-500">Grupo J</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="text-center text-[14px] leading-tight mt-12 z-10 max-w-[100px] mx-auto">
+                                                        Van
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--Preço do Aluguel-->
+                    <div class="my-2 ml-2 w-[95%] flex flex-col gap-y-1 text-gray-500 fill-gray-500">
+                        <div class="pl-4 text-black text-[14px] font-semibold uppercase">
+                            Preço do aluguel
+                        </div>
+                        <div class="flex flex-row justify-around mb-4">
+                            <div class="w-full flex items-center gap-x-1.5 group select-none">
+                                <div class="relative h-10 w-full max-w-[80%]">
+                                    <input type="number" id="preçoMin"
+                                        class="peer h-full w-full rounded-[7px] border border-black border-t-transparent bg-transparent px-3 py-2.5 font-sans text-[12px] text-black outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-black placeholder-shown:border-t-black focus:border-2 focus:border-amareloClaro focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
+                                        placeholder=" " />
+                                    <label
+                                        class="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-black transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-black before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-black after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-black peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-amareloClaro peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-amareloClaro peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-amareloClaro peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
+                                        de
+                                    </label>
+                                    <p class="text-sm font-normal peer-focus:hidden">Ex: R$ 69,99</p>
+                                </div>
+                            </div>
+                            <div class="w-full flex items-center gap-x-1.5 group select-none">
+                                <div class="relative h-10 w-full max-w-[80%]">
+                                    <input type="number" id="preçoMax"
+                                        class="peer h-full w-full rounded-[7px] border border-black border-t-transparent bg-transparent px-3 py-2.5 font-sans text-[12px] text-black outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-black placeholder-shown:border-t-black focus:border-2 focus:border-amareloClaro focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
+                                        placeholder=" " />
+                                    <label
+                                        class="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-black transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-black before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-black after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-black peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-amareloClaro peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-amareloClaro peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-amareloClaro peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
+                                        até
+                                    </label>
+                                    <p class="text-sm font-normal peer-focus:hidden">Ex: R$139,99</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </nav>
+            </div>
+        </div>
+        <!-- Sidebar end -->
+
+        <!--Grid de anuncios-->
+        <div class="absolute bg-cinzaClaro w-screen lg:w-[75%] xl:w-[80%] h-[85%] md:h-[90%] lg:h-[93%] xl:h-[94%] 2xl:h-[95%] top-[15%] md:top-[10%] lg:top-[56px] left-[0%] lg:left-[25%] xl:left-[20%]">
+            <div class="relative bg- top-[1%] left-[1%] space-y-4 h-[98%] w-[98%] z-10 lg:z-30 pb-4 overflow-y-auto">
+                
+                <!--Grupo B-->
+                <div id="grupoB" class="relative flex flex-col w-full h-fit pb-1">
+                    <!--Caracteristicas-->
+                    <div class="flex flex-col md:flex-row h-full md:w-[96%] justify-between">
+                        <h3 class="text-[60px] lg:text-[55px] 2xl:text-[60px] text-amareloEscuro ml-8">Grupo B</h3>
+                        <div @click.away="open = false" class="relative mt-6" x-data="{ open: false }">
+                            <button @click="open = !open"
+                                class="flex flex-row items-center ml-2 w-[95%] py-2 mt-2 text-[14px] text-black uppercase font-semibold text-left bg-transparent rounded-lg focus:outline-none focus:shadow-outline">
+                                <span class="mx-2">Caracteristicas</span>
+                                <svg fill="currentColor" viewBox="0 0 20 20"
+                                    :class="{'rotate-180': open, 'rotate-0': !open}"
+                                    class="inline w-4 h-4 transition-transform duration-200 transform lg:-mt-1">
+                                    <path fill-rule="evenodd"
+                                        d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                        clip-rule="evenodd"></path>
+                                </svg>
+                            </button>
+                            <div x-show="open" x-transition:enter="transition ease-out duration-100"
+                                x-transition:enter-start="transform opacity-0 scale-95"
+                                x-transition:enter-end="transform opacity-100 scale-100"
+                                x-transition:leave="transition ease-in duration-75"
+                                x-transition:leave-start="transform opacity-100 scale-100"
+                                x-transition:leave-end="transform opacity-0 scale-95"
+                                class="absolute left-4 md:-left-6 w-fit origin-top-right rounded-md z-40">
+                                <div class="bg-white rounded-md z-40 border border-gray-200 shadow-lg">
+                                    <div class="text-xl p-4 w-full leading-tight rounded-md border border-amareloClaro">
+                                        <p>Pequenos e versáteis</p>
+                                        <p>4 Portas</p>
+                                        <p>4 Pessoas</p>
+                                        <p>2 Malas pequenas</p>
+                                        <p>AirBags</p>
+                                        <p>ABS</p>
+                                        <p>Direção hidráulica</p>
+                                        <p>Trava elétrica</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="relative flex flex-row ml-4 w-[96%] h-full space-x-2 overflow-x-auto rounded-lg">
+                        <!--Carros-->
+                        <!--Mobi-->
+                        <div class="group my-3 flex min-w-[280px] flex-col overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md">
+                            <h1 class="text-base font-semibold text-slate-900 text-center">Fiat Mobi</h1>
+                            <a class="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl" href="TarifasEAdicionaisLocação.html">
+                                <img class="peer absolute top-0 right-0 h-full w-full object-cover"
+                                    src="https://image.webmotors.com.br/_fotos/anunciousados/gigante/2024/202407/20240709/fiat-mobi-1.0-evo-flex-trekking-manual-wmimagem10483618067.jpg?s=fill&w=1920&h=1440&q=75"
+                                    alt="product image" />
+                                <img class="peer absolute top-0 -right-96 h-full w-full object-cover transition-all delay-100 duration-1000 hover:right-0 peer-hover:right-0"
+                                    src="https://image.webmotors.com.br/_fotos/anunciousados/gigante/2024/202407/20240709/fiat-mobi-1.0-evo-flex-trekking-manual-wmimagem10490651886.jpg?s=fill&w=1920&h=1440&q=75"
+                                    alt="product image" />
+                            </a>
+                            <div class="mt-4 px-5 pb-5">
+                                <a href="TarifasEAdicionaisLocação.html">
+                                    <h5 class="text-[14px] font-normal text-slate-900">1.0 EVI FLEX TREKKING MANUAL</h5>
+                                </a>
+                                <div class="mt-2 mb-5  items-center text-center ">
+                                    <span class="text-md font-bold text-slate-900">A partir de</span>
+                                    <div class="flex text-[#CFA633] ml-24">
+                                        <p class="text-md font-bold">R$</p>
+                                        <p class="text-xl font-bold ">50,99</p>
+                                        <p class="text-md font-bold">/dia</p>
+                                    </div>
+                                </div>
+                                <a href="TarifasEAdicionaisLocação.html"
+                                    class="flex items-center justify-center rounded-md bg-[#CFA633] px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-[#DCB23A] focus:outline-none ">
+                                    Alugar</a>
+                            </div>
+                        </div>
+                        <!--Kwid-->
+                        <div class="group my-3 flex min-w-[280px] flex-col overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md">
+                            <h1 class="text-base font-semibold text-slate-900 text-center">Renault Kwid</h1>
+                            <a class="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl" href="TarifasEAdicionaisLocação.html">
+                                <img class="peer absolute top-0 right-0 h-full w-full object-cover"
+                                    src="https://image.webmotors.com.br/_fotos/anunciousados/gigante/2024/202406/20240611/renault-kwid-1.0-12v-sce-flex-outsider-manual-wmimagem10482422766.jpg?s=fill&w=1920&h=1440&q=75"
+                                    alt="product image" />
+                                <img class="peer absolute top-0 -right-96 h-full w-full object-cover transition-all delay-100 duration-1000 hover:right-0 peer-hover:right-0"
+                                    src="https://image.webmotors.com.br/_fotos/anunciousados/gigante/2024/202406/20240611/renault-kwid-1.0-12v-sce-flex-outsider-manual-wmimagem10482573237.jpg?s=fill&w=1920&h=1440&q=75"
+                                    alt="product image" />
+                            </a>
+                            <div class="mt-4 px-5 pb-5">
+                                <a href="TarifasEAdicionaisLocação.html">
+                                    <h5 class="text-[14px] font-normal text-slate-900">1.0 12V SCE FLEX OUTSIDER MANUAL</h5>
+                                </a>
+                                <div class="mt-2 mb-5  items-center text-center ">
+                                    <span class="text-md font-bold text-slate-900">A partir de</span>
+                                    <div class="flex text-[#CFA633] ml-24">
+                                        <p class="text-md font-bold">R$</p>
+                                        <p class="text-xl font-bold ">55,99</p>
+                                        <p class="text-md font-bold">/dia</p>
+                                    </div>
+                                </div>
+                                <a href="TarifasEAdicionaisLocação.html"
+                                    class="flex items-center justify-center rounded-md bg-[#CFA633] px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-[#DCB23A] focus:outline-none ">
+                                    Alugar</a>
+                            </div>
+                        </div>
+                        <!--Mobi-->
+                        <div class="group my-3 flex min-w-[280px] flex-col overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md">
+                            <h1 class="text-base font-semibold text-slate-900 text-center">Fiat Mobi</h1>
+                            <a class="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl" href="TarifasEAdicionaisLocação.html">
+                                <img class="peer absolute top-0 right-0 h-full w-full object-cover"
+                                    src="https://image.webmotors.com.br/_fotos/anunciousados/gigante/2024/202407/20240709/fiat-mobi-1.0-evo-flex-trekking-manual-wmimagem10483618067.jpg?s=fill&w=1920&h=1440&q=75"
+                                    alt="product image" />
+                                <img class="peer absolute top-0 -right-96 h-full w-full object-cover transition-all delay-100 duration-1000 hover:right-0 peer-hover:right-0"
+                                    src="https://image.webmotors.com.br/_fotos/anunciousados/gigante/2024/202407/20240709/fiat-mobi-1.0-evo-flex-trekking-manual-wmimagem10490651886.jpg?s=fill&w=1920&h=1440&q=75"
+                                    alt="product image" />
+                            </a>
+                            <div class="mt-4 px-5 pb-5">
+                                <a href="TarifasEAdicionaisLocação.html">
+                                    <h5 class="text-[14px] font-normal text-slate-900">1.0 EVI FLEX TREKKING MANUAL</h5>
+                                </a>
+                                <div class="mt-2 mb-5  items-center text-center ">
+                                    <span class="text-md font-bold text-slate-900">A partir de</span>
+                                    <div class="flex text-[#CFA633] ml-24">
+                                        <p class="text-md font-bold">R$</p>
+                                        <p class="text-xl font-bold ">50,99</p>
+                                        <p class="text-md font-bold">/dia</p>
+                                    </div>
+                                </div>
+                                <a href="TarifasEAdicionaisLocação.html"
+                                    class="flex items-center justify-center rounded-md bg-[#CFA633] px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-[#DCB23A] focus:outline-none ">
+                                    Alugar</a>
+                            </div>
+                        </div>
+                        <!--Kwid-->
+                        <div class="group my-3 flex min-w-[280px] flex-col overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md">
+                            <h1 class="text-base font-semibold text-slate-900 text-center">Renault Kwid</h1>
+                            <a class="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl" href="TarifasEAdicionaisLocação.html">
+                                <img class="peer absolute top-0 right-0 h-full w-full object-cover"
+                                    src="https://image.webmotors.com.br/_fotos/anunciousados/gigante/2024/202406/20240611/renault-kwid-1.0-12v-sce-flex-outsider-manual-wmimagem10482422766.jpg?s=fill&w=1920&h=1440&q=75"
+                                    alt="product image" />
+                                <img class="peer absolute top-0 -right-96 h-full w-full object-cover transition-all delay-100 duration-1000 hover:right-0 peer-hover:right-0"
+                                    src="https://image.webmotors.com.br/_fotos/anunciousados/gigante/2024/202406/20240611/renault-kwid-1.0-12v-sce-flex-outsider-manual-wmimagem10482573237.jpg?s=fill&w=1920&h=1440&q=75"
+                                    alt="product image" />
+                            </a>
+                            <div class="mt-4 px-5 pb-5">
+                                <a href="TarifasEAdicionaisLocação.html">
+                                    <h5 class="text-[14px] font-normal text-slate-900">1.0 12V SCE FLEX OUTSIDER MANUAL</h5>
+                                </a>
+                                <div class="mt-2 mb-5  items-center text-center ">
+                                    <span class="text-md font-bold text-slate-900">A partir de</span>
+                                    <div class="flex text-[#CFA633] ml-24">
+                                        <p class="text-md font-bold">R$</p>
+                                        <p class="text-xl font-bold ">55,99</p>
+                                        <p class="text-md font-bold">/dia</p>
+                                    </div>
+                                </div>
+                                <a href="TarifasEAdicionaisLocação.html"
+                                    class="flex items-center justify-center rounded-md bg-[#CFA633] px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-[#DCB23A] focus:outline-none ">
+                                    Alugar</a>
+                            </div>
+                        </div>
+                        <!--Mobi-->
+                        <div class="group my-3 flex min-w-[280px] flex-col overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md">
+                            <h1 class="text-base font-semibold text-slate-900 text-center">Fiat Mobi</h1>
+                            <a class="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl" href="TarifasEAdicionaisLocação.html">
+                                <img class="peer absolute top-0 right-0 h-full w-full object-cover"
+                                    src="https://image.webmotors.com.br/_fotos/anunciousados/gigante/2024/202407/20240709/fiat-mobi-1.0-evo-flex-trekking-manual-wmimagem10483618067.jpg?s=fill&w=1920&h=1440&q=75"
+                                    alt="product image" />
+                                <img class="peer absolute top-0 -right-96 h-full w-full object-cover transition-all delay-100 duration-1000 hover:right-0 peer-hover:right-0"
+                                    src="https://image.webmotors.com.br/_fotos/anunciousados/gigante/2024/202407/20240709/fiat-mobi-1.0-evo-flex-trekking-manual-wmimagem10490651886.jpg?s=fill&w=1920&h=1440&q=75"
+                                    alt="product image" />
+                            </a>
+                            <div class="mt-4 px-5 pb-5">
+                                <a href="TarifasEAdicionaisLocação.html">
+                                    <h5 class="text-[14px] font-normal text-slate-900">1.0 EVI FLEX TREKKING MANUAL</h5>
+                                </a>
+                                <div class="mt-2 mb-5  items-center text-center ">
+                                    <span class="text-md font-bold text-slate-900">A partir de</span>
+                                    <div class="flex text-[#CFA633] ml-24">
+                                        <p class="text-md font-bold">R$</p>
+                                        <p class="text-xl font-bold ">50,99</p>
+                                        <p class="text-md font-bold">/dia</p>
+                                    </div>
+                                </div>
+                                <a href="TarifasEAdicionaisLocação.html"
+                                    class="flex items-center justify-center rounded-md bg-[#CFA633] px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-[#DCB23A] focus:outline-none ">
+                                    Alugar</a>
+                            </div>
+                        </div>
+                        <!--Kwid-->
+                        <div class="group my-3 flex min-w-[280px] flex-col overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md">
+                            <h1 class="text-base font-semibold text-slate-900 text-center">Renault Kwid</h1>
+                            <a class="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl" href="TarifasEAdicionaisLocação.html">
+                                <img class="peer absolute top-0 right-0 h-full w-full object-cover"
+                                    src="https://image.webmotors.com.br/_fotos/anunciousados/gigante/2024/202406/20240611/renault-kwid-1.0-12v-sce-flex-outsider-manual-wmimagem10482422766.jpg?s=fill&w=1920&h=1440&q=75"
+                                    alt="product image" />
+                                <img class="peer absolute top-0 -right-96 h-full w-full object-cover transition-all delay-100 duration-1000 hover:right-0 peer-hover:right-0"
+                                    src="https://image.webmotors.com.br/_fotos/anunciousados/gigante/2024/202406/20240611/renault-kwid-1.0-12v-sce-flex-outsider-manual-wmimagem10482573237.jpg?s=fill&w=1920&h=1440&q=75"
+                                    alt="product image" />
+                            </a>
+                            <div class="mt-4 px-5 pb-5">
+                                <a href="TarifasEAdicionaisLocação.html">
+                                    <h5 class="text-[14px] font-normal text-slate-900">1.0 12V SCE FLEX OUTSIDER MANUAL</h5>
+                                </a>
+                                <div class="mt-2 mb-5  items-center text-center ">
+                                    <span class="text-md font-bold text-slate-900">A partir de</span>
+                                    <div class="flex text-[#CFA633] ml-24">
+                                        <p class="text-md font-bold">R$</p>
+                                        <p class="text-xl font-bold ">55,99</p>
+                                        <p class="text-md font-bold">/dia</p>
+                                    </div>
+                                </div>
+                                <a href="TarifasEAdicionaisLocação.html"
+                                    class="flex items-center justify-center rounded-md bg-[#CFA633] px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-[#DCB23A] focus:outline-none ">
+                                    Alugar</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr class="bg-amareloEscuro h-[2px] border-0 rounded">
+
+                <!--Grupo C-->
+                <div id="grupoC" class="relative flex flex-col w-full h-fit pb-1">
+                    <!--Caracteristicas-->
+                    <div class="flex flex-col md:flex-row h-full md:w-[96%] justify-between">
+                        <h3 class="text-[60px] lg:text-[55px] 2xl:text-[60px] text-amareloEscuro ml-8">Grupo C</h3>
+                        <div @click.away="open = false" class="relative mt-6" x-data="{ open: false }">
+                            <button @click="open = !open"
+                                class="flex flex-row items-center ml-2 w-[95%] py-2 mt-2 text-[14px] text-black uppercase font-semibold text-left bg-transparent rounded-lg focus:outline-none focus:shadow-outline">
+                                <span class="mx-2">Caracteristicas</span>
+                                <svg fill="currentColor" viewBox="0 0 20 20"
+                                    :class="{'rotate-180': open, 'rotate-0': !open}"
+                                    class="inline w-4 h-4 transition-transform duration-200 transform lg:-mt-1">
+                                    <path fill-rule="evenodd"
+                                        d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                        clip-rule="evenodd"></path>
+                                </svg>
+                            </button>
+                            <div x-show="open" x-transition:enter="transition ease-out duration-100"
+                                x-transition:enter-start="transform opacity-0 scale-95"
+                                x-transition:enter-end="transform opacity-100 scale-100"
+                                x-transition:leave="transition ease-in duration-75"
+                                x-transition:leave-start="transform opacity-100 scale-100"
+                                x-transition:leave-end="transform opacity-0 scale-95"
+                                class="absolute left-4 md:-left-6 w-fit origin-top-right rounded-md z-40">
+                                <div class="bg-white rounded-md z-40 border border-gray-200 shadow-lg">
+                                    <div class="text-xl p-4 w-full leading-tight rounded-md border border-amareloClaro">
+                                        <p>Eficiente e comfortável</p>
+                                        <p>4 Portas</p>
+                                        <p>5 Pessoas</p>
+                                        <p>2 Malas grandes</p>
+                                        <p>1 Mala pequena</p>
+                                        <p>AirBags</p>
+                                        <p>ABS</p>
+                                        <p>Direção hidráulica</p>
+                                        <p>Trava elétrica</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="relative flex flex-row ml-4 w-[96%] h-full space-x-2 overflow-x-auto">
+                        <!--Carros-->
+                        <!--Gol-->
+                        <div class="group my-3 flex min-w-[280px] flex-col overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md">
+                            <h1 class="text-base font-semibold text-slate-900 text-center">Volkswagen Gol</h1>
+                            <a class="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl" href="TarifasEAdicionaisLocação.html">
+                                <img class="peer absolute top-0 right-0 h-full w-full object-cover"
+                                    src="https://image.webmotors.com.br/_fotos/anunciousados/gigante/2024/202407/20240725/volkswagen-gol-1-0-12v-mpi-totalflex-4p-manual-wmimagem00313672842.webp?s=fill&w=1920&h=1440&q=75"
+                                    alt="product image" />
+                                <img class="peer absolute top-0 -right-96 h-full w-full object-cover transition-all delay-100 duration-1000 hover:right-0 peer-hover:right-0"
+                                    src="https://image.webmotors.com.br/_fotos/anunciousados/gigante/2024/202407/20240725/volkswagen-gol-1-0-12v-mpi-totalflex-4p-manual-wmimagem00313727626.webp?s=fill&w=1920&h=1440&q=75"
+                                    alt="product image" />
+                            </a>
+                            <div class="mt-4 px-5 pb-5">
+                                <a href="TarifasEAdicionaisLocação.html">
+                                    <h5 class="text-[14px] font-normal text-slate-900">1.0 12V MPI TOTALFLEX 4P MANUAL</h5>
+                                </a>
+                                <div class="mt-2 mb-5  items-center text-center ">
+                                    <span class="text-md font-bold text-slate-900">A partir de</span>
+                                    <div class="flex text-[#CFA633] ml-24">
+                                        <p class="text-md font-bold">R$</p>
+                                        <p class="text-xl font-bold ">50,99</p>
+                                        <p class="text-md font-bold">/dia</p>
+                                    </div>
+                                </div>
+                                <a href="TarifasEAdicionaisLocação.html"
+                                    class="flex items-center justify-center rounded-md bg-[#CFA633] px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-[#DCB23A] focus:outline-none ">
+                                    Alugar</a>
+                            </div>
+                        </div>
+                        <!--Sandero-->
+                        <div class="group my-3 flex min-w-[280px] flex-col overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md">
+                            <h1 class="text-base font-semibold text-slate-900 text-center">Renault Sandero</h1>
+                            <a class="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl" href="TarifasEAdicionaisLocação.html">
+                                <img class="peer absolute top-0 right-0 h-full w-full object-cover"
+                                    src="https://image.webmotors.com.br/_fotos/anunciousados/gigante/2024/202407/20240710/renault-sandero-1-0-12v-sce-flex-vibe-manual-wmimagem18520285437.webp?s=fill&w=1920&h=1440&q=75"
+                                    alt="product image" />
+                                <img class="peer absolute top-0 -right-96 h-full w-full object-cover transition-all delay-100 duration-1000 hover:right-0 peer-hover:right-0"
+                                    src="https://image.webmotors.com.br/_fotos/anunciousados/gigante/2024/202407/20240710/renault-sandero-1-0-12v-sce-flex-vibe-manual-wmimagem18520349320.webp?s=fill&w=1920&h=1440&q=75"
+                                    alt="product image" />
+                            </a>
+                            <div class="mt-4 px-5 pb-5">
+                                <a href="TarifasEAdicionaisLocação.html">
+                                    <h5 class="text-[14px] font-normal text-slate-900">1.0 12V SCE FLEX VIBE MANUAL</h5>
+                                </a>
+                                <div class="mt-2 mb-5  items-center text-center ">
+                                    <span class="text-md font-bold text-slate-900">A partir de</span>
+                                    <div class="flex text-[#CFA633] ml-24">
+                                        <p class="text-md font-bold">R$</p>
+                                        <p class="text-xl font-bold ">50,99</p>
+                                        <p class="text-md font-bold">/dia</p>
+                                    </div>
+                                </div>
+                                <a href="TarifasEAdicionaisLocação.html"
+                                    class="flex items-center justify-center rounded-md bg-[#CFA633] px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-[#DCB23A] focus:outline-none ">
+                                    Alugar</a>
+                            </div>
+                        </div>
+                        <!--Onix-->
+                        <div class="group my-3 flex min-w-[280px] flex-col overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md">
+                            <h1 class="text-base font-semibold text-slate-900 text-center">Onix joy</h1>
+                            <a class="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl" href="TarifasEAdicionaisLocação.html">
+                                <img class="peer absolute top-0 right-0 h-full w-full object-cover"
+                                    src="https://image.webmotors.com.br/_fotos/anunciousados/gigante/2024/202404/20240430/chevrolet-onix-1-0-mpfi-joy-8v-flex-4p-manual-wmimagem11415957028.webp?s=fill&w=1920&h=1440&q=75"
+                                    alt="product image" />
+                                <img class="peer absolute top-0 -right-96 h-full w-full object-cover transition-all delay-100 duration-1000 hover:right-0 peer-hover:right-0"
+                                    src="https://image.webmotors.com.br/_fotos/anunciousados/gigante/2024/202404/20240430/chevrolet-onix-1-0-mpfi-joy-8v-flex-4p-manual-wmimagem11415968013.webp?s=fill&w=1920&h=1440&q=75"
+                                    alt="product image" />
+                            </a>
+                            <div class="mt-4 px-5 pb-5">
+                                <a href="TarifasEAdicionaisLocação.html">
+                                    <h5 class="text-[14px] font-normal text-slate-900">1.0 MPFI JOY 8V FLEX 4P MANUAL</h5>
+                                </a>
+                                <div class="mt-2 mb-5  items-center text-center ">
+                                    <span class="text-md font-bold text-slate-900">A partir de</span>
+                                    <div class="flex text-[#CFA633] ml-24">
+                                        <p class="text-md font-bold">R$</p>
+                                        <p class="text-xl font-bold ">50,99</p>
+                                        <p class="text-md font-bold">/dia</p>
+                                    </div>
+                                </div>
+                                <a href="TarifasEAdicionaisLocação.html"
+                                    class="flex items-center justify-center rounded-md bg-[#CFA633] px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-[#DCB23A] focus:outline-none ">
+                                    Alugar</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr class="bg-amareloEscuro h-[2px] border-0 rounded">
+
+                <!--Grupo CS-->
+                <div id="grupoCS" class="relative flex flex-col w-full h-fit pb-1">
+                    <!--Caracteristicas-->
+                    <div class="flex flex-col md:flex-row h-full md:w-[96%] justify-between">
+                        <h3 class="text-[60px] lg:text-[55px] 2xl:text-[60px] text-amareloEscuro ml-8">Grupo CS</h3>
+                        <div @click.away="open = false" class="relative mt-6" x-data="{ open: false }">
+                            <button @click="open = !open"
+                                class="flex flex-row items-center ml-2 w-[95%] py-2 mt-2 text-[14px] text-black uppercase font-semibold text-left bg-transparent rounded-lg focus:outline-none focus:shadow-outline">
+                                <span class="mx-2">Caracteristicas</span>
+                                <svg fill="currentColor" viewBox="0 0 20 20"
+                                    :class="{'rotate-180': open, 'rotate-0': !open}"
+                                    class="inline w-4 h-4 transition-transform duration-200 transform lg:-mt-1">
+                                    <path fill-rule="evenodd"
+                                        d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                        clip-rule="evenodd"></path>
+                                </svg>
+                            </button>
+                            <div x-show="open" x-transition:enter="transition ease-out duration-100"
+                                x-transition:enter-start="transform opacity-0 scale-95"
+                                x-transition:enter-end="transform opacity-100 scale-100"
+                                x-transition:leave="transition ease-in duration-75"
+                                x-transition:leave-start="transform opacity-100 scale-100"
+                                x-transition:leave-end="transform opacity-0 scale-95"
+                                class="absolute left-4 md:-left-6 w-fit origin-top-right rounded-md z-40">
+                                <div class="bg-white rounded-md z-40 border border-gray-200 shadow-lg">
+                                    <div class="text-xl p-4 w-full leading-tight rounded-md border border-amareloClaro">
+                                        <p>Eficiente e espaçoso</p>
+                                        <p>4 Portas</p>
+                                        <p>5 Pessoas</p>
+                                        <p>2 Malas grandes</p>
+                                        <p>2 Mala pequena</p>
+                                        <p>AirBags</p>
+                                        <p>ABS</p>
+                                        <p>Direção hidráulica</p>
+                                        <p>Trava elétrica</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="relative flex flex-row ml-4 w-[96%] h-full space-x-2 overflow-x-auto">
+                        <!--Carros-->
+                        <!--HB20S-->
+                        <div class="group my-3 flex min-w-[280px] flex-col overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md">
+                            <h1 class="text-base font-semibold text-slate-900 text-center">Hyundai HB20S</h1>
+                            <a class="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl" href="TarifasEAdicionaisLocação.html">
+                                <img class="peer absolute top-0 right-0 h-full w-full object-cover"
+                                    src="https://image.webmotors.com.br/_fotos/anunciousados/gigante/2024/202407/20240726/hyundai-hb20s-1.0-comfort-plus-12v-flex-4p-manual-wmimagem13284910685.jpg?s=fill&w=1920&h=1440&q=75"
+                                    alt="product image" />
+                                <img class="peer absolute top-0 -right-96 h-full w-full object-cover transition-all delay-100 duration-1000 hover:right-0 peer-hover:right-0"
+                                    src="https://image.webmotors.com.br/_fotos/anunciousados/gigante/2024/202407/20240726/hyundai-hb20s-1.0-comfort-plus-12v-flex-4p-manual-wmimagem13284965448.jpg?s=fill&w=1920&h=1440&q=75"
+                                    alt="product image" />
+                            </a>
+                            <div class="mt-4 px-5 pb-5">
+                                <a href="TarifasEAdicionaisLocação.html">
+                                    <h5 class="text-[14px] font-normal text-slate-900">1.0 COMFORT PLUS 12V FLEX 4P MANUAL</h5>
+                                </a>
+                                <div class="mt-2 mb-5  items-center text-center ">
+                                    <span class="text-md font-bold text-slate-900">A partir de</span>
+                                    <div class="flex text-[#CFA633] ml-24">
+                                        <p class="text-md font-bold">R$</p>
+                                        <p class="text-xl font-bold ">50,99</p>
+                                        <p class="text-md font-bold">/dia</p>
+                                    </div>
+                                </div>
+                                <a href="TarifasEAdicionaisLocação.html"
+                                    class="flex items-center justify-center rounded-md bg-[#CFA633] px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-[#DCB23A] focus:outline-none ">
+                                    Alugar</a>
+                            </div>
+                        </div>
+                        <!--Cronos-->
+                        <div class="group my-3 flex min-w-[280px] flex-col overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md">
+                            <h1 class="text-base font-semibold text-slate-900 text-center">Fiat Cronos</h1>
+                            <a class="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl" href="TarifasEAdicionaisLocação.html">
+                                <img class="peer absolute top-0 right-0 h-full w-full object-cover"
+                                    src="https://image.webmotors.com.br/_fotos/anunciousados/gigante/2024/202407/20240714/fiat-cronos-1.0-firefly-flex-drive-manual-wmimagem03045522775.jpg?s=fill&w=1920&h=1440&q=75"
+                                    alt="product image" />
+                                <img class="peer absolute top-0 -right-96 h-full w-full object-cover transition-all delay-100 duration-1000 hover:right-0 peer-hover:right-0"
+                                    src="https://image.webmotors.com.br/_fotos/anunciousados/gigante/2024/202407/20240714/fiat-cronos-1.0-firefly-flex-drive-manual-wmimagem03045117413.jpg?s=fill&w=1920&h=1440&q=75"
+                                    alt="product image" />
+                            </a>
+                            <div class="mt-4 px-5 pb-5">
+                                <a href="TarifasEAdicionaisLocação.html">
+                                    <h5 class="text-base font-semibold text-slate-900">1.0 FIREFLY FLEX DRIVE MANUAL</h5>
+                                </a>
+                                <div class="mt-2 mb-5  items-center text-center ">
+                                    <span class="text-md font-bold text-slate-900">A partir de</span>
+                                    <div class="flex text-[#CFA633] ml-24">
+                                        <p class="text-md font-bold">R$</p>
+                                        <p class="text-xl font-bold ">50,99</p>
+                                        <p class="text-md font-bold">/dia</p>
+                                    </div>
+                                </div>
+                                <a href="TarifasEAdicionaisLocação.html"
+                                    class="flex items-center justify-center rounded-md bg-[#CFA633] px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-[#DCB23A] focus:outline-none ">
+                                    Alugar</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr class="bg-amareloEscuro h-[2px] border-0 rounded">
+                
+                <!--Grupo F-->
+                <div id="grupoF" class="relative flex flex-col w-full h-fit pb-1">
+                    <!--Caracteristicas-->
+                    <div class="flex flex-col md:flex-row h-full md:w-[96%] justify-between">
+                        <h3 class="text-[60px] lg:text-[55px] 2xl:text-[60px] text-amareloEscuro ml-8">Grupo F</h3>
+                        <div @click.away="open = false" class="relative mt-6" x-data="{ open: false }">
+                            <button @click="open = !open"
+                                class="flex flex-row items-center ml-2 w-[95%] py-2 mt-2 text-[14px] text-black uppercase font-semibold text-left bg-transparent rounded-lg focus:outline-none focus:shadow-outline">
+                                <span class="mx-2">Caracteristicas</span>
+                                <svg fill="currentColor" viewBox="0 0 20 20"
+                                    :class="{'rotate-180': open, 'rotate-0': !open}"
+                                    class="inline w-4 h-4 transition-transform duration-200 transform lg:-mt-1">
+                                    <path fill-rule="evenodd"
+                                        d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                        clip-rule="evenodd"></path>
+                                </svg>
+                            </button>
+                            <div x-show="open" x-transition:enter="transition ease-out duration-100"
+                                x-transition:enter-start="transform opacity-0 scale-95"
+                                x-transition:enter-end="transform opacity-100 scale-100"
+                                x-transition:leave="transition ease-in duration-75"
+                                x-transition:leave-start="transform opacity-100 scale-100"
+                                x-transition:leave-end="transform opacity-0 scale-95"
+                                class="absolute left-4 md:-left-6 w-fit origin-top-right rounded-md z-40">
+                                <div class="bg-white rounded-md z-40 border border-gray-200 shadow-lg">
+                                    <div class="text-xl p-4 w-full leading-tight rounded-md border border-amareloClaro">
+                                        <p>Potente e versátil</p>
+                                        <p>Motor 1.6</p>
+                                        <p>4 Portas</p>
+                                        <p>5 Pessoas</p>
+                                        <p>1 Mala grandes</p>
+                                        <p>2 Malas pequena</p>
+                                        <p>AirBags</p>
+                                        <p>ABS</p>
+                                        <p>Direção hidráulica</p>
+                                        <p>Trava elétrica</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="relative flex flex-row ml-4 w-[96%] h-full space-x-2 overflow-x-auto">
+                        <!--Carros-->
+                        <!--Polo-->
+                        <div class="group my-3 flex min-w-[280px] flex-col overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md">
+                            <h1 class="text-base font-semibold text-slate-900 text-center">Volkswagen Polo</h1>
+                            <a class="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl" href="TarifasEAdicionaisLocação.html">
+                                <img class="peer absolute top-0 right-0 h-full w-full object-cover"
+                                    src=""
+                                    alt="product image" />
+                                <img class="peer absolute top-0 -right-96 h-full w-full object-cover transition-all delay-100 duration-1000 hover:right-0 peer-hover:right-0"
+                                    src=""
+                                    alt="product image" />
+                            </a>
+                            <div class="mt-4 px-5 pb-5">
+                                <a href="TarifasEAdicionaisLocação.html">
+                                    <h5 class="text-[14px] font-normal text-slate-900">1.6 MI 8V FLEX 4P MANUAL</h5>
+                                </a>
+                                <div class="mt-2 mb-5  items-center text-center ">
+                                    <span class="text-md font-bold text-slate-900">A partir de</span>
+                                    <div class="flex text-[#CFA633] ml-24">
+                                        <p class="text-md font-bold">R$</p>
+                                        <p class="text-xl font-bold ">50,99</p>
+                                        <p class="text-md font-bold">/dia</p>
+                                    </div>
+                                </div>
+                                <a href="TarifasEAdicionaisLocação.html"
+                                    class="flex items-center justify-center rounded-md bg-[#CFA633] px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-[#DCB23A] focus:outline-none ">
+                                    Alugar</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr class="bg-amareloEscuro h-[2px] border-0 rounded">
+                
+                <!--Grupo FS-->
+                <div id="grupoFS" class="relative flex flex-col w-full h-fit pb-1">
+                    <!--Caracteristicas-->
+                    <div class="flex flex-col md:flex-row h-full md:w-[96%] justify-between">
+                        <h3 class="text-[60px] lg:text-[55px] 2xl:text-[60px] text-amareloEscuro ml-8">Grupo FS</h3>
+                        <div @click.away="open = false" class="relative mt-6" x-data="{ open: false }">
+                            <button @click="open = !open"
+                                class="flex flex-row items-center ml-2 w-[95%] py-2 mt-2 text-[14px] text-black uppercase font-semibold text-left bg-transparent rounded-lg focus:outline-none focus:shadow-outline">
+                                <span class="mx-2">Caracteristicas</span>
+                                <svg fill="currentColor" viewBox="0 0 20 20"
+                                    :class="{'rotate-180': open, 'rotate-0': !open}"
+                                    class="inline w-4 h-4 transition-transform duration-200 transform lg:-mt-1">
+                                    <path fill-rule="evenodd"
+                                        d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                        clip-rule="evenodd"></path>
+                                </svg>
+                            </button>
+                            <div x-show="open" x-transition:enter="transition ease-out duration-100"
+                                x-transition:enter-start="transform opacity-0 scale-95"
+                                x-transition:enter-end="transform opacity-100 scale-100"
+                                x-transition:leave="transition ease-in duration-75"
+                                x-transition:leave-start="transform opacity-100 scale-100"
+                                x-transition:leave-end="transform opacity-0 scale-95"
+                                class="absolute left-4 md:-left-6 w-fit origin-top-right rounded-md z-40">
+                                <div class="bg-white rounded-md z-40 border border-gray-200 shadow-lg">
+                                    <div class="text-xl p-4 w-full leading-tight rounded-md border border-amareloClaro">
+                                        <p>Potente e versátil</p>
+                            <p>Motor 1.6</p>
+                            <p>4 Portas</p>
+                            <p>5 Pessoas</p>
+                            <p>2 Malas grandes</p>
+                            <p>2 Malas pequena</p>
+                            <p>AirBags</p>
+                            <p>ABS</p>
+                            <p>Direção hidráulica</p>
+                            <p>Trava elétrica</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="relative flex flex-row ml-4 w-[90%] xl:w-[70%] h-full space-x-2 overflow-x-auto">
+                        <!--Carros-->
+                        <!--Cronos Intermediário-->
+                        <div class="group my-3 flex min-w-[280px] flex-col overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md">
+                            <h1 class="text-base font-semibold text-slate-900 text-center">Fiat Cronos</h1>
+                            <a class="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl" href="TarifasEAdicionaisLocação.html">
+                                <img class="peer absolute top-0 right-0 h-full w-full object-cover"
+                                    src=""
+                                    alt="product image" />
+                                <img class="peer absolute top-0 -right-96 h-full w-full object-cover transition-all delay-100 duration-1000 hover:right-0 peer-hover:right-0"
+                                    src=""
+                                    alt="product image" />
+                            </a>
+                            <div class="mt-4 px-5 pb-5">
+                                <a href="TarifasEAdicionaisLocação.html">
+                                    <h5 class="text-[14px] font-regular text-slate-900">1.8 E.TORQ FLEX HGT AT6</h5>
+                                </a>
+                                <div class="mt-2 mb-5  items-center text-center ">
+                                    <span class="text-md font-bold text-slate-900">A partir de</span>
+                                    <div class="flex text-[#CFA633] ml-24">
+                                        <p class="text-md font-bold">R$</p>
+                                        <p class="text-xl font-bold ">50,99</p>
+                                        <p class="text-md font-bold">/dia</p>
+                                    </div>
+                                </div>
+                                <a href="TarifasEAdicionaisLocação.html"
+                                    class="flex items-center justify-center rounded-md bg-[#CFA633] px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-[#DCB23A] focus:outline-none ">
+                                    Alugar</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr class="bg-amareloEscuro h-[2px] border-0 rounded">
+                
+                <!--Grupo FA-->
+                <div id="grupoFA" class="relative flex flex-col w-full h-fit pb-1">
+                    <!--Caracteristicas-->
+                    <div class="flex flex-col md:flex-row h-full md:w-[96%] justify-between">
+                        <h3 class="text-[60px] lg:text-[55px] 2xl:text-[60px] text-amareloEscuro ml-8">Grupo FA</h3>
+                        <div @click.away="open = false" class="relative mt-6" x-data="{ open: false }">
+                            <button @click="open = !open"
+                                class="flex flex-row items-center ml-2 w-[95%] py-2 mt-2 text-[14px] text-black uppercase font-semibold text-left bg-transparent rounded-lg focus:outline-none focus:shadow-outline">
+                                <span class="mx-2">Caracteristicas</span>
+                                <svg fill="currentColor" viewBox="0 0 20 20"
+                                    :class="{'rotate-180': open, 'rotate-0': !open}"
+                                    class="inline w-4 h-4 transition-transform duration-200 transform lg:-mt-1">
+                                    <path fill-rule="evenodd"
+                                        d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                        clip-rule="evenodd"></path>
+                                </svg>
+                            </button>
+                            <div x-show="open" x-transition:enter="transition ease-out duration-100"
+                                x-transition:enter-start="transform opacity-0 scale-95"
+                                x-transition:enter-end="transform opacity-100 scale-100"
+                                x-transition:leave="transition ease-in duration-75"
+                                x-transition:leave-start="transform opacity-100 scale-100"
+                                x-transition:leave-end="transform opacity-0 scale-95"
+                                class="absolute left-4 md:-left-6 w-fit origin-top-right rounded-md z-40">
+                                <div class="bg-white rounded-md z-40 border border-gray-200 shadow-lg">
+                                    <div class="text-xl p-4 w-full leading-tight rounded-md border border-amareloClaro">
+                                        <p>Adaptado e pronto</p>
+                                        <p>Direção Hidráulica</p>
+                                        <p>Acelerador e freio manual</p>
+                                        <p>Pomo giratório removível</p>
+                                        <p>4 Portas</p>
+                                        <p>5 Pessoas</p>
+                                        <p>2 Malas grandes</p>
+                                        <p>2 Malas pequenas</p>
+                                        <p>Airbags</p>
+                                        <p>Travas elétricas</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="relative flex flex-row ml-4 w-[90%] h-full space-x-2 overflow-x-auto">
+                        <!--Carros-->
+                        <!--Cronos Adaptado-->
+                        <div class="group my-3 flex min-w-[280px] flex-col overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md">
+                            <h1 class="text-base font-semibold text-slate-900 text-center">Fiat Cronos</h1>
+                            <a class="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl" href="TarifasEAdicionaisLocação.html">
+                                <img class="peer absolute top-0 right-0 h-full w-full object-cover"
+                                    src=""
+                                    alt="product image" />
+                                <img class="peer absolute top-0 -right-96 h-full w-full object-cover transition-all delay-100 duration-1000 hover:right-0 peer-hover:right-0"
+                                    src=""
+                                    alt="product image" />
+                            </a>
+                            <div class="mt-4 px-5 pb-5">
+                                <a href="TarifasEAdicionaisLocação.html">
+                                    <h5 class="text-[14px] font-regular text-slate-900">1.8 E.TORQ FLEX Adaptado</h5>
+                                </a>
+                                <div class="mt-2 mb-5  items-center text-center ">
+                                    <span class="text-md font-bold text-slate-900">A partir de</span>
+                                    <div class="flex text-[#CFA633] ml-24">
+                                        <p class="text-md font-bold">R$</p>
+                                        <p class="text-xl font-bold ">50,99</p>
+                                        <p class="text-md font-bold">/dia</p>
+                                    </div>
+                                </div>
+                                <a href="TarifasEAdicionaisLocação.html"
+                                    class="flex items-center justify-center rounded-md bg-[#CFA633] px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-[#DCB23A] focus:outline-none ">
+                                    Alugar</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr class="bg-amareloEscuro h-[2px] border-0 rounded">
+                
+                <!--Grupo GC-->
+                <div id="grupoGC" class="relative flex flex-col w-full h-fit pb-1">
+                    <!--Caracteristicas-->
+                    <div class="flex flex-col md:flex-row h-full md:w-[96%] justify-between">
+                        <h3 class="text-[60px] lg:text-[55px] 2xl:text-[60px] text-amareloEscuro ml-8">Grupo GC</h3>
+                        <div @click.away="open = false" class="relative mt-6" x-data="{ open: false }">
+                            <button @click="open = !open"
+                                class="flex flex-row items-center ml-2 w-[95%] py-2 mt-2 text-[14px] text-black uppercase font-semibold text-left bg-transparent rounded-lg focus:outline-none focus:shadow-outline">
+                                <span class="mx-2">Caracteristicas</span>
+                                <svg fill="currentColor" viewBox="0 0 20 20"
+                                    :class="{'rotate-180': open, 'rotate-0': !open}"
+                                    class="inline w-4 h-4 transition-transform duration-200 transform lg:-mt-1">
+                                    <path fill-rule="evenodd"
+                                        d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                        clip-rule="evenodd"></path>
+                                </svg>
+                            </button>
+                            <div x-show="open" x-transition:enter="transition ease-out duration-100"
+                                x-transition:enter-start="transform opacity-0 scale-95"
+                                x-transition:enter-end="transform opacity-100 scale-100"
+                                x-transition:leave="transition ease-in duration-75"
+                                x-transition:leave-start="transform opacity-100 scale-100"
+                                x-transition:leave-end="transform opacity-0 scale-95"
+                                class="absolute left-4 md:-left-6 w-fit origin-top-right rounded-md z-40">
+                                <div class="bg-white rounded-md z-40 border border-gray-200 shadow-lg">
+                                    <div class="text-xl p-4 w-full leading-tight rounded-md border border-amareloClaro">
+                                        <p>Tranquilidade e espaçoso</p>
+                                        <p>Automatico</p>
+                                        <p>4 Portas</p>
+                                        <p>5 Pessoas</p>
+                                        <p>2 Malas grandes</p>
+                                        <p>2 Malas pequena</p>
+                                        <p>AirBags</p>
+                                        <p>ABS</p>
+                                        <p>Direção hidráulica</p>
+                                        <p>Trava elétrica</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="relative flex flex-row ml-4 w-[90%] h-full space-x-2 overflow-x-auto">
+                        <!--Carros-->
+                        <!--Nivus-->
+                        <div class="group my-3 flex min-w-[280px] flex-col overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md">
+                            <h1 class="text-base font-semibold text-slate-900 text-center">Volkswagen Nivus</h1>
+                            <a class="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl" href="TarifasEAdicionaisLocação.html">
+                                <img class="peer absolute top-0 right-0 h-full w-full object-cover"
+                                    src=""
+                                    alt="product image" />
+                                <img class="peer absolute top-0 -right-96 h-full w-full object-cover transition-all delay-100 duration-1000 hover:right-0 peer-hover:right-0"
+                                    src=""
+                                    alt="product image" />
+                            </a>
+                            <div class="mt-4 px-5 pb-5">
+                                <a href="TarifasEAdicionaisLocação.html">
+                                    <h5 class="text-[14px] font-normal text-slate-900">1.0 TSI FLEX HIGHLINE</h5>
+                                </a>
+                                <div class="mt-2 mb-5  items-center text-center ">
+                                    <span class="text-md font-bold text-slate-900">A partir de</span>
+                                    <div class="flex text-[#CFA633] ml-24">
+                                        <p class="text-md font-bold">R$</p>
+                                        <p class="text-xl font-bold ">50,99</p>
+                                        <p class="text-md font-bold">/dia</p>
+                                    </div>
+                                </div>
+                                <a href="TarifasEAdicionaisLocação.html"
+                                    class="flex items-center justify-center rounded-md bg-[#CFA633] px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-[#DCB23A] focus:outline-none ">
+                                    Alugar</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr class="bg-amareloEscuro h-[2px] border-0 rounded">
+                
+                <!--Grupo L-->
+                <div id="grupoL" class="relative flex flex-col w-full h-fit pb-1">
+                    <!--Caracteristicas-->
+                    <div class="flex flex-col md:flex-row h-full md:w-[96%] justify-between">
+                        <h3 class="text-[60px] lg:text-[55px] 2xl:text-[60px] text-amareloEscuro ml-8">Grupo L</h3>
+                        <div @click.away="open = false" class="relative mt-6" x-data="{ open: false }">
+                            <button @click="open = !open"
+                                class="flex flex-row items-center ml-2 w-[95%] py-2 mt-2 text-[14px] text-black uppercase font-semibold text-left bg-transparent rounded-lg focus:outline-none focus:shadow-outline">
+                                <span class="mx-2">Caracteristicas</span>
+                                <svg fill="currentColor" viewBox="0 0 20 20"
+                                    :class="{'rotate-180': open, 'rotate-0': !open}"
+                                    class="inline w-4 h-4 transition-transform duration-200 transform lg:-mt-1">
+                                    <path fill-rule="evenodd"
+                                        d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                        clip-rule="evenodd"></path>
+                                </svg>
+                            </button>
+                            <div x-show="open" x-transition:enter="transition ease-out duration-100"
+                                x-transition:enter-start="transform opacity-0 scale-95"
+                                x-transition:enter-end="transform opacity-100 scale-100"
+                                x-transition:leave="transition ease-in duration-75"
+                                x-transition:leave-start="transform opacity-100 scale-100"
+                                x-transition:leave-end="transform opacity-0 scale-95"
+                                class="absolute left-4 md:-left-6 w-fit origin-top-right rounded-md z-40">
+                                <div class="bg-white rounded-md z-40 border border-gray-200 shadow-lg">
+                                    <div class="text-xl p-4 w-full leading-tight rounded-md border border-amareloClaro">
+                                        <p>Luxuoso e potente</p>
+                                        <p>Automatico</p>
+                                        <p>4 Portas</p>
+                                        <p>5 Pessoas</p>
+                                        <p>3 Malas grandes</p>
+                                        <p>2 Malas pequena</p>
+                                        <p>AirBags</p>
+                                        <p>ABS</p>
+                                        <p>Direção hidráulica</p>
+                                        <p>Trava elétrica</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="relative flex flex-row ml-4 w-[90%] h-full space-x-2 overflow-x-auto">
+                        <!--Carros-->
+                        <!--Corolla-->
+                        <div class="group my-3 flex min-w-[280px] flex-col overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md">
+                            <h1 class="text-base font-semibold text-slate-900 text-center">Toyota Corolla</h1>
+                            <a class="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl" href="TarifasEAdicionaisLocação.html">
+                                <img class="peer absolute top-0 right-0 h-full w-full object-cover"
+                                    src=""
+                                    alt="product image" />
+                                <img class="peer absolute top-0 -right-96 h-full w-full object-cover transition-all delay-100 duration-1000 hover:right-0 peer-hover:right-0"
+                                    src=""
+                                    alt="product image" />
+                            </a>
+                            <div class="mt-4 px-5 pb-5">
+                                <a href="TarifasEAdicionaisLocação.html">
+                                    <h5 class="text-[14px] font-normal text-slate-900">2.0 VVT-IE FLEX GR-S</h5>
+                                </a>
+                                <div class="mt-2 mb-5  items-center text-center ">
+                                    <span class="text-md font-bold text-slate-900">A partir de</span>
+                                    <div class="flex text-[#CFA633] ml-24">
+                                        <p class="text-md font-bold">R$</p>
+                                        <p class="text-xl font-bold ">50,99</p>
+                                        <p class="text-md font-bold">/dia</p>
+                                    </div>
+                                </div>
+                                <a href="TarifasEAdicionaisLocação.html"
+                                    class="flex items-center justify-center rounded-md bg-[#CFA633] px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-[#DCB23A] focus:outline-none ">
+                                    Alugar</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr class="bg-amareloEscuro h-[2px] border-0 rounded">
+                
+                <!--Grupo GR-->
+                <div id="grupoGR" class="relative flex flex-col w-full h-fit pb-1">
+                    <!--Caracteristicas-->
+                    <div class="flex flex-col md:flex-row h-full md:w-[96%] justify-between">
+                        <h3 class="text-[60px] lg:text-[55px] 2xl:text-[60px] text-amareloEscuro ml-8">Grupo GR</h3>
+                        <div @click.away="open = false" class="relative mt-6" x-data="{ open: false }">
+                            <button @click="open = !open"
+                                class="flex flex-row items-center ml-2 w-[95%] py-2 mt-2 text-[14px] text-black uppercase font-semibold text-left bg-transparent rounded-lg focus:outline-none focus:shadow-outline">
+                                <span class="mx-2">Caracteristicas</span>
+                                <svg fill="currentColor" viewBox="0 0 20 20"
+                                    :class="{'rotate-180': open, 'rotate-0': !open}"
+                                    class="inline w-4 h-4 transition-transform duration-200 transform lg:-mt-1">
+                                    <path fill-rule="evenodd"
+                                        d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                        clip-rule="evenodd"></path>
+                                </svg>
+                            </button>
+                            <div x-show="open" x-transition:enter="transition ease-out duration-100"
+                                x-transition:enter-start="transform opacity-0 scale-95"
+                                x-transition:enter-end="transform opacity-100 scale-100"
+                                x-transition:leave="transition ease-in duration-75"
+                                x-transition:leave-start="transform opacity-100 scale-100"
+                                x-transition:leave-end="transform opacity-0 scale-95"
+                                class="absolute left-4 md:-left-6 w-fit origin-top-right rounded-md z-40">
+                                <div class="bg-white rounded-md z-40 border border-gray-200 shadow-lg">
+                                    <div class="text-xl p-4 w-full leading-tight rounded-md border border-amareloClaro">
+                                        <p>Luxuoso e comfortável</p>
+                                        <p>Automatico</p>
+                                        <p>Bancos de couro</p>
+                                        <p>4 Portas</p>
+                                        <p>7 Pessoas</p>
+                                        <p>2 Malas grandes</p>
+                                        <p>2 Malas pequena</p>
+                                        <p>AirBags</p>
+                                        <p>ABS</p>
+                                        <p>Direção hidráulica</p>
+                                        <p>Trava elétrica</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <h1 class="text-[30px] text-amareloEscuro ml-8 mb-3">SUV Executivos</h1>
+                    </div>
+                    <div class="relative flex flex-row ml-4 w-[90%] h-full space-x-2 overflow-x-auto">
+                        <!--Carros-->
+                        <!--Commander-->
+                        <div class="group my-3 flex min-w-[280px] flex-col overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md">
+                            <h1 class="text-base font-semibold text-slate-900 text-center">JEEP Commander</h1>
+                            <a class="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl" href="TarifasEAdicionaisLocação.html">
+                                <img class="peer absolute top-0 right-0 h-full w-full object-cover"
+                                    src=""
+                                    alt="product image" />
+                                <img class="peer absolute top-0 -right-96 h-full w-full object-cover transition-all delay-100 duration-1000 hover:right-0 peer-hover:right-0"
+                                    src=""
+                                    alt="product image" />
+                            </a>
+                            <div class="mt-4 px-5 pb-5">
+                                <a href="TarifasEAdicionaisLocação.html">
+                                    <h5 class="text-[14px] font-normal text-slate-900">1.3 T270 TURBO FLEX OVERLAND AT6</h5>
+                                </a>
+                                <div class="mt-2 mb-5  items-center text-center ">
+                                    <span class="text-md font-bold text-slate-900">A partir de</span>
+                                    <div class="flex text-[#CFA633] ml-24">
+                                        <p class="text-md font-bold">R$</p>
+                                        <p class="text-xl font-bold ">50,99</p>
+                                        <p class="text-md font-bold">/dia</p>
+                                    </div>
+                                </div>
+                                <a href="TarifasEAdicionaisLocação.html"
+                                    class="flex items-center justify-center rounded-md bg-[#CFA633] px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-[#DCB23A] focus:outline-none ">
+                                    Alugar</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr class="bg-amareloEscuro h-[2px] border-0 rounded">
+                
+                <!--Grupo V-->
+                <div id="grupoV" class="relative flex flex-col w-full h-fit pb-1">
+                    <!--Caracteristicas-->
+                    <div class="flex flex-col md:flex-row h-full md:w-[96%] justify-between">
+                        <h3 class="text-[60px] lg:text-[55px] 2xl:text-[60px] text-amareloEscuro ml-8">Grupo V</h3>
+                        <div @click.away="open = false" class="relative mt-6" x-data="{ open: false }">
+                            <button @click="open = !open"
+                                class="flex flex-row items-center ml-2 w-[95%] py-2 mt-2 text-[14px] text-black uppercase font-semibold text-left bg-transparent rounded-lg focus:outline-none focus:shadow-outline">
+                                <span class="mx-2">Caracteristicas</span>
+                                <svg fill="currentColor" viewBox="0 0 20 20"
+                                    :class="{'rotate-180': open, 'rotate-0': !open}"
+                                    class="inline w-4 h-4 transition-transform duration-200 transform lg:-mt-1">
+                                    <path fill-rule="evenodd"
+                                        d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                        clip-rule="evenodd"></path>
+                                </svg>
+                            </button>
+                            <div x-show="open" x-transition:enter="transition ease-out duration-100"
+                                x-transition:enter-start="transform opacity-0 scale-95"
+                                x-transition:enter-end="transform opacity-100 scale-100"
+                                x-transition:leave="transition ease-in duration-75"
+                                x-transition:leave-start="transform opacity-100 scale-100"
+                                x-transition:leave-end="transform opacity-0 scale-95"
+                                class="absolute left-4 md:-left-6 w-fit origin-top-right rounded-md z-40">
+                                <div class="bg-white rounded-md z-40 border border-gray-200 shadow-lg">
+                                    <div class="text-xl p-4 w-full leading-tight rounded-md border border-amareloClaro">
+                                        <p>Compacto e forte</p>
+                                        <p>2 Portas</p>
+                                        <p>2 Pessoas</p>
+                                        <p>705 KG</p>
+                                        <p>AirBags</p>
+                                        <p>ABS</p>
+                                        <p>Ar-condicionado</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="relative flex flex-row ml-4 w-[90%] h-full space-x-2 overflow-x-auto">
+                        <!--Carros-->
+                        <!--Saveiro-->
+                        <div class="group my-3 flex min-w-[280px] flex-col overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md">
+                            <h1 class="text-base font-semibold text-slate-900 text-center">Volkswagen Saveiro</h1>
+                            <a class="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl" href="TarifasEAdicionaisLocação.html">
+                                <img class="peer absolute top-0 right-0 h-full w-full object-cover"
+                                    src=""
+                                    alt="product image" />
+                                <img class="peer absolute top-0 -right-96 h-full w-full object-cover transition-all delay-100 duration-1000 hover:right-0 peer-hover:right-0"
+                                    src=""
+                                    alt="product image" />
+                            </a>
+                            <div class="mt-4 px-5 pb-5">
+                                <a href="TarifasEAdicionaisLocação.html">
+                                    <h5 class="text-[14px] font-normal text-slate-900">1.6 MSI ROBUST CS 8V FLEX 2P MANUAL</h5>
+                                </a>
+                                <div class="mt-2 mb-5  items-center text-center ">
+                                    <span class="text-md font-bold text-slate-900">A partir de</span>
+                                    <div class="flex text-[#CFA633] ml-24">
+                                        <p class="text-md font-bold">R$</p>
+                                        <p class="text-xl font-bold ">50,99</p>
+                                        <p class="text-md font-bold">/dia</p>
+                                    </div>
+                                </div>
+                                <a href="TarifasEAdicionaisLocação.html"
+                                    class="flex items-center justify-center rounded-md bg-[#CFA633] px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-[#DCB23A] focus:outline-none ">
+                                    Alugar</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr class="bg-amareloEscuro h-[2px] border-0 rounded">
+                
+                <!--Grupo U-->
+                <div id="grupoU" class="relative flex flex-col w-full h-fit pb-1">
+                    <!--Caracteristicas-->
+                    <div class="flex flex-col md:flex-row h-full md:w-[96%] justify-between">
+                        <h3 class="text-[60px] lg:text-[55px] 2xl:text-[60px] text-amareloEscuro ml-8">Grupo U</h3>
+                        <div @click.away="open = false" class="relative mt-6" x-data="{ open: false }">
+                            <button @click="open = !open"
+                                class="flex flex-row items-center ml-2 w-[95%] py-2 mt-2 text-[14px] text-black uppercase font-semibold text-left bg-transparent rounded-lg focus:outline-none focus:shadow-outline">
+                                <span class="mx-2">Caracteristicas</span>
+                                <svg fill="currentColor" viewBox="0 0 20 20"
+                                    :class="{'rotate-180': open, 'rotate-0': !open}"
+                                    class="inline w-4 h-4 transition-transform duration-200 transform lg:-mt-1">
+                                    <path fill-rule="evenodd"
+                                        d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                        clip-rule="evenodd"></path>
+                                </svg>
+                            </button>
+                            <div x-show="open" x-transition:enter="transition ease-out duration-100"
+                                x-transition:enter-start="transform opacity-0 scale-95"
+                                x-transition:enter-end="transform opacity-100 scale-100"
+                                x-transition:leave="transition ease-in duration-75"
+                                x-transition:leave-start="transform opacity-100 scale-100"
+                                x-transition:leave-end="transform opacity-0 scale-95"
+                                class="absolute left-4 md:-left-6 w-fit origin-top-right rounded-md z-40">
+                                <div class="bg-white rounded-md z-40 border border-gray-200 shadow-lg">
+                                    <div class="text-xl p-4 w-full leading-tight rounded-md border border-amareloClaro">
+                                        <p>Compacto e forte</p>
+                                        <p>2 Portas</p>
+                                        <p>2 Pessoas</p>
+                                        <p>620 KG</p>
+                                        <p>AirBags</p>
+                                        <p>ABS</p>
+                                        <p>Ar-condicionado</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="relative flex flex-row ml-4 w-[90%] h-full space-x-2 overflow-x-auto">
+                        <!--Carros-->
+                        <!--Fiorino-->
+                        <div class="group my-3 flex max-w-[280px] flex-col overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md">
+                            <h1 class="text-base font-semibold text-slate-900 text-center">Fiat fiorino</h1>
+                            <a class="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl" href="TarifasEAdicionaisLocação.html">
+                                <img class="peer absolute top-0 right-0 h-full w-full object-cover"
+                                    src=""
+                                    alt="product image" />
+                                <img class="peer absolute top-0 -right-96 h-full w-full object-cover transition-all delay-100 duration-1000 hover:right-0 peer-hover:right-0"
+                                    src=""
+                                    alt="product image" />
+                            </a>
+                            <div class="mt-4 px-5 pb-5">
+                                <a href="TarifasEAdicionaisLocação.html">
+                                    <h5 class="text-[14px] font-normal text-slate-900">1.4 MPI FURGÃO ENDURANCE 8V FLEX 2P MANUAL</h5>
+                                </a>
+                                <div class="mt-2 mb-5  items-center text-center ">
+                                    <span class="text-md font-bold text-slate-900">A partir de</span>
+                                    <div class="flex text-[#CFA633] ml-24">
+                                        <p class="text-md font-bold">R$</p>
+                                        <p class="text-xl font-bold ">50,99</p>
+                                        <p class="text-md font-bold">/dia</p>
+                                    </div>
+                                </div>
+                                <a href="TarifasEAdicionaisLocação.html"
+                                    class="flex items-center justify-center rounded-md bg-[#CFA633] px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-[#DCB23A] focus:outline-none ">
+                                    Alugar</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr class="bg-amareloEscuro h-[2px] border-0 rounded">
+                
+                <!--Grupo J-->
+                <div id="grupoJ" class="relative flex flex-col w-full h-fit pb-1">
+                    <!--Caracteristicas-->
+                    <div class="flex flex-col md:flex-row h-full md:w-[96%] justify-between">
+                        <h3 class="text-[60px] lg:text-[55px] 2xl:text-[60px] text-amareloEscuro ml-8">Grupo V</h3>
+                        <div @click.away="open = false" class="relative mt-6" x-data="{ open: false }">
+                            <button @click="open = !open"
+                                class="flex flex-row items-center ml-2 w-[95%] py-2 mt-2 text-[14px] text-black uppercase font-semibold text-left bg-transparent rounded-lg focus:outline-none focus:shadow-outline">
+                                <span class="mx-2">Caracteristicas</span>
+                                <svg fill="currentColor" viewBox="0 0 20 20"
+                                    :class="{'rotate-180': open, 'rotate-0': !open}"
+                                    class="inline w-4 h-4 transition-transform duration-200 transform lg:-mt-1">
+                                    <path fill-rule="evenodd"
+                                        d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                        clip-rule="evenodd"></path>
+                                </svg>
+                            </button>
+                            <div x-show="open" x-transition:enter="transition ease-out duration-100"
+                                x-transition:enter-start="transform opacity-0 scale-95"
+                                x-transition:enter-end="transform opacity-100 scale-100"
+                                x-transition:leave="transition ease-in duration-75"
+                                x-transition:leave-start="transform opacity-100 scale-100"
+                                x-transition:leave-end="transform opacity-0 scale-95"
+                                class="absolute left-4 md:-left-6 w-fit origin-top-right rounded-md z-40">
+                                <div class="bg-white rounded-md z-40 border border-gray-200 shadow-lg">
+                                    <div class="text-xl p-4 w-full leading-tight rounded-md border border-amareloClaro">
+                                        <p>Compacto e forte</p>
+                            <p>2 Portas</p>
+                            <p>16 Pessoas</p>
+                            <p>Diesel</p>
+                            <p>Direção hidráulica</p>
+                            <p>AirBags</p>
+                            <p>ABS</p>
+                            <p>Ar-condicionado</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="relative flex flex-row ml-4 w-[90%] h-full space-x-2 overflow-x-auto">
+                        <!--Carros-->
+                        <!--Master-->
+                        <div class="group my-3 flex max-w-[280px] flex-col overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md">
+                            <h1 class="text-base font-semibold text-slate-900 text-center">Renault Master</h1>
+                            <a class="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl" href="TarifasEAdicionaisLocação.html">
+                                <img class="peer absolute top-0 right-0 h-full w-full object-cover"
+                                    src=""
+                                    alt="product image" />
+                                <img class="peer absolute top-0 -right-96 h-full w-full object-cover transition-all delay-100 duration-1000 hover:right-0 peer-hover:right-0"
+                                    src=""
+                                    alt="product image" />
+                            </a>
+                            <div class="mt-4 px-5 pb-5">
+                                <a href="TarifasEAdicionaisLocação.html">
+                                    <h5 class="text-[14px] font-normal text-slate-900">2.3 FURGÃO L1H1 16V TURBO INTERCOOLER DIESEL 4P MANUAL</h5>
+                                </a>
+                                <div class="mt-2 mb-5  items-center text-center ">
+                                    <span class="text-md font-bold text-slate-900">A partir de</span>
+                                    <div class="flex text-[#CFA633] ml-24">
+                                        <p class="text-md font-bold">R$</p>
+                                        <p class="text-xl font-bold ">50,99</p>
+                                        <p class="text-md font-bold">/dia</p>
+                                    </div>
+                                </div>
+                                <a href="TarifasEAdicionaisLocação.html"
+                                    class="flex items-center justify-center rounded-md bg-[#CFA633] px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-[#DCB23A] focus:outline-none ">
+                                    Alugar</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr class="bg-amareloEscuro h-[2px] border-0 rounded">
+                
+            </div>
+        </div>
+    </div>
+
+
+    <!--Javascript para Navbar-->
+    <script>
+        function Menu(e) {
+            let list = document.querySelector('ul');
+            e.name === 'menu' ? (e.name = "close", list.classList.add('top-[56px]'), list.classList.add('opacity-100')) : (e.name = "menu", list.classList.remove('top-[56px]'), list.classList.remove('opacity-100'))
+        }
+    </script>
+    <!--Script SideBar-->
+    <script type="text/javascript">
+        document.addEventListener("DOMContentLoaded", () => {
+            const navbar = document.getElementById("navbar");
+            const sidebar = document.getElementById("sidebar");
+            const btnSidebarToggler = document.getElementById("btnSidebarToggler");
+            const navClosed = document.getElementById("navClosed");
+            const navOpen = document.getElementById("navOpen");
+
+            btnSidebarToggler.addEventListener("click", (e) => {
+                e.preventDefault();
+                sidebar.classList.toggle("show");
+                navClosed.classList.toggle("hidden");
+                navOpen.classList.toggle("hidden");
+            });
+
+            if (window.innerWidth >= 1024) { // lg breakpoint
+                sidebar.classList.add("lg:relative", "lg:top-0", "lg:left-0", "lg:translate-x-0");
+            } else {
+                sidebar.classList.remove("lg:relative", "lg:top-0", "lg:left-0", "lg:translate-x-0");
+            }
+
+            sidebar.style.top = parseInt(navbar.clientHeight) - 1 + "px";
+        });
+    </script>
+</body>
+
+</html>

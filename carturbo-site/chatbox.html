@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chat</title>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            cinzaClaro: '#DBDBDB',
+            PretoClarin: '#33312D',
+            Branquin: '#FFFFFF',
+            Marromdiff: '#7A6D47',
+            Amarelin: '#A58B44',
+            cinza: '#C6C6C6',
+          }
+        }
+      }
+    }
+  </script>
+
+</head>
+
+<body>
+
+  <!--DIV do botao de abrir o chat-->
+  <div class="fixed bottom-0 right-0 mb-4 mr-4">
+    <button id="open-chat"
+      class="bg-PretoClarin text-white py-2 px-4 rounded-md hover:bg-PretoClarin 0 transition duration-300 flex items-center">
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 mr-2" fill="none" viewBox="0 0 24 24"
+        stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+      </svg>
+      Chat
+    </button>
+  </div>
+
+  <!--Div gigantesca-->
+  <div id="chat-container"
+    class="hidden h-full md:h-[45%] lg:h-[35%] xl:h-[60%] fixed md:bottom-16 md:right-4 md:w-96 ">
+    <div class="bg-cinza w-full h-full xl:h-full shadow-md rounded-lg max-w-lg md:max-w-2xl">
+      <div class="p-4 border-b bg-PretoClarin text-white rounded-t-lg flex justify-between">
+        <p class="ml-[45%] text-lg font-semibold">Chat</p>
+
+        <!--Fecha o chat-->
+        <button id="close-chat" hidden class="text-gray-300 hover:text-gray-400 focus:outline-none focus:text-gray-400">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+      <div id="chatbox" class="p-4 h-80 h-[81%] md:h-[70%] overflow-y-auto">
+
+        <!-- Chat messages will be displayed here -->
+        <div class="mb-2 text-right">
+          <p class="bg-PretoClarin text-white rounded-full py-2 px-4 inline-block">Olá</p>
+        </div>
+        <div class="mb-2">
+          <p class="bg-Marromdiff text-white rounded-full py-2 px-4 inline-block">Exemplo de conversa prévia</p>
+        </div>
+        <div class="mb-2 text-right">
+          <p class="bg-PretoClarin text-white rounded-full py-2 px-4 inline-block">Em que posso ser útil</p>
+        </div>
+        <div class="mb-2">
+          <p class="bg-Marromdiff text-white rounded-lg py-2 px-4 inline-block">Tenho uma dúvida sobre o andamento do
+            processo da venda do fiat Marea</p>
+        </div>
+        <div class="mb-2 text-right">
+          <p class="bg-PretoClarin text-white rounded-full py-2 px-4 inline-block">Ah, sim!</p>
+        </div>
+        <div class="mb-2">
+          <p class="bg-Marromdiff text-white rounded-lg py-2 px-4 inline-block">E aí, achou comprador?!</p>
+        </div>
+      </div>
+      <div class="p-4 border-t bg-PretoClarin flex absolute inset-x-0 bottom-0 rounded-b-lg">
+        <input id="user-input" type="text" placeholder="Digite aqui..."
+          class="w-full px-3 py-2 border rounded-l-md text-black font-semibold focus:outline-none focus:ring-2 focus:ring-Marromdiff bg-cinzaClaro">
+        <button id="send-button"
+          class="bg-Marromdiff text-white font-semibold px-4 py-2 rounded-r-md hover:bg-Amarelin transition duration-300">Enviar</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const chatbox = document.getElementById("chatbox");
+    const chatContainer = document.getElementById("chat-container");
+    const userInput = document.getElementById("user-input");
+    const sendButton = document.getElementById("send-button");
+    const openChatButton = document.getElementById("open-chat");
+    const closeChatButton = document.getElementById("close-chat");
+
+    let isChatboxOpen = true; // Set the initial state to open
+
+    // Function to toggle the chatbox visibility
+    function toggleChatbox() {
+      chatContainer.classList.toggle("hidden");
+      isChatboxOpen = !isChatboxOpen; // Toggle the state
+    }
+
+    // Add an event listener to the open chat button
+    openChatButton.addEventListener("click", toggleChatbox);
+
+    // Add an event listener to the close chat button
+    closeChatButton.addEventListener("click", toggleChatbox);
+
+    // Add an event listener to the send button
+    sendButton.addEventListener("click", function () {
+      const userMessage = userInput.value;
+      if (userMessage.trim() !== "") {
+        addUserMessage(userMessage);
+        respondToUser(userMessage);
+        userInput.value = "";
+      }
+    });
+
+    userInput.addEventListener("keyup", function (event) {
+      if (event.key === "Enter") {
+        const userMessage = userInput.value;
+        addUserMessage(userMessage);
+        respondToUser(userMessage);
+        userInput.value = "";
+      }
+    });
+
+    function addUserMessage(message) {
+      const messageElement = document.createElement("div");
+      messageElement.classList.add("mb-2", "text-right");
+      messageElement.innerHTML = `<p class="max-w-60 break-word bg-PretoClarin text-white rounded-lg py-2 px-4 inline-block">${message}</p>`;
+      chatbox.appendChild(messageElement);
+      chatbox.scrollTop = chatbox.scrollHeight;
+    }
+
+    function addBotMessage(message) {
+      const messageElement = document.createElement("div");
+      messageElement.classList.add("mb-2");
+      messageElement.innerHTML = `<p class="max-w-60 break-word bg-Marromdiff text-Branquin rounded-lg py-2 px-4 inline-block">${message}</p>`;
+      chatbox.appendChild(messageElement);
+      chatbox.scrollTop = chatbox.scrollHeight;
+    }
+
+    function respondToUser(userMessage) {
+      // Replace this with your chatbot logic
+      setTimeout(() => {
+        addBotMessage("This is a response from the chatbot This is a response from the chatbot This is a response from the chatbot This is a response from the chatbot This is a response from the chatbot");
+      }, 500);
+    }
+
+    // Automatically open the chatbox on page load
+    toggleChatbox();
+
+  </script>
+</body>
+
+</html>
